@@ -1,15 +1,30 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Merriweather,Montserrat,Montserrat_Alternates,Oswald  } from "next/font/google";
 import "./globals.css";
+import { Provider } from "@/components/ui/provider"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const merriweather = Merriweather({
   subsets: ["latin"],
+  variable: "--font-merriweather",
+  weight: ["300", "400","700", "900"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
   subsets: ["latin"],
+  variable: "--font-montserrat",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
+
+const montserratAlternates = Montserrat_Alternates({
+  subsets: ["latin"],
+  variable: "--font-montserrat-alternates",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  variable: "--font-oswald",
+  weight: ["200", "300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -23,11 +38,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${merriweather.variable} ${montserrat.variable} ${montserratAlternates.variable} ${oswald.variable} antialiased`}
       >
-        {children}
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
