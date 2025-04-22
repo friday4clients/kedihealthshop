@@ -47,19 +47,31 @@ const Navbar = async () => {
                                 </Drawer.Header>
                                 <Drawer.Body>
                                     <Stack gap="4">
-                                        <Link href="/">Home</Link>
-                                        <Link href="/category">Category</Link>
-                                        <Link href="/about">About</Link>
-                                        <Link href="/services">Services</Link>
-                                        <Link href="/contact">Contact</Link>
+                                        <Drawer.ActionTrigger asChild>
+                                            <Link href="/">Home</Link>
+                                        </Drawer.ActionTrigger>
+                                        <Drawer.ActionTrigger asChild>
+                                            <Link href="/category">Category</Link>
+                                        </Drawer.ActionTrigger>
+                                        <Drawer.ActionTrigger asChild>
+                                            <Link href="/about">About</Link>
+                                        </Drawer.ActionTrigger>
+                                        <Drawer.ActionTrigger asChild>
+                                            <Link href="/services">Services</Link>
+                                        </Drawer.ActionTrigger>
+                                        <Drawer.ActionTrigger asChild>
+                                            <Link href="/contact">Contact</Link>
+                                        </Drawer.ActionTrigger>
                                     </Stack>
 
                                     <Stack mt="6" gap="4">
                                         <Heading fontSize="md" fontWeight="sm">Categories</Heading>
                                         {categories.map((category, index) => (
-                                            <Link key={index} href={`/${category.replaceAll(" ","_")}`}>
-                                                {category}
-                                            </Link>
+                                            <Drawer.ActionTrigger asChild key={index}>
+                                                <Link href={`/${category.replaceAll(" ","_")}`}>
+                                                    {category}
+                                                </Link>
+                                            </Drawer.ActionTrigger>
                                         ))}
                                     </Stack>
                                 </Drawer.Body>
