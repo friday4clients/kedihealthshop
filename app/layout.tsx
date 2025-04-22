@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Merriweather,Montserrat,Montserrat_Alternates,Oswald  } from "next/font/google";
+import { Merriweather, Montserrat, Montserrat_Alternates, Oswald } from "next/font/google";
 import "./globals.css";
 import { Provider } from "@/components/ui/provider"
+import Navbar from "@/components/navbar";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
   variable: "--font-merriweather",
-  weight: ["300", "400","700", "900"],
+  weight: ["300", "400", "700", "900"],
 });
 
 const montserrat = Montserrat({
@@ -42,7 +43,10 @@ export default function RootLayout({
       <body
         className={`${merriweather.variable} ${montserrat.variable} ${montserratAlternates.variable} ${oswald.variable} antialiased`}
       >
-        <Provider>{children}</Provider>
+        <Provider>
+          <Navbar />
+          {children}
+        </Provider>
       </body>
     </html>
   );

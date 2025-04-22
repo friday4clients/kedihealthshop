@@ -1,16 +1,18 @@
 import { ChakraProvider, createSystem, defineConfig, defaultConfig } from "@chakra-ui/react";
 
+
 const config = defineConfig({
     globalCss: {
         "body": {
             bg: "gray.100",
-            color:"gray.emphasized"
+            color: "gray.emphasized",
+            // fontFamily: "Montserrat, sans-serif"
         },
         "P": {
-            color: "gray.emphasized"
+            color: "gray.emphasized",
         },
         "h1,h2,h3,h4,h5,h6": {
-            color: "gray.contrast"
+            color: "gray.contrast",
         },
     },
     theme: {
@@ -27,15 +29,21 @@ const config = defineConfig({
                 },
                 oswald: {
                     value: "Oswald, sans-serif"
+                },
+                body: {
+                    value: "montserrat"
+                },
+                heading: {
+                    value: "montserrat"
                 }
             },
             colors: {
                 accent: {
-                    value: "#4800ff"
+                    value: "{colors.blue.700}"
                 },
             }
         },
     },
 })
 
-export const system = createSystem(config, defaultConfig);
+export const system = createSystem(defaultConfig, config);

@@ -1,0 +1,886 @@
+{
+    "Immune & General Wellness": [
+        {
+            "id": 1,
+            "title": "Cordy Royal Jelly",
+            "price": 14500,
+            "category": "Immune & General Wellness",
+            "description": "A potent combination of Cordyceps Sinensis and Royal Jelly that boosts energy, enhances immunity, and supports overall vitality.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Strengthens immune system",
+                "Improves stamina and vitality",
+                "Supports kidney and liver functions"
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Reishi",
+            "price": 13900,
+            "category": "Immune & General Wellness",
+            "description": "Known as the 'mushroom of immortality', Reishi supports immunity, reduces stress, and helps balance blood pressure.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Boosts immune system",
+                "Helps manage blood pressure",
+                "Supports cardiovascular and liver health"
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Cordy Active",
+            "price": 16000,
+            "category": "Immune & General Wellness",
+            "description": "An energizing supplement with Cordyceps that revitalizes the body and improves respiratory function.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Enhances physical performance",
+                "Improves oxygen utilization",
+                "Boosts immune and respiratory health"
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Golden Six",
+            "price": 10320,
+            "category": "Immune & General Wellness",
+            "description": "A powerful blend of six traditional herbs designed to boost vitality, support organs, and improve overall wellness.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Supports organ function",
+                "Improves vitality",
+                "Strengthens immune system"
+            ]
+        },
+        {
+            "id": 5,
+            "title": "V-ca",
+            "price": 7800,
+            "category": "Immune & General Wellness",
+            "description": "A vitamin C-based supplement enriched with calcium to strengthen bones and immunity.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Boosts immune defense",
+                "Improves bone strength",
+                "Fights off infections"
+            ]
+        },
+        {
+            "id": 6,
+            "title": "Multi-Vitamin (Zinc)",
+            "price": 8600,
+            "category": "Immune & General Wellness",
+            "description": "A multivitamin formula fortified with zinc to promote immune health, growth, and development.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Supports immune function",
+                "Promotes cell repair and healing",
+                "Aids growth and development"
+            ]
+        },
+        {
+            "id": 7,
+            "title": "Ultramega",
+            "price": 9900,
+            "category": "Immune & General Wellness",
+            "description": "High potency multivitamin with essential minerals to fuel your daily energy and nutritional needs.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Improves energy metabolism",
+                "Supports heart and brain health",
+                "Fills nutritional gaps"
+            ]
+        },
+        {
+            "id": 8,
+            "title": "Calmazine",
+            "price": 9200,
+            "category": "Immune & General Wellness",
+            "description": "A calcium and magnesium-rich supplement that helps with stress relief, bone support, and muscle relaxation.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Strengthens bones and teeth",
+                "Reduces stress and anxiety",
+                "Promotes muscle relaxation"
+            ]
+        },
+        {
+            "id": 9,
+            "title": "Vitagent",
+            "price": 8800,
+            "category": "Immune & General Wellness",
+            "description": "An antioxidant-rich supplement that helps repair body cells, reduce oxidative stress, and enhance immunity.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Provides antioxidant protection",
+                "Supports cellular regeneration",
+                "Improves immune function"
+            ]
+        },
+        {
+            "id": 10,
+            "title": "Lycovite",
+            "price": 11500,
+            "category": "Immune & General Wellness",
+            "description": "A powerful antioxidant blend with lycopene and vitamins to support cardiovascular health and cellular defense.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Protects against oxidative stress",
+                "Supports heart health",
+                "Strengthens the immune system"
+            ]
+        },
+        {
+            "id": 11,
+            "title": "Cello Q10 SG",
+            "price": 15700,
+            "category": "Immune & General Wellness",
+            "description": "Coenzyme Q10 supplement that energizes cells, supports cardiovascular health, and combats fatigue.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Boosts cellular energy",
+                "Enhances heart function",
+                "Reduces fatigue"
+            ]
+        },
+        {
+            "id": 12,
+            "title": "Memory 24/7",
+            "price": 13200,
+            "category": "Immune & General Wellness",
+            "description": "Formulated to boost memory, mental clarity, and concentration — ideal for students and professionals.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Improves memory retention",
+                "Enhances mental performance",
+                "Supports brain and nerve function"
+            ]
+        }
+    ],
+    "Sexual Health & Fertility": [
+        {
+            "id": 13,
+            "title": "Vigor Essential",
+            "price": 12800,
+            "category": "Sexual Health & Fertility",
+            "description": "A powerful male performance enhancer that supports libido, vitality, and hormonal balance naturally.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Boosts libido and stamina",
+                "Enhances male reproductive health",
+                "Supports hormonal balance"
+            ]
+        },
+        {
+            "id": 14,
+            "title": "Re-Vive",
+            "price": 9800,
+            "category": "Sexual Health & Fertility",
+            "description": "A revitalizing tonic that restores energy and vitality for both men and women. Also available in packet and mini packet versions.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Restores physical and sexual energy",
+                "Reduces fatigue and boosts vitality",
+                "Improves reproductive function"
+            ]
+        },
+        {
+            "id": 15,
+            "title": "Re-Vive (Packet)",
+            "price": 2000,
+            "category": "Sexual Health & Fertility",
+            "description": "A portable sachet version of Re-Vive for on-the-go energy and libido support.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Convenient energy boost",
+                "Supports vitality and performance",
+                "Ideal for travel or single-use"
+            ]
+        },
+        {
+            "id": 16,
+            "title": "Re-Vive (Mini Packet)",
+            "price": 1000,
+            "category": "Sexual Health & Fertility",
+            "description": "A mini sachet of Re-Vive designed for trial use or light users seeking quick revitalization.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Quick energy and libido support",
+                "Affordable and easy to use",
+                "Ideal for beginners or trial"
+            ]
+        },
+        {
+            "id": 17,
+            "title": "Lycovite",
+            "price": 11500,
+            "category": "Sexual Health & Fertility",
+            "description": "An antioxidant-rich supplement with lycopene and vitamins that support fertility and reproductive health.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Enhances reproductive function",
+                "Supports hormonal health",
+                "Boosts cellular protection and immunity"
+            ]
+        },
+        {
+            "id": 18,
+            "title": "M&V Women",
+            "price": 8900,
+            "category": "Sexual Health & Fertility",
+            "description": "A women's multivitamin and fertility-enhancing formula that balances hormones and supports reproductive wellness.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Balances female hormones",
+                "Improves fertility and menstrual health",
+                "Supports energy and mood"
+            ]
+        },
+        {
+            "id": 19,
+            "title": "Vitaprego",
+            "price": 10500,
+            "category": "Sexual Health & Fertility",
+            "description": "A prenatal supplement for women trying to conceive, pregnant, or breastfeeding, enriched with essential nutrients.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Supports fetal development",
+                "Improves maternal health",
+                "Provides essential vitamins for pregnancy"
+            ]
+        },
+        {
+            "id": 20,
+            "title": "Eve’s Comfort",
+            "price": 9400,
+            "category": "Sexual Health & Fertility",
+            "description": "Specially formulated to relieve menstrual discomfort and promote hormonal balance in women.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Eases menstrual pain",
+                "Regulates menstruation",
+                "Balances female hormones"
+            ]
+        },
+        {
+            "id": 21,
+            "title": "Gynapharm",
+            "price": 8700,
+            "category": "Sexual Health & Fertility",
+            "description": "A female reproductive system support capsule that helps in managing infections and improving reproductive health.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Supports vaginal health",
+                "Fights infections and inflammations",
+                "Improves overall reproductive function"
+            ]
+        }
+    ],
+    "Digestive & Liver Health": [
+        {
+            "id": 22,
+            "title": "Gastrifort",
+            "price": 12900,
+            "category": "Digestive & Liver Health",
+            "description": "A natural formula that provides relief from ulcers, gastritis, and other stomach-related disorders while protecting the gastrointestinal tract.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Heals and prevents ulcers",
+                "Soothes gastritis and indigestion",
+                "Promotes gut healing and balance"
+            ]
+        },
+        {
+            "id": 23,
+            "title": "Gastrifort (Small)",
+            "price": 6900,
+            "category": "Digestive & Liver Health",
+            "description": "A smaller pack of the Gastrifort formula, ideal for short-term use or trial to support stomach and gut health.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Same powerful formula in smaller size",
+                "Relieves stomach ulcers and pain",
+                "Convenient and affordable option"
+            ]
+        },
+        {
+            "id": 24,
+            "title": "Golden Hypha",
+            "price": 13800,
+            "category": "Digestive & Liver Health",
+            "description": "Combines potent medicinal mushrooms and herbs that detoxify the liver, improve digestion, and boost immunity.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Detoxifies and protects the liver",
+                "Improves nutrient absorption",
+                "Enhances digestive and immune systems"
+            ]
+        },
+        {
+            "id": 25,
+            "title": "Golden Hypha (Small)",
+            "price": 7200,
+            "category": "Digestive & Liver Health",
+            "description": "The compact version of Golden Hypha, offering the same liver detoxification and digestive support in a smaller pack.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Supports liver detox in a compact form",
+                "Improves digestive efficiency",
+                "Strengthens body defenses"
+            ]
+        },
+        {
+            "id": 26,
+            "title": "Constilease",
+            "price": 8800,
+            "category": "Digestive & Liver Health",
+            "description": "Formulated to relieve constipation gently, this herbal supplement supports regular bowel movement and colon health.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Relieves constipation naturally",
+                "Supports colon detox",
+                "Promotes regularity and comfort"
+            ]
+        },
+        {
+            "id": 27,
+            "title": "Colon Cleanser",
+            "price": 9800,
+            "category": "Digestive & Liver Health",
+            "description": "A natural blend that cleanses the digestive tract, removing toxins and improving colon function.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Cleanses and detoxifies the colon",
+                "Reduces bloating and gas",
+                "Improves nutrient assimilation"
+            ]
+        },
+        {
+            "id": 28,
+            "title": "Magilim",
+            "price": 9700,
+            "category": "Digestive & Liver Health",
+            "description": "Supports healthy metabolism, aids in weight management, and improves bowel movement regularity and gut flora.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Promotes digestion and metabolism",
+                "Aids in healthy weight control",
+                "Improves bowel movement and gut flora"
+            ]
+        },
+        {
+            "id": 29,
+            "title": "Lirich",
+            "price": 10200,
+            "category": "Digestive & Liver Health",
+            "description": "A unique blend that revitalizes liver function, enhances detoxification, and supports healthy digestion.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Improves liver function",
+                "Supports digestion and detox",
+                "Boosts antioxidant defense in the liver"
+            ]
+        }
+    ],
+    "Diabetes & Blood Sugar": [
+        {
+            "id": 30,
+            "title": "Diawell Tablet",
+            "price": 9800,
+            "category": "Diabetes & Blood Sugar",
+            "description": "Diawell is a natural supplement formulated to support healthy blood sugar levels. It helps improve insulin sensitivity and provides antioxidant protection against diabetes-related damage.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Helps regulate blood sugar levels",
+                "Supports pancreatic function and insulin sensitivity",
+                "Improves metabolism of glucose and lipids",
+                "Reduces fatigue caused by diabetes"
+            ]
+        },
+        {
+            "id": 31,
+            "title": "Magilim",
+            "price": 9700,
+            "category": "Diabetes & Blood Sugar",
+            "description": "Magilim is a dietary fiber-based supplement that promotes satiety, supports blood sugar balance, and aids in weight management, making it beneficial for people managing diabetes.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Helps maintain balanced blood sugar levels",
+                "Supports digestive and metabolic health",
+                "Promotes fullness and weight control",
+                "Improves insulin efficiency and reduces sugar cravings"
+            ]
+        }
+    ],
+    "Eye & Brain Health": [
+        {
+            "id": 32,
+            "title": "Eye Beta",
+            "price": 9400,
+            "category": "Eye & Brain Health",
+            "description": "Eye Beta is a vision-support supplement formulated with natural carotenoids and antioxidants to enhance visual acuity, protect eye tissues, and reduce the risk of eye-related conditions.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Improves eyesight and visual clarity",
+                "Protects eyes from UV and blue light damage",
+                "Prevents eye fatigue and dryness",
+                "Supports long-term retinal health"
+            ]
+        },
+        {
+            "id": 33,
+            "title": "Memory 24/7",
+            "price": 10600,
+            "category": "Eye & Brain Health",
+            "description": "Memory 24/7 is a nootropic supplement designed to boost memory, focus, and mental clarity. It supports brain function and is beneficial for students, professionals, and the elderly.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Enhances memory and cognitive function",
+                "Improves focus and mental performance",
+                "Reduces mental fatigue and brain fog",
+                "Supports long-term brain health"
+            ]
+        }
+    ],
+    "Malaria & Infection": [
+        {
+            "id": 34,
+            "title": "Qinghao",
+            "price": 8800,
+            "category": "Malaria & Infection",
+            "description": "Qinghao is an effective herbal formulation based on artemisinin extracted from sweet wormwood. It is traditionally used in managing and treating malaria and other infections.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Effective in managing malaria symptoms",
+                "Reduces fever and body aches",
+                "Strengthens the immune response to infections",
+                "Natural anti-inflammatory and antiparasitic properties"
+            ]
+        }
+    ],
+    "Bone & Joint Support": [
+        {
+            "id": 35,
+            "title": "Jointeez Pill",
+            "price": 11200,
+            "category": "Bone & Joint Support",
+            "description": "Jointeez Pill is a specialized supplement for joint and bone health, formulated to ease pain, promote flexibility, and support cartilage regeneration.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Relieves joint pain and stiffness",
+                "Supports bone density and strength",
+                "Promotes cartilage repair and flexibility",
+                "Improves mobility in aging individuals"
+            ]
+        },
+        {
+            "id": 36,
+            "title": "Calmazine",
+            "price": 8500,
+            "category": "Bone & Joint Support",
+            "description": "Calmazine provides calcium, magnesium, and zinc for strong bones and joints. It’s ideal for supporting skeletal health and preventing bone-related conditions.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Strengthens bones and teeth",
+                "Improves calcium absorption",
+                "Supports joint function and muscle health",
+                "Prevents osteoporosis and bone loss"
+            ]
+        }
+    ],
+    "Skin & Beauty": [
+        {
+            "id": 37,
+            "title": "Grapemin-e",
+            "price": 9200,
+            "category": "Skin & Beauty",
+            "description": "Grapemin-e is an antioxidant-rich supplement containing grape seed extract and vitamin E. It enhances skin radiance, protects against aging, and improves skin texture.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Promotes radiant and youthful skin",
+                "Protects skin from environmental damage",
+                "Improves skin texture and elasticity",
+                "Reduces signs of aging and blemishes"
+            ]
+        }
+    ],
+    "Diagnostic & Therapy Equipment": [
+        {
+            "id": 38,
+            "title": "Quantum Analyzer (8th & 10th Gen)",
+            "price": 250000,
+            "category": "Diagnostic & Therapy Equipment",
+            "description": "The Quantum Analyzer is a state-of-the-art diagnostic tool designed for health screening and analysis. It uses advanced quantum technology to assess the body's health status and detect underlying issues.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Accurately detects health problems and abnormalities",
+                "Provides quick and detailed diagnostic results",
+                "Supports preventive health measures",
+                "Uses advanced quantum technology for body analysis"
+            ]
+        },
+        {
+            "id": 39,
+            "title": "19D NLS Analyzer",
+            "price": 230000,
+            "category": "Diagnostic & Therapy Equipment",
+            "description": "The 19D NLS Analyzer is a cutting-edge diagnostic tool that uses non-linear diagnostics (NLS) to analyze the body’s bioenergy fields. It helps detect disease precursors and imbalances within the body.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Detects early stages of illness before symptoms appear",
+                "Non-invasive and painless diagnostic method",
+                "Analyzes bio-energy fields for deeper health insights",
+                "Helps identify areas of the body that need attention"
+            ]
+        },
+        {
+            "id": 40,
+            "title": "AE Organism Analyzer",
+            "price": 220000,
+            "category": "Diagnostic & Therapy Equipment",
+            "description": "The AE Organism Analyzer is designed to provide detailed health scans and detect imbalances in the body's biological systems. It uses advanced sensors and algorithms to monitor and evaluate health status.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Non-invasive body scanning and health analysis",
+                "Detects organ health and possible dysfunctions",
+                "Monitors various health parameters in real time",
+                "Helps guide early interventions for better health"
+            ]
+        },
+        {
+            "id": 41,
+            "title": "Detoxifying Machine",
+            "price": 80000,
+            "category": "Diagnostic & Therapy Equipment",
+            "description": "The Detoxifying Machine helps cleanse the body by enhancing the detoxification process. It supports the removal of toxins and impurities from the body, improving overall health and vitality.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Detoxifies and cleanses the body from harmful toxins",
+                "Improves skin health and energy levels",
+                "Boosts metabolism and enhances digestion",
+                "Supports the immune system and overall well-being"
+            ]
+        },
+        {
+            "id": 42,
+            "title": "Digital Therapy Machine",
+            "price": 150000,
+            "category": "Diagnostic & Therapy Equipment",
+            "description": "The Digital Therapy Machine provides therapeutic treatments for various health conditions, using digital pulses and frequencies to improve circulation, alleviate pain, and promote healing.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Relieves chronic pain and muscle tension",
+                "Improves blood circulation and tissue healing",
+                "Supports the body's natural healing processes",
+                "Promotes relaxation and stress relief"
+            ]
+        },
+        {
+            "id": 43,
+            "title": "Quantum Therapy",
+            "price": 190000,
+            "category": "Diagnostic & Therapy Equipment",
+            "description": "Quantum Therapy uses advanced quantum technology to provide therapeutic healing through energy balancing, stress reduction, and the treatment of physical and emotional conditions.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Enhances overall well-being through energy healing",
+                "Promotes relaxation and stress relief",
+                "Improves emotional and physical balance",
+                "Supports the body’s self-healing capabilities"
+            ]
+        },
+        {
+            "id": 44,
+            "title": "Therapy Stroke Slimming",
+            "price": 120000,
+            "category": "Diagnostic & Therapy Equipment",
+            "description": "Therapy Stroke Slimming is a unique therapy machine designed to reduce body fat and enhance body shape using non-invasive methods, including stimulating muscle contractions and improving metabolism.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Reduces body fat and enhances body shape",
+                "Improves blood circulation and metabolism",
+                "Supports weight management and fat burning",
+                "Non-invasive and painless slimming solution"
+            ]
+        },
+        {
+            "id": 45,
+            "title": "Blood Circulatory Instrument",
+            "price": 135000,
+            "category": "Diagnostic & Therapy Equipment",
+            "description": "The Blood Circulatory Instrument uses advanced technology to improve blood circulation, relieve stress, and promote overall cardiovascular health by stimulating blood flow and oxygenation.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Improves blood circulation and oxygen supply",
+                "Enhances cardiovascular health and vitality",
+                "Reduces stress and promotes relaxation",
+                "Supports healing and recovery from cardiovascular issues"
+            ]
+        },
+        {
+            "id": 46,
+            "title": "VIP Chair Massager",
+            "price": 220000,
+            "category": "Diagnostic & Therapy Equipment",
+            "description": "The VIP Chair Massager provides full-body relaxation through advanced massaging techniques. It reduces stress, alleviates muscle pain, and helps improve overall well-being.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Relieves muscle pain and stress",
+                "Improves blood circulation and flexibility",
+                "Enhances relaxation and mental well-being",
+                "Promotes better sleep and recovery"
+            ]
+        }
+    ],
+    "Agricultural Product": [
+        {
+            "id": 47,
+            "title": "Water Soluble Fertilizer",
+            "price": 3500,
+            "category": "Agricultural Product",
+            "description": "Water Soluble Fertilizer is a high-quality fertilizer designed to enhance plant growth by providing essential nutrients in an easily absorbable form. It is ideal for both indoor and outdoor use.",
+            "imageUrls": [
+                "/product_1.png",
+                "/product_2.png",
+                "/product_3.png",
+                "/product_4.png"
+            ],
+            "benefits": [
+                "Provides essential nutrients for plant growth",
+                "Promotes stronger, healthier plants",
+                "Improves soil health and productivity",
+                "Easy to use with water-soluble formula"
+            ]
+        }
+    ]
+}
