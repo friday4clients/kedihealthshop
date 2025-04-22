@@ -1,4 +1,4 @@
-import { getProducts } from "@/lib/utils";
+import { getCategories, getProducts } from "@/lib/utils";
 import { Container, Breadcrumb, RatingGroup, IconButton } from "@chakra-ui/react";
 import Link from "next/link";
 import { LuHeart } from "react-icons/lu";
@@ -8,6 +8,16 @@ interface CategoryPageProps {
     params: Promise<{
         category: string;
     }>
+}
+
+export async function generateStaticParams() {
+    const categories: Awaited<ReturnType<typeof getCategories>> = await getCategories();
+
+    return categories.map((category: string) => {
+        return {
+            category
+        }
+    });
 }
 
 const CategoryPage = async ({ params }: CategoryPageProps) => {
@@ -53,7 +63,7 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
                         gap: "1.5rem",
                     }}
                 >
-                    {(await getProducts(category)).map((product) => (
+                    {(await getProducts(category))?.map((product) => (
                         <div
                             key={product.id}
                             style={{
@@ -74,7 +84,11 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
                                     marginBottom: "1rem",
                                 }}
                             />
-                            <h2 style={{ fontSize: "1.25rem", fontWeight: "bold" }}>{product.title}</h2>
+                            <h2 style={{ fontSize: "1.25rem", fontWeight: "bold" }}>
+                                <Link href={`${product?.category?.replaceAll(" ", "_")}/${product?.title}?productId=${product.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+                                    {product.title}
+                                </Link>
+                            </h2>
                             <p style={{ marginTop: "0.5rem" }}>{product.description}</p>
                             <p style={{ marginTop: "0.5rem", fontWeight: "bold" }}>${product.price}</p>
                             <div style={{ marginTop: "1rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}></div>

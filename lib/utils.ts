@@ -34,7 +34,7 @@ export async function getProducts(category: string): Promise<Product[]> {
 
 export async function getProductById(id: string, category: string): Promise<Product | undefined> {
   const products: Product[] = await getProducts(category);
-  return products.find((product) => product.id === id);
+  return products.find((product) => product.id.toString() === id);
 }
 
 export async function getCategories(): Promise<string[]> {

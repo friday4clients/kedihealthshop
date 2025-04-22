@@ -3,10 +3,9 @@ import { ChakraProvider, createSystem, defineConfig, defaultConfig } from "@chak
 
 const config = defineConfig({
     globalCss: {
-        "body": {
+        "html,body": {
             bg: "gray.100",
             color: "gray.emphasized",
-            // fontFamily: "Montserrat, sans-serif"
         },
         "P": {
             color: "gray.emphasized",
@@ -41,6 +40,7 @@ const config = defineConfig({
                 accent: {
                     value: "{colors.blue.700}"
                 },
+
             }
         },
     },
