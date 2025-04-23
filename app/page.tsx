@@ -3,6 +3,9 @@ import Link from "next/link";
 import { getCategories, getStore } from "@/lib/utils";
 import { getProducts } from "@/lib/utils";
 import { LuArrowRight } from "react-icons/lu";
+import HeroCarousel from "@/components/hero_carousel";
+
+
 
 export default async function Home() {
 
@@ -128,141 +131,111 @@ export default async function Home() {
             </Box>
 
           </GridItem>
+
           {/* col 2 */}
           <GridItem
-            display={{ base: "none", md: "block" }}
-            h="full">
-            <Grid
-              templateColumns={"1fr 1fr"}
-              templateRows={"1fr 1fr"}
-              boxLines={"single"}
-              rounded="2xl"
+            maxW={"full"}
+            rounded="xl"
+            h="full"
+            overflow={"hidden"}
+            display={{ base: "none", md: "block" }}>
+            <Stack
               h="full"
-              overflow="hidden"
+              justifyContent={"center"}
+              alignItems={"center"}
+              rounded="xl"
             >
-              <GridItem
-                bgSize="cover"
-                bgRepeat={"no-repeat"}
-                colSpan={2}
-                bgImg="url(/lady_pointing_down.jpg)">
-
-              </GridItem>
-              <GridItem>
-                {/* {store[categories[0]]?.slice(0, 2).map((product) => (
-                <Box
-                  key={product.id}
-                  p="4"
-                  borderWidth="1px"
-                  borderRadius="lg"
-                  overflow="hidden"
-                  bg="gray.50"
-                >
-                  <Image
-                    src={product.imageUrls?.[0]}
-                    alt={product.title}
-                    w="full"
-                    h="150px"
-                    objectFit="cover"
-                    mb="4"
-                  />
-                  <Heading as="h3" size="md" mb="2">
-                    {product.title}
-                  </Heading>
-                  <Text color="gray.600" mb="4">
-                    {product.description}
-                  </Text>
-                  <Button
-                    variant="solid"
-                    colorScheme="blue"
-                    size="sm"
-                  >
-                    View Details
-                  </Button>
-                </Box>
-              ))} */}
-              </GridItem>
-            </Grid>
+              
+              <HeroCarousel />
+            </Stack>
           </GridItem>
         </Grid>
+      </Box>
+
+      <Box
+        p="20"
+        overflow="hidden"
+      >
+        <HeroCarousel />
       </Box>
 
       {/* Featured Categories Section */}
       <Box py="12">
         <Container maxW="6xl">
           <Heading
-        as="h2"
-        size="3xl"
-        fontWeight={"bold"}
-        w="2/3"
-        fontFamily={"merriweather"}
-        mx="auto"
-        mb="8"
-        textAlign="center">
-        Explore Our Categories
+            as="h2"
+            size="3xl"
+            fontWeight={"bold"}
+            w="2/3"
+            fontFamily={"merriweather"}
+            mx="auto"
+            mb="8"
+            textAlign="center">
+            Explore Our Categories
           </Heading>
           <Grid
-        templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
-        gap="6"
+            templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
+            gap="6"
           >
-        {categories.slice(0, 4).map((category, index) => (
-          <Stack
-            key={index}
-            p="6"
-            borderWidth="sm"
-            borderColor={"border"}
-            borderRadius="lg"
-            bg="white"
-            shadow="xs"
-          >
-            <Box mb="4" boxSize={"10"} fill="accent">
-          <ImmuneWellnessIcon />
-            </Box>
-            <Heading
-          as="h3"
-          size="lg"
-          fontWeight={"semibold"}
-          mb="2">
-          {category}
-            </Heading>
-            <Text color="gray.600" mb="4">
-          Discover a wide range of products in the {category} category, carefully curated to meet your needs and preferences.
-            </Text>
-            <Grid templateColumns="repeat(2, 1fr)" gap="4">
-          {store[category]?.slice(0, 2).map((product) => (
-            <Box
-              key={product.id}
-              p="4"
-              borderWidth="1px"
-              borderRadius="lg"
-              overflow="hidden"
-              bg="gray.50"
-            >
-              <Image
-            src={product.imageUrls?.[0]}
-            alt={product.title}
-            w="full"
-            h="100px"
-            objectFit="cover"
-            mb="2"
-              />
-              <Text fontWeight="semibold" fontSize="sm">
-            {product.title}
-              </Text>
-            </Box>
-          ))}
-            </Grid>
-            <Button
-          variant="outline"
-          color="accent"
-          size="lg"
-          w="fit"
-          mt="4"
-            >
-          View All Products
-          <LuArrowRight />
-            </Button>
-          </Stack>
-        ))}
+            {categories.slice(0, 4).map((category, index) => (
+              <Stack
+                key={index}
+                p="6"
+                borderWidth="sm"
+                borderColor={"border"}
+                borderRadius="lg"
+                bg="white"
+                shadow="xs"
+              >
+                <Box mb="4" boxSize={"10"} fill="accent">
+                  <ImmuneWellnessIcon />
+                </Box>
+                <Heading
+                  as="h3"
+                  size="lg"
+                  fontWeight={"semibold"}
+                  mb="2">
+                  {category}
+                </Heading>
+                <Text color="gray.600" mb="4">
+                  Discover a wide range of products in the {category} category, carefully curated to meet your needs and preferences.
+                </Text>
+                <Grid templateColumns="repeat(2, 1fr)" gap="4">
+                  {store[category]?.slice(0, 2).map((product) => (
+                    <Box
+                      key={product.id}
+                      p="4"
+                      borderWidth="1px"
+                      borderRadius="lg"
+                      overflow="hidden"
+                      bg="gray.50"
+                    >
+                      <Image
+                        src={product.imageUrls?.[0]}
+                        alt={product.title}
+                        w="full"
+                        h="100px"
+                        objectFit="cover"
+                        mb="2"
+                      />
+                      <Text fontWeight="semibold" fontSize="sm">
+                        {product.title}
+                      </Text>
+                    </Box>
+                  ))}
+                </Grid>
+                <Button
+                  variant="outline"
+                  color="accent"
+                  size="lg"
+                  w="fit"
+                  mt="4"
+                >
+                  View All Products
+                  <LuArrowRight />
+                </Button>
+              </Stack>
+            ))}
           </Grid>
         </Container>
       </Box>
@@ -271,62 +244,62 @@ export default async function Home() {
       <Box py="12" bg="gray.50">
         <Container maxW="6xl">
           <Heading
-        as="h2"
-        size="3xl"
-        fontWeight="bold"
-        fontFamily="merriweather"
-        textAlign="center"
-        mb="8"
+            as="h2"
+            size="3xl"
+            fontWeight="bold"
+            fontFamily="merriweather"
+            textAlign="center"
+            mb="8"
           >
-        Why Choose Us
+            Why Choose Us
           </Heading>
           <Grid
-        templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
-        gap="6"
+            templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
+            gap="6"
           >
-        {[
-          {
-            title: "High-Quality Products",
-            description:
-          "We offer only the best Kedi products to ensure your health and wellness.",
-            icon: "/quality_icon.svg",
-          },
-          {
-            title: "Affordable Prices",
-            description:
-          "Our products are priced to fit your budget without compromising quality.",
-            icon: "/affordable_icon.svg",
-          },
-          {
-            title: "Excellent Support",
-            description:
-          "Our team is always ready to assist you with any inquiries or concerns.",
-            icon: "/support_icon.svg",
-          },
-        ].map((feature, index) => (
-          <Stack
-            key={index}
-            p="6"
-            borderWidth="sm"
-            borderColor="border"
-            borderRadius="lg"
-            bg="white"
-            shadow="xs"
-            textAlign="center"
-          >
-            <Image
-          src={feature.icon}
-          alt={feature.title}
-          boxSize="50px"
-          mx="auto"
-          mb="4"
-            />
-            <Heading as="h3" size="lg" fontWeight="semibold" mb="2">
-          {feature.title}
-            </Heading>
-            <Text color="gray.600">{feature.description}</Text>
-          </Stack>
-        ))}
+            {[
+              {
+                title: "High-Quality Products",
+                description:
+                  "We offer only the best Kedi products to ensure your health and wellness.",
+                icon: "/quality_icon.svg",
+              },
+              {
+                title: "Affordable Prices",
+                description:
+                  "Our products are priced to fit your budget without compromising quality.",
+                icon: "/affordable_icon.svg",
+              },
+              {
+                title: "Excellent Support",
+                description:
+                  "Our team is always ready to assist you with any inquiries or concerns.",
+                icon: "/support_icon.svg",
+              },
+            ].map((feature, index) => (
+              <Stack
+                key={index}
+                p="6"
+                borderWidth="sm"
+                borderColor="border"
+                borderRadius="lg"
+                bg="white"
+                shadow="xs"
+                textAlign="center"
+              >
+                <Image
+                  src={feature.icon}
+                  alt={feature.title}
+                  boxSize="50px"
+                  mx="auto"
+                  mb="4"
+                />
+                <Heading as="h3" size="lg" fontWeight="semibold" mb="2">
+                  {feature.title}
+                </Heading>
+                <Text color="gray.600">{feature.description}</Text>
+              </Stack>
+            ))}
           </Grid>
         </Container>
       </Box>
@@ -335,103 +308,103 @@ export default async function Home() {
       <Box py="12" bg="white">
         <Container maxW="6xl">
           <Heading
-        as="h2"
-        size="3xl"
-        fontWeight="bold"
-        fontFamily="merriweather"
-        textAlign="center"
-        mb="8"
-          >
-        Our Services
-          </Heading>
-          <Grid
-        templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
-        gap="6"
-          >
-        {[
-          {
-            title: "Home Delivery",
-            description:
-          "Enjoy the convenience of having your favorite Kedi products delivered right to your doorstep.",
-            icon: "/delivery_icon.svg",
-          },
-          {
-            title: "In-Store Purchase",
-            description:
-          "Visit our store to explore a wide range of products and get personalized assistance.",
-            icon: "/instore_icon.svg",
-          },
-          {
-            title: "Health Consultations",
-            description:
-          "Get expert advice and consultations to choose the best products for your health needs.",
-            icon: "/consultation_icon.svg",
-          },
-        ].map((service, index) => (
-          <Stack
-            key={index}
-            p="6"
-            borderWidth="sm"
-            borderColor="border"
-            borderRadius="lg"
-            bg="white"
-            shadow="xs"
-            textAlign="center"
-          >
-            <Image
-          src={service.icon}
-          alt={service.title}
-          boxSize="50px"
-          mx="auto"
-          mb="4"
-            />
-            <Heading as="h3" size="lg" fontWeight="semibold" mb="2">
-          {service.title}
-            </Heading>
-            <Text color="gray.600">{service.description}</Text>
-          </Stack>
-        ))}
-          </Grid>
-        </Container>
-      </Box>
-      
-      {/* Call to Action Section */}
-      <Box py="12" bg="blue.100">
-        <Container maxW="6xl">
-          <Grid
-        templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
-        alignItems="center"
-        gap="6"
-          >
-        <Box>
-          <Heading
             as="h2"
             size="3xl"
             fontWeight="bold"
             fontFamily="merriweather"
-            mb="4"
+            textAlign="center"
+            mb="8"
           >
-            Ready to Transform Your Health?
+            Our Services
           </Heading>
-          <Text color="gray.700" mb="6">
-            Discover the benefits of Kedi products today. Join thousands of satisfied customers who trust Kedicares for their wellness journey.
-          </Text>
-          <Button
-            variant="solid"
-            color="white"
-            bg="accent"
-            _hover={{ bg: "blue.muted" }}
-            size="lg"
+          <Grid
+            templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
+            gap="6"
           >
-            Get Started
-          </Button>
-        </Box>
-        <Image
-          src="/call_to_action_image.jpg"
-          alt="Call to Action"
-          borderRadius="lg"
-          shadow="md"
-        />
+            {[
+              {
+                title: "Home Delivery",
+                description:
+                  "Enjoy the convenience of having your favorite Kedi products delivered right to your doorstep.",
+                icon: "/delivery_icon.svg",
+              },
+              {
+                title: "In-Store Purchase",
+                description:
+                  "Visit our store to explore a wide range of products and get personalized assistance.",
+                icon: "/instore_icon.svg",
+              },
+              {
+                title: "Health Consultations",
+                description:
+                  "Get expert advice and consultations to choose the best products for your health needs.",
+                icon: "/consultation_icon.svg",
+              },
+            ].map((service, index) => (
+              <Stack
+                key={index}
+                p="6"
+                borderWidth="sm"
+                borderColor="border"
+                borderRadius="lg"
+                bg="white"
+                shadow="xs"
+                textAlign="center"
+              >
+                <Image
+                  src={service.icon}
+                  alt={service.title}
+                  boxSize="50px"
+                  mx="auto"
+                  mb="4"
+                />
+                <Heading as="h3" size="lg" fontWeight="semibold" mb="2">
+                  {service.title}
+                </Heading>
+                <Text color="gray.600">{service.description}</Text>
+              </Stack>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Call to Action Section */}
+      <Box py="12" bg="blue.100">
+        <Container maxW="6xl">
+          <Grid
+            templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
+            alignItems="center"
+            gap="6"
+          >
+            <Box>
+              <Heading
+                as="h2"
+                size="3xl"
+                fontWeight="bold"
+                fontFamily="merriweather"
+                mb="4"
+              >
+                Ready to Transform Your Health?
+              </Heading>
+              <Text color="gray.700" mb="6">
+                Discover the benefits of Kedi products today. Join thousands of satisfied customers who trust Kedicares for their wellness journey.
+              </Text>
+              <Button
+                variant="solid"
+                color="white"
+                bg="accent"
+                _hover={{ bg: "blue.muted" }}
+                size="lg"
+              >
+                Get Started
+              </Button>
+            </Box>
+            <Image
+              src="/call_to_action_image.jpg"
+              alt="Call to Action"
+              borderRadius="lg"
+              shadow="md"
+            />
           </Grid>
         </Container>
       </Box>
@@ -440,40 +413,40 @@ export default async function Home() {
       <Box py="12" bg="white">
         <Container maxW="6xl">
           <Heading
-        as="h2"
-        size="3xl"
-        fontWeight="bold"
-        fontFamily="merriweather"
-        textAlign="center"
-        mb="8"
+            as="h2"
+            size="3xl"
+            fontWeight="bold"
+            fontFamily="merriweather"
+            textAlign="center"
+            mb="8"
           >
-        Frequently Asked Questions
+            Frequently Asked Questions
           </Heading>
           <Stack gap="6">
-        {[
-          {
-            question: "What are Kedi products?",
-            answer:
-          "Kedi products are high-quality health and wellness products designed to improve your overall well-being.",
-          },
-          {
-            question: "How can I place an order?",
-            answer:
-          "You can place an order directly on our website or contact our support team for assistance.",
-          },
-          {
-            question: "Do you offer international shipping?",
-            answer:
-          "Yes, we offer international shipping to many countries. Please check our shipping policy for more details.",
-          },
-        ].map((faq, index) => (
-          <Box key={index}>
-            <Heading as="h3" size="md" mb="2">
-          {faq.question}
-            </Heading>
-            <Text color="gray.600">{faq.answer}</Text>
-          </Box>
-        ))}
+            {[
+              {
+                question: "What are Kedi products?",
+                answer:
+                  "Kedi products are high-quality health and wellness products designed to improve your overall well-being.",
+              },
+              {
+                question: "How can I place an order?",
+                answer:
+                  "You can place an order directly on our website or contact our support team for assistance.",
+              },
+              {
+                question: "Do you offer international shipping?",
+                answer:
+                  "Yes, we offer international shipping to many countries. Please check our shipping policy for more details.",
+              },
+            ].map((faq, index) => (
+              <Box key={index}>
+                <Heading as="h3" size="md" mb="2">
+                  {faq.question}
+                </Heading>
+                <Text color="gray.600">{faq.answer}</Text>
+              </Box>
+            ))}
           </Stack>
         </Container>
       </Box>
@@ -593,62 +566,7 @@ export default async function Home() {
         </Container>
       </Box>
 
-      {/* Footer Section */}
-      <Box bg="gray.900" color="white" py="12">
-        <Container maxW="6xl">
-          <Grid
-        templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }}
-        gap="6"
-          >
-        <Stack>
-          <Heading as="h3" size="md" mb="4">
-            About Us
-          </Heading>
-          <Text color="gray.400">
-            Kedicares is your trusted store for affordable and high-quality Kedi products. We are committed to your wellness and satisfaction.
-          </Text>
-        </Stack>
-        <Stack>
-          <Heading as="h3" size="md" mb="4">
-            Quick Links
-          </Heading>
-          <Link href="/" color="gray.400">
-            Home
-          </Link>
-          <Link href="/about" color="gray.400">
-            About
-          </Link>
-          <Link href="/services" color="gray.400">
-            Services
-          </Link>
-          <Link href="/contact" color="gray.400">
-            Contact
-          </Link>
-        </Stack>
-        <Stack>
-          <Heading as="h3" size="md" mb="4">
-            Categories
-          </Heading>
-          {categories.slice(0, 4).map((category, index) => (
-            <Link key={index} href={`/category/${category}`} color="gray.400">
-          {category}
-            </Link>
-          ))}
-        </Stack>
-        <Stack>
-          <Heading as="h3" size="md" mb="4">
-            Contact Us
-          </Heading>
-          <Text color="gray.400">Email: support@kedicares.com</Text>
-          <Text color="gray.400">Phone: +123 456 7890</Text>
-          <Text color="gray.400">Address: 123 Wellness Street, City, Country</Text>
-        </Stack>
-          </Grid>
-          <Text textAlign="center" mt="8" color="gray.600">
-        © {new Date().getFullYear()} Kedicares. All rights reserved.
-          </Text>
-        </Container>
-      </Box>
+
     </>
   );
 }

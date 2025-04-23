@@ -1,5 +1,3 @@
-"use client"
-
 import { Button } from '@chakra-ui/react';
 import { getProducts, getProductById, getCategories } from '@/lib/utils';
 
@@ -24,7 +22,7 @@ const CheckoutPage = async () => {
             {!isLoggedIn ? (
                 <div className="login-prompt">
                     <p>Please log in to proceed with checkout.</p>
-                    <button onClick={() => alert('Redirect to login')}>Login</button>
+                    <button>Login</button>
                 </div>
             ) : (
                 <>
@@ -56,13 +54,13 @@ const CheckoutPage = async () => {
                     {/* Checkout Options */}
                     <section className="checkout-options">
                         <h2>Checkout Options</h2>
-                        <Button colorScheme="blue" onClick={() => alert('Checkout via Email')}>
+                        <Button colorScheme="blue">
                             Checkout by Email
                         </Button>
-                        <Button colorScheme="green" onClick={() => alert('Checkout via WhatsApp')}>
+                        <Button colorScheme="green">
                             Checkout by WhatsApp
                         </Button>
-                        <Button colorScheme="teal" onClick={() => alert('Checkout via Phone Call')}>
+                        <Button colorScheme="teal">
                             Checkout by Phone Call
                         </Button>
                     </section>

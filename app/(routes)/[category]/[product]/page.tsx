@@ -1,8 +1,11 @@
 import { getCategories, getProducts, getProductById } from "@/lib/utils";
-import { Container, Breadcrumb, RatingGroup, IconButton, Image, Box, Button } from "@chakra-ui/react";
+import { Container, Breadcrumb, RatingGroup, IconButton, Image, Box, Button, HStack } from "@chakra-ui/react";
 import Link from "next/link";
 import { LuHeart } from "react-icons/lu";
 import Form from "next/form";
+import { FacebookIcon, FacebookShareButton, LinkedinIcon, LinkedinShareButton, PinterestIcon, PinterestShareButton, TwitterShareButton, WhatsappIcon, WhatsappShareButton, XIcon } from "react-share";
+import Share from "@/components/share";
+
 
 export async function generateStaticParams() {
     const categories: Awaited<ReturnType<typeof getCategories>> = await getCategories();
@@ -38,6 +41,7 @@ export default async ({ params, searchParams }: CategoryPageProps) => {
     const productId = decodeURIComponent(((await searchParams)?.productId));
     const product = await getProductById(productId, category);
     const relatedProducts = (await getProducts(category))?.filter((product) => product?.id.toString() !== productId.toString());
+    const link = `/${category}/${productTitle}`;
 
     return (
         <>
@@ -115,6 +119,13 @@ export default async ({ params, searchParams }: CategoryPageProps) => {
                         Add to Cart
                     </Button>
                 </Box>
+
+
+                <Share
+                    product={product!}
+                    link={link}
+                />
+
 
                 <Box mt={12}>
                     <h2>Related Products</h2>
@@ -236,6 +247,7 @@ export default async ({ params, searchParams }: CategoryPageProps) => {
                         </Button>
                     </Form>
                 </Box>
+
             </Container>
         </>
     )

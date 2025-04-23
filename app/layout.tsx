@@ -3,6 +3,7 @@ import { Merriweather, Montserrat, Montserrat_Alternates, Oswald } from "next/fo
 import "./globals.css";
 import { Provider } from "@/components/ui/provider"
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -46,6 +47,7 @@ export default function RootLayout({
         <Provider>
           <Navbar />
           {children}
+          <Footer />
         </Provider>
       </body>
     </html>
