@@ -4,6 +4,8 @@ import { getCategories, getStore } from "@/lib/utils";
 import { getProducts } from "@/lib/utils";
 import { LuArrowRight } from "react-icons/lu";
 import HeroCarousel from "@/components/hero_carousel";
+import { BiBadgeCheck, BiSolidBadge, BiSupport } from "react-icons/bi";
+import { FaMoneyBillWave } from "react-icons/fa";
 
 
 
@@ -145,94 +147,99 @@ export default async function Home() {
               alignItems={"center"}
               rounded="xl"
             >
-              
+
               <HeroCarousel />
             </Stack>
           </GridItem>
         </Grid>
       </Box>
 
-      <Box
-        p="20"
-        overflow="hidden"
-      >
-        <HeroCarousel />
-      </Box>
-
       {/* Featured Categories Section */}
-      <Box py="12">
+      <Box py="32">
         <Container maxW="6xl">
           <Heading
             as="h2"
-            size="3xl"
+            size={{ base: "3xl", md: "5xl" }}
             fontWeight={"bold"}
             w="2/3"
-            fontFamily={"merriweather"}
             mx="auto"
             mb="8"
+            fontFamily={"merriweather"}
             textAlign="center">
             Explore Our Categories
           </Heading>
           <Grid
             templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
-            gap="6"
+            gap="0"
+            className="md:*:nth-[odd]:!border-r *:nth-[3]:!border-b *:md:nth-[3]:!border-0 *:nth-[1]:!border-b *:nth-[2]:!border-b !rounded-xl !overflow-hidden"
           >
             {categories.slice(0, 4).map((category, index) => (
               <Stack
                 key={index}
-                p="6"
-                borderWidth="sm"
-                borderColor={"border"}
-                borderRadius="lg"
+                p={{ base: "8", md: "12" }}
+                borderColor={"gray.200"}
+                // borderRadius="lg"
                 bg="white"
-                shadow="xs"
+                // shadow="0 0 15px {colors.gray.100}"
+                gap="3"
               >
-                <Box mb="4" boxSize={"10"} fill="accent">
-                  <ImmuneWellnessIcon />
-                </Box>
                 <Heading
                   as="h3"
-                  size="lg"
-                  fontWeight={"semibold"}
-                  mb="2">
+                  size="2xl"
+                  w={{ base: "70%", md: "1/2" }}
+                  fontWeight={"semibold"}>
                   {category}
                 </Heading>
-                <Text color="gray.600" mb="4">
+                <Text>
                   Discover a wide range of products in the {category} category, carefully curated to meet your needs and preferences.
                 </Text>
+                <Heading
+                  size="sm"
+                >Products</Heading>
+
                 <Grid templateColumns="repeat(2, 1fr)" gap="4">
                   {store[category]?.slice(0, 2).map((product) => (
-                    <Box
-                      key={product.id}
-                      p="4"
-                      borderWidth="1px"
-                      borderRadius="lg"
-                      overflow="hidden"
-                      bg="gray.50"
-                    >
-                      <Image
-                        src={product.imageUrls?.[0]}
-                        alt={product.title}
-                        w="full"
-                        h="100px"
-                        objectFit="cover"
-                        mb="2"
-                      />
-                      <Text fontWeight="semibold" fontSize="sm">
-                        {product.title}
-                      </Text>
-                    </Box>
+                    <Link href={`/${category.replaceAll(" ", "_")}/${product.title.replaceAll(" ", "_")}?product_id=${encodeURIComponent(product.id)}`}>
+                      <Stack
+                        key={product.id}
+                        p="4"
+                        border="sm"
+                        borderColor="gray.100"
+                        borderRadius="lg"
+                        overflow="hidden"
+                        h="full"
+                        bg="gray.50"
+                      >
+                        <Image
+                          src={product.imageUrls?.[0]}
+                          alt={product.title}
+                          w="1/2"
+                          display={"block"}
+                          mx="auto"
+                          objectFit="contain"
+                          mb="2"
+                        />
+                        <Text fontWeight="semibold" fontSize="sm">
+                          {product.title}
+                        </Text>
+                      </Stack>
+                    </Link>
                   ))}
                 </Grid>
                 <Button
-                  variant="outline"
+                  variant="solid"
                   color="accent"
-                  size="lg"
+                  bg="blue.50"
+                  size="sm"
                   w="fit"
+                  className="group"
                   mt="4"
+                  asChild
                 >
-                  View All Products
-                  <LuArrowRight />
+                  <Link href={`/${category.replaceAll(" ", "_")}`}>
+                    View All Products
+                    <LuArrowRight className="transition-transform duration-300 group-hover:translate-x-3" />
+                  </Link>
                 </Button>
               </Stack>
             ))}
@@ -241,11 +248,11 @@ export default async function Home() {
       </Box>
 
       {/* Features Section */}
-      <Box py="12" bg="gray.50">
+      <Box py="32">
         <Container maxW="6xl">
           <Heading
             as="h2"
-            size="3xl"
+            size={{ base: "3xl", md: "5xl" }}
             fontWeight="bold"
             fontFamily="merriweather"
             textAlign="center"
@@ -256,48 +263,54 @@ export default async function Home() {
           <Grid
             templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
             gap="6"
+            className="*:nth-[odd]:!translate-y-12"
           >
             {[
               {
                 title: "High-Quality Products",
                 description:
                   "We offer only the best Kedi products to ensure your health and wellness.",
-                icon: "/quality_icon.svg",
+                icon: <BiBadgeCheck color="white" />,
               },
               {
                 title: "Affordable Prices",
                 description:
                   "Our products are priced to fit your budget without compromising quality.",
-                icon: "/affordable_icon.svg",
+                icon: <FaMoneyBillWave color="white" />,
               },
               {
                 title: "Excellent Support",
                 description:
                   "Our team is always ready to assist you with any inquiries or concerns.",
-                icon: "/support_icon.svg",
+                icon: <BiSupport color="white" />,
               },
             ].map((feature, index) => (
               <Stack
                 key={index}
                 p="6"
+                gap="6"
                 borderWidth="sm"
                 borderColor="border"
-                borderRadius="lg"
-                bg="white"
+                rounded="xl"
+                bg="accent"
                 shadow="xs"
                 textAlign="center"
               >
-                <Image
-                  src={feature.icon}
-                  alt={feature.title}
-                  boxSize="50px"
+                <Icon
                   mx="auto"
-                  mb="4"
-                />
-                <Heading as="h3" size="lg" fontWeight="semibold" mb="2">
+                  fill="blue.400"
+                  boxSize={"32"}
+                  size={"2xl"}>
+                  {feature.icon}
+                </Icon>
+                <Heading
+                  as="h3"
+                  size="xl"
+                  color="blue.50"
+                  fontWeight="semibold">
                   {feature.title}
                 </Heading>
-                <Text color="gray.600">{feature.description}</Text>
+                <Text color="blue.300">{feature.description}</Text>
               </Stack>
             ))}
           </Grid>
