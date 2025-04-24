@@ -1,66 +1,99 @@
 import { getCategories } from "@/lib/utils";
-import { Box, Container, Grid, Stack, Heading, Text } from "@chakra-ui/react"
+import { Box, Container, Grid, Stack, Heading, Text, HStack } from "@chakra-ui/react"
 import Link from "next/link"
+import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
 
 const Footer = async () => {
     const categories: Awaited<ReturnType<typeof getCategories>> = await getCategories();
 
     return (
-        <Box bg="gray.900" color="white" py="12" >
+        <Box bg="accent" color="blue.emphasized" py="12" pb="4" >
             <Container maxW="6xl">
+                <Stack gap="4"
+                    textStyle={"sm"}
+                    color="blue.400"
+                    textAlign={"center"}
+                    mb="12">
+                    <Heading color="white" as="h3" size="md">
+                        Follow Us
+                    </Heading>
+                    <HStack gap="6" justifyContent={"center"}>
+                        <Link className="hover:opacity-70" href={process.env.FACEBOOK_URL!} target="_blank" rel="noopener noreferrer">
+                            <FaFacebook color="white" size="40" />
+                        </Link>
+                        <Link className="hover:opacity-70" href={process.env.WHATSAPP_URL!} target="_blank" rel="noopener noreferrer">
+                            <FaWhatsapp color="white" size="40" />
+                        </Link>
+                        <Link className="hover:opacity-70" href={process.env.TWITTER_URL!} target="_blank" rel="noopener noreferrer">
+                            <FaInstagram color="white" size="40" />
+
+                        </Link>
+                        <Link className="hover:opacity-70" href={process.env.INSTAGRAM_URL!} target="_blank" rel="noopener noreferrer">
+                            <FaTwitter color="white" size="40" />
+                        </Link>
+                    </HStack>
+                </Stack>
                 <Grid
                     templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }}
                     gap="6"
                 >
                     <Stack>
-                        <Heading as="h3" size="md" mb="4">
+                        <Heading color="white" as="h3" size="md" mb="4">
                             About Us
                         </Heading>
-                        <Text color="gray.400">
+                        <Text color="blue.50">
                             Kedicares is your trusted store for affordable and high-quality Kedi products. We are committed to your wellness and satisfaction.
                         </Text>
                     </Stack>
-                    <Stack>
-                        <Heading as="h3" size="md" mb="4">
+
+                    <Stack gap="2" textStyle={"sm"} color="blue.400"
+                        className="*:hover:!text-white">
+                        <Heading color="white" as="h3" size="md" mb="4">
                             Quick Links
                         </Heading>
-                        <Link href="/" color="gray.400">
+                        <Link href="/">
                             Home
                         </Link>
-                        <Link href="/about" color="gray.400">
+                        <Link href="/about">
                             About
                         </Link>
-                        <Link href="/services" color="gray.400">
+                        <Link href="/services">
                             Services
                         </Link>
-                        <Link href="/contact" color="gray.400">
+                        <Link href="/contact">
                             Contact
                         </Link>
-                        <Link href="/partner" color="gray.400">
+                        <Link href="/partner">
                             Become a Kedi Partner
                         </Link>
                     </Stack>
-                    <Stack>
-                        <Heading as="h3" size="md" mb="4">
-                            Categories
+                    <Stack gap="2" textStyle={"sm"} color="blue.400"
+                        className="*:hover:!text-white">
+                        <Heading color="white" as="h3" size="md" mb="4">
+                            Shop
                         </Heading>
-                        {categories.slice(0, 4).map((category, index) => (
-                            <Link key={index} href={`/category/${category}`} color="gray.400">
+                        {categories.map((category, index) => (
+                            <Link key={index} href={`/${category.replaceAll(" ", "_")}`}>
                                 {category}
                             </Link>
                         ))}
                     </Stack>
-                    <Stack>
-                        <Heading as="h3" size="md" mb="4">
+                    <Stack gap="4" textStyle={"sm"} color="blue.400">
+                        <Heading color="white" as="h3" size="md">
                             Contact Us
                         </Heading>
-                        <Text color="gray.400">Email: support@kedicares.com</Text>
-                        <Text color="gray.400">Phone: +123 456 7890</Text>
-                        <Text color="gray.400">Address: 123 Wellness Street, City, Country</Text>
+                        <Text color="blue.400">Email: support@kedicares.com</Text>
+                        <Text color="blue.400">Phone: +123 456 7890</Text>
+                        <Text color="blue.400">Address: 123 Wellness Street, City, Country</Text>
                     </Stack>
                 </Grid>
-                <Text textAlign="center" mt="8" color="gray.600">
+                <Text
+                    textStyle={"xs"}
+                    textAlign="center"
+                    mt="8" color="blue.400">
                     © {new Date().getFullYear()} Kedicares. All rights reserved.
+                    Developed&nbsp;by&nbsp;
+                    <Link className="!font-bold !text-white" href="https://fj4lio.vercel.app" target="_blank" rel="nofollow">Friday Joshua</Link>
                 </Text>
             </Container>
         </Box >

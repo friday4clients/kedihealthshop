@@ -13,7 +13,7 @@ interface CategoryPageProps {
 export async function generateStaticParams() {
     const categories: Awaited<ReturnType<typeof getCategories>> = await getCategories();
 
-    return categories.map((category: string) => {
+    return categories?.map((category: string) => {
         return {
             category
         }
@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 }
 
 const CategoryPage = async ({ params }: CategoryPageProps) => {
-    const category = decodeURIComponent((await params).category)?.replaceAll("_", " ");
+    const category = decodeURIComponent((await params)!.category)?.replaceAll("_", " ");
 
     return (
         <>

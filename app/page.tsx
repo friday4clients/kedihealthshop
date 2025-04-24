@@ -1,4 +1,4 @@
-import { Button, Container, Heading, Image, Text, Icon, Box, Grid, GridItem, HStack, Highlight, Stat, Separator, Stack, RatingGroup, Accordion, Input } from "@chakra-ui/react";
+import { Button, Container, Heading, Image, Link as CLink, Text, Icon, Box, Grid, GridItem, HStack, Highlight, Stat, Separator, Stack, RatingGroup, Accordion, Input } from "@chakra-ui/react";
 import Link from "next/link";
 import { getCategories, getStore } from "@/lib/utils";
 import { getProducts } from "@/lib/utils";
@@ -7,6 +7,7 @@ import HeroCarousel from "@/components/hero_carousel";
 import { BiBadgeCheck, BiSolidBadge, BiSupport } from "react-icons/bi";
 import { FaMoneyBillWave } from "react-icons/fa";
 import Testimonials from "@/components/testimonial";
+import Cart from "@/components/cart";
 
 
 
@@ -23,7 +24,7 @@ export default async function Home() {
         h={{ base: "calc(100vh - 55px)", md: "vh" }}
         p="2">
         <Grid
-          gap="4"
+          gap=""
           h="full"
           templateColumns={{ base: "1fr", md: "1fr 1fr" }}
         >
@@ -34,27 +35,32 @@ export default async function Home() {
 
             {/* nav links */}
             <HStack
+              border="1px solid {colors.gray.200}"
+              rounded="xl"
+              p="4"
+              bg="gray.100"
               display={{ base: "none", md: "flex" }}
               justifyContent={"space-between"}
-              gap="12">
+              gap="">
               <Image src="/logo.png" alt="kedicares logo" w="20" />
 
-              <HStack gap="4">
+              <HStack gap="4" className="*:hover:!text-blue-700">
                 <Link href="/">
                   Home
                 </Link>
-                <Link href="/about">
-                  Category
+                <Link href={`/${categories[0].replaceAll(" ", "_")}`}>
+                  Shop
                 </Link>
                 <Link href="/about">
                   About
                 </Link>
-                <Link href="/services">
+                {/* <CLink href="#services">
                   Services
-                </Link>
+                </CLink> */}
                 <Link href="/contact">
                   Contact
                 </Link>
+                <Cart />
               </HStack>
             </HStack>
 
@@ -83,19 +89,26 @@ export default async function Home() {
               <HStack gap="4">
                 <Button
                   variant={"solid"}
+                  rounded="xl"
                   color="white"
                   bg="accent"
                   _hover={{ bg: "blue.muted" }}
+                  asChild
                   size="lg">
-                  Shop Now
+                  <Link href={`/${categories[0].replaceAll(" ", "_")}`}>
+                    Shop Now
+                  </Link>
                 </Button>
                 <Button
                   variant="outline"
                   color="accent"
+                  rounded="xl"
                   _hover={{ bg: "blue.50" }}
                   borderColor="accent"
                   size="lg">
-                  Learn More
+                  <CLink color="accent" _hover={{ textDecor: "none" }} href={`#explore`}>
+                    Learn More
+                  </CLink>
                 </Button>
               </HStack>
 
@@ -108,7 +121,7 @@ export default async function Home() {
                 borderColor="gray.200"
                 p="6"
                 py="12"
-                rounded="lg"
+                rounded="xl"
                 overflow={"hidden"}
                 justifyContent={"start"}>
                 <Stat.Root>
@@ -156,7 +169,7 @@ export default async function Home() {
       </Box>
 
       {/* Featured Categories Section */}
-      <Box py="32">
+      <Box py="32" id="explore">
         <Container maxW="6xl">
           <Heading
             as="h2"
@@ -167,7 +180,7 @@ export default async function Home() {
             mb="8"
             fontFamily={"merriweather"}
             textAlign="center">
-            Explore Our Categories
+            Explore Our Shop
           </Heading>
           <Grid
             templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
@@ -206,7 +219,7 @@ export default async function Home() {
                         p="4"
                         border="sm"
                         borderColor="gray.100"
-                        borderRadius="lg"
+                        borderRadius="xl"
                         overflow="hidden"
                         h="full"
                         bg="gray.50"
@@ -217,6 +230,7 @@ export default async function Home() {
                           w="1/2"
                           display={"block"}
                           mx="auto"
+                          rounded="xl"
                           objectFit="contain"
                           mb="2"
                         />
@@ -234,6 +248,7 @@ export default async function Home() {
                   size="sm"
                   w="fit"
                   className="group"
+                  rounded="xl"
                   mt="4"
                   asChild
                 >
@@ -321,7 +336,7 @@ export default async function Home() {
       </Box>
 
       {/* Services Section */}
-      <Box py={{ base: "20", md: "40" }} bg="white">
+      <Box id="services" py={{ base: "20", md: "40" }} bg="white">
         <Container maxW="6xl">
           <Heading
             as="h2"

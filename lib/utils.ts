@@ -29,12 +29,12 @@ export async function getStore(): Promise<Store> {
 
 export async function getProducts(category: string): Promise<Product[]> {
   const store = await getStore();
-  return store[category];
+  return store[category.replaceAll("_", " ")];
 }
 
 export async function getProductById(id: string, category: string): Promise<Product | undefined> {
-  const products: Product[] = await getProducts(category);
-  return products.find((product) => product.id.toString() === id);
+  const products: Product[] = await getProducts(category.replaceAll("_", " "));
+  return products?.find((product) => product.id.toString() === id);
 }
 
 export async function getCategories(): Promise<string[]> {
