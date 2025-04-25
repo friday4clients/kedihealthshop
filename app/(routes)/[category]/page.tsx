@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 }
 
 const CategoryPage = async ({ params }: CategoryPageProps) => {
-    const category = decodeURIComponent((await params)!.category)?.replaceAll("_", " ");
+    const category = decodeURIComponent((await params)?.category)?.replaceAll("_", " ");
 
     return (
         <>

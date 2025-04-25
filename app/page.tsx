@@ -20,6 +20,7 @@ export default async function Home() {
     <>
       {/* // hero section */}
       <Box
+        as="main"
         bg="white"
         h={{ base: "calc(100vh - 55px)", md: "vh" }}
         p="2">
@@ -42,7 +43,9 @@ export default async function Home() {
               display={{ base: "none", md: "flex" }}
               justifyContent={"space-between"}
               gap="">
-              <Image src="/logo.png" alt="kedicares logo" w="20" />
+              <Link href="/">
+                <Image src="/logo.png" alt="kedicares logo" w="20" />
+              </Link>
 
               <HStack gap="4" className="*:hover:!text-blue-700">
                 <Link href="/">
@@ -212,10 +215,12 @@ export default async function Home() {
                 >Products</Heading>
 
                 <Grid templateColumns="repeat(2, 1fr)" gap="4">
-                  {store[category]?.slice(0, 2).map((product) => (
-                    <Link href={`/${category.replaceAll(" ", "_")}/${product.title.replaceAll(" ", "_")}?product_id=${encodeURIComponent(product.id)}`}>
+                  {store[category]?.slice(0, 2).map((product, index) => (
+                    <Link
+                      key={index} // Added key prop here
+                      href={`/${category.replaceAll(" ", "_")}/${product.title.replaceAll(" ", "_")}?product_id=${encodeURIComponent(product.id)}`}
+                    >
                       <Stack
-                        key={product.id}
                         p="4"
                         border="sm"
                         borderColor="gray.100"

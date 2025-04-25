@@ -1,22 +1,56 @@
+"use client"
+
 import Link from 'next/link';
-import { Container, Box, HStack, Image, IconButton, Stack, Drawer, Portal, CloseButton, Heading, Button } from '@chakra-ui/react';
+import { Container, HStack, Link as CLink, Image, IconButton, Stack, Drawer, Portal, CloseButton, Heading } from '@chakra-ui/react';
 import { LuAlignRight } from 'react-icons/lu';
-import { FaFacebook } from 'react-icons/fa';
 import { getCategories } from '@/lib/utils';
-import { BiCart } from 'react-icons/bi';
 import Cart from './cart';
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 
+const Navbar = () => {
+    const [categories, setCategories] = useState<Awaited<ReturnType<typeof getCategories>>>([]);
+    const path = usePathname();
+    useEffect(() => {
+        (async () => {
+            setCategories(await getCategories());
+        })();
+    }, []);
 
-const Navbar = async () => {
-    const categories: Awaited<ReturnType<typeof getCategories>> = await getCategories();
+    console.log(path);
 
     return (
-        <Container display={{ base: "block", md: "none" }} maxW={"6xl"} as="nav" bg="white" shadow="0 0 10px #ddd" >
+        <Container
+            position="sticky"
+            top="0"
+            zIndex={"sticky"}
+            display={{ md: path === "/" ? "none" : "block" }}
+            maxW={{ base: "6xl", md: "full" }} as="nav" bg="white" shadow="0 0 10px #ddd" >
             <HStack px="4" h="14" justifyContent={{ base: "space-between" }}>
-                <Image src="/logo.png" alt="kedicares logo" w="20" />
-                <Cart />
+                <Link href="/">
+                    <Image src="/logo.png" alt="kedicares logo" w="20" />
+                </Link>
 
+                {/* nav links */}
+                <HStack gap="4" className="*:hover:!text-blue-700">
+                    <Link href="/">
+                        Home
+                    </Link>
+                    <Link href={`/${categories?.[0]?.replaceAll(" ", "_")}`}>
+                        Shop
+                    </Link>
+                    <Link href="/about">
+                        About
+                    </Link>
+                    <CLink href="#services">
+                        Services
+                    </CLink>
+                    <Link href="/contact">
+                        Contact
+                    </Link>
+                </HStack>
+                <Cart />
                 <Drawer.Root>
                     <Drawer.Trigger asChild>
                         <IconButton display={{ md: "none" }}>
@@ -70,7 +104,7 @@ const Navbar = async () => {
                     </Portal>
                 </Drawer.Root>
             </HStack>
-        </Container>
+        </Container >
     );
 };
 

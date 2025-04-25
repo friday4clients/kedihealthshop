@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${merriweather.variable} ${montserrat.variable} ${montserratAlternates.variable} ${oswald.variable} antialiased`}
+        className={`relative ${merriweather.variable} ${montserrat.variable} ${montserratAlternates.variable} ${oswald.variable} antialiased`}
       >
         <Provider>
           <Navbar />
