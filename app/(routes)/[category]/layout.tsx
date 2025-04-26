@@ -18,14 +18,12 @@ export default async function CategoryLayout({
                 h="full"
                 templateColumns={{ base: "1fr", md: "repeat(12,1fr)" }}
             >
-                <GridItem bg="white" h="calc(100vh - 60px)" colSpan={2} position="sticky" top={14}>
+                <GridItem display={{ base: "none", md: "block" }} bg="white" h="calc(100vh - 60px)" colSpan={2} position="sticky" top={14}>
                     <SideLinks />
                 </GridItem>
 
                 <GridItem colSpan={10}>
-                    <Container maxW="6xl">
-                        {children}
-                    </Container>
+                    {children}
                 </GridItem>
             </Grid>
         </Box>

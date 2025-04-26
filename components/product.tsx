@@ -5,6 +5,7 @@ import { Button, FormatNumber, Heading, HStack, Image, RatingGroup, Skeleton, St
 import { useState } from "react";
 import { Tooltip } from "./ui/tooltip";
 import Link from "next/link";
+import { LuPlus } from "react-icons/lu";
 
 export default function Product({ info }: { info: ProductType }) {
     const [loading, setLoading] = useState(true);
@@ -59,6 +60,7 @@ export default function Product({ info }: { info: ProductType }) {
                 transition={"all 500ms"}
                 _active={{ scale: "0.98" }}
                 rounded="lg">
+                <LuPlus />
                 Add To Cart
             </Button>
         </Stack>

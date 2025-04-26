@@ -1,25 +1,34 @@
 "use client"
 
 import Link from 'next/link';
-import { Container, HStack, Link as CLink, Image, IconButton, Stack, Drawer, Portal, CloseButton, Heading, Icon } from '@chakra-ui/react';
+import { Container, HStack, Link as CLink, Image, IconButton, Stack, Drawer, Portal, CloseButton, Heading, Icon, Box } from '@chakra-ui/react';
 import { LuAlignRight } from 'react-icons/lu';
 import { getCategories } from '@/lib/utils';
 import Cart from './cart';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { FaFacebook, FaWhatsapp, FaInstagram, FaTwitter } from 'react-icons/fa';
+import CategoryLinks from './categories';
 
+function isActiveLink(path: string, category: string): boolean {
+    return path === `/${category.replaceAll(" ", "_")}`;
+}
 
 const Navbar = () => {
     const [categories, setCategories] = useState<Awaited<ReturnType<typeof getCategories>>>([]);
-    const path = usePathname();
+
     useEffect(() => {
         (async () => {
-            setCategories(await getCategories());
+            const response = await fetch('/products.json');
+            if (!response.ok) {
+                throw new Error(`Failed to fetch products: ${response.statusText}`);
+            }
+            const store = await response.json();
+            setCategories(Object.keys(store));
         })();
     }, []);
 
-    console.log(path);
+    const path = usePathname();
 
     return (
         <Container
@@ -28,13 +37,14 @@ const Navbar = () => {
             zIndex={"sticky"}
             display={{ md: path === "/" ? "none" : "block" }}
             maxW={{ base: "6xl", md: "full" }} as="nav" bg="white" shadow="0 0 10px #ddd" >
-            <HStack position="relative" px="4" h="14" justifyContent={{ base: "space-between" }}>
+            <HStack position="relative" h="16" justifyContent={{ base: "space-between" }}>
                 <Link href="/">
                     <Image src="/logo.png" alt="kedicares logo" w="20" />
                 </Link>
 
                 {/* nav links */}
                 <HStack
+                    display={{ base: "none", md: "flex" }}
                     position="absolute"
                     left="50%"
                     transform={"translateX(-50%)"}
@@ -58,81 +68,115 @@ const Navbar = () => {
                         Contact
                     </Link>
                 </HStack>
-                <HStack gap="6" justifyContent={"center"}>
+
+                <HStack display={{ base: "none", md: "flex" }} gap="6">
                     <Link href={process.env.NEXT_PUBLIC_FACEBOOK_URL!} target="_blank" rel="noopener noreferrer">
-                        <Icon _hover={{fill:"accent"}}>
+                        <Icon _hover={{ fill: "accent" }}>
                             <FaFacebook color="#444" size="20" />
                         </Icon>
                     </Link>
                     <Link href={process.env.NEXT_PUBLIC_WHATSAPP_URL!} target="_blank" rel="noopener noreferrer">
-                        <Icon _hover={{fill:"accent"}}>
+                        <Icon _hover={{ fill: "accent" }}>
                             <FaWhatsapp color="#444" size="20" />
                         </Icon>
                     </Link>
                     <Link href={process.env.NEXT_PUBLIC_TWITTER_URL!} target="_blank" rel="noopener noreferrer">
-                        <Icon _hover={{fill:"accent"}}>
+                        <Icon _hover={{ fill: "accent" }}>
                             <FaInstagram color="#444" size="20" />
                         </Icon>
                     </Link>
                     <Link href={process.env.NEXT_PUBLIC_INSTAGRAM_URL!} target="_blank" rel="noopener noreferrer">
-                        <Icon _hover={{fill:"accent"}}>
+                        <Icon _hover={{ fill: "accent" }}>
                             <FaTwitter color="#444" size="20" />
                         </Icon>
                     </Link>
                     <Cart />
                 </HStack>
-                <Drawer.Root>
-                    <Drawer.Trigger asChild>
-                        <IconButton display={{ md: "none" }}>
-                            <LuAlignRight />
-                        </IconButton>
-                    </Drawer.Trigger>
-                    <Portal>
-                        <Drawer.Backdrop />
-                        <Drawer.Positioner>
-                            <Drawer.Content bg="white">
-                                <Drawer.Header>
-                                    <Drawer.Title>Menu</Drawer.Title>
-                                </Drawer.Header>
-                                <Drawer.Body>
-                                    <Stack gap="4">
-                                        <Drawer.ActionTrigger asChild>
-                                            <Link href="/">Home</Link>
-                                        </Drawer.ActionTrigger>
-                                        <Drawer.ActionTrigger asChild>
-                                            <Link href="/category">Category</Link>
-                                        </Drawer.ActionTrigger>
-                                        <Drawer.ActionTrigger asChild>
-                                            <Link href="/about">About</Link>
-                                        </Drawer.ActionTrigger>
-                                        <Drawer.ActionTrigger asChild>
-                                            <Link href="/services">Services</Link>
-                                        </Drawer.ActionTrigger>
-                                        <Drawer.ActionTrigger asChild>
-                                            <Link href="/contact">Contact</Link>
-                                        </Drawer.ActionTrigger>
-                                    </Stack>
 
-                                    <Stack mt="6" gap="4">
-                                        <Heading fontSize="md" fontWeight="sm">Categories</Heading>
-                                        {categories.map((category, index) => (
-                                            <Drawer.ActionTrigger asChild key={index}>
-                                                <Link href={`/${category?.replaceAll(" ", "_")}`}>
-                                                    {category}
+                <HStack display={{ base: "flex", md: "none" }} gap="4">
+                    <Cart />
+                    <Drawer.Root>
+                        <Drawer.Trigger asChild>
+                            <IconButton rounded="lg" _active={{ bg: "accent", color: "white" }}>
+                                <LuAlignRight />
+                            </IconButton>
+                        </Drawer.Trigger>
+                        <Portal>
+                            <Drawer.Backdrop />
+                            <Drawer.Positioner>
+                                <Drawer.Content bg="white">
+                                    <Drawer.Header>
+                                        <Drawer.Title>Menu</Drawer.Title>
+                                    </Drawer.Header>
+                                    <Drawer.Body>
+                                        <Stack gap="4">
+                                            <Drawer.ActionTrigger asChild>
+                                                <Link href="/">
+                                                    <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                        Home
+                                                    </Heading>
                                                 </Link>
                                             </Drawer.ActionTrigger>
-                                        ))}
-                                    </Stack>
-                                </Drawer.Body>
-                                <Drawer.Footer>
-                                </Drawer.Footer>
-                                <Drawer.CloseTrigger asChild>
-                                    <CloseButton color="black" size="sm" />
-                                </Drawer.CloseTrigger>
-                            </Drawer.Content>
-                        </Drawer.Positioner>
-                    </Portal>
-                </Drawer.Root>
+                                            <Drawer.ActionTrigger asChild>
+                                                <Link href="/category">
+                                                    <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                        Category
+                                                    </Heading>
+                                                </Link>
+                                            </Drawer.ActionTrigger>
+                                            <Drawer.ActionTrigger asChild>
+                                                <Link href="/about">
+                                                    <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                        About
+                                                    </Heading>
+                                                </Link>
+                                            </Drawer.ActionTrigger>
+                                            <Drawer.ActionTrigger asChild>
+                                                <Link href="/services">
+                                                    <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                        Services
+                                                    </Heading>
+                                                </Link>
+                                            </Drawer.ActionTrigger>
+                                            <Drawer.ActionTrigger asChild>
+                                                <Link href="/contact">
+                                                    <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                        Contact
+                                                    </Heading>
+                                                </Link>
+                                            </Drawer.ActionTrigger>
+                                        </Stack>
+
+                                        <Stack mt="6" gap="4">
+                                            <Heading fontSize="md" fontWeight="sm">Categories</Heading>
+                                            {
+                                                categories?.map((category, index) => {
+                                                    const isActive = isActiveLink(path, category);
+
+                                                    return (
+                                                        <Drawer.ActionTrigger asChild key={index}>
+                                                            <Link href={`/${category?.replaceAll(" ", "_")}`}>
+                                                                <Heading _hover={{ color: "accent" }} fontWeight="medium" _active={{ color: "accent" }} textStyle={"sm"} color={isActive ? "accent" : "inherit"}>
+                                                                    {category}
+                                                                </Heading>
+                                                            </Link>
+                                                        </Drawer.ActionTrigger>
+                                                    )
+                                                }
+                                                )
+                                            }
+                                        </Stack>
+                                    </Drawer.Body>
+                                    <Drawer.Footer>
+                                    </Drawer.Footer>
+                                    <Drawer.CloseTrigger asChild>
+                                        <CloseButton color="black" size="sm" />
+                                    </Drawer.CloseTrigger>
+                                </Drawer.Content>
+                            </Drawer.Positioner>
+                        </Portal>
+                    </Drawer.Root>
+                </HStack>
             </HStack>
         </Container >
     );

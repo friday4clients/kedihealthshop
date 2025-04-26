@@ -5,7 +5,7 @@ const Cart = () => {
 
     return <Drawer.Root>
         <Drawer.Trigger asChild>
-            <IconButton _hover={{ color: "accent" }}>
+            <IconButton rounded="lg" _active={{ bg: "accent", color: "white" }}  _hover={{ color: "accent" }}>
                 <BiCart />
             </IconButton>
         </Drawer.Trigger>

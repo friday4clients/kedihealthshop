@@ -27,7 +27,7 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
 
     return (
         <>
-            <Container maxW="6xl" py="12">
+            <Container maxW="6xl" py="12" pt={{ base: "6" }}>
                 <Breadcrumb.Root>
                     <Breadcrumb.List>
                         <Breadcrumb.Item>
