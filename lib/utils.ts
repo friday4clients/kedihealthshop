@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export type Product = {
+export type ProductType = {
   id: string;
   title: string;
   category: string;
@@ -16,7 +16,7 @@ export type Product = {
   benefits: string[]
 };
 
-export type Store = Record<string, Product[]>;
+export type Store = Record<string, ProductType[]>;
 
 export async function getStore(): Promise<Store> {
   const response = await fetch('http://localhost:3000/products.json');
@@ -27,13 +27,13 @@ export async function getStore(): Promise<Store> {
 }
 
 
-export async function getProducts(category: string): Promise<Product[]> {
+export async function getProducts(category: string): Promise<ProductType[]> {
   const store = await getStore();
   return store[category.replaceAll("_", " ")];
 }
 
-export async function getProductById(id: string, category: string): Promise<Product | undefined> {
-  const products: Product[] = await getProducts(category.replaceAll("_", " "));
+export async function getProductById(id: string, category: string): Promise<ProductType | undefined> {
+  const products: ProductType[] = await getProducts(category.replaceAll("_", " "));
   return products?.find((product) => product.id.toString() === id);
 }
 

@@ -1,12 +1,13 @@
 "use client"
 
 import Link from 'next/link';
-import { Container, HStack, Link as CLink, Image, IconButton, Stack, Drawer, Portal, CloseButton, Heading } from '@chakra-ui/react';
+import { Container, HStack, Link as CLink, Image, IconButton, Stack, Drawer, Portal, CloseButton, Heading, Icon } from '@chakra-ui/react';
 import { LuAlignRight } from 'react-icons/lu';
 import { getCategories } from '@/lib/utils';
 import Cart from './cart';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { FaFacebook, FaWhatsapp, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 
 const Navbar = () => {
@@ -27,13 +28,17 @@ const Navbar = () => {
             zIndex={"sticky"}
             display={{ md: path === "/" ? "none" : "block" }}
             maxW={{ base: "6xl", md: "full" }} as="nav" bg="white" shadow="0 0 10px #ddd" >
-            <HStack px="4" h="14" justifyContent={{ base: "space-between" }}>
+            <HStack position="relative" px="4" h="14" justifyContent={{ base: "space-between" }}>
                 <Link href="/">
                     <Image src="/logo.png" alt="kedicares logo" w="20" />
                 </Link>
 
                 {/* nav links */}
-                <HStack gap="4" className="*:hover:!text-blue-700">
+                <HStack
+                    position="absolute"
+                    left="50%"
+                    transform={"translateX(-50%)"}
+                    gap="4" className="*:hover:!text-blue-700">
                     <Link href="/">
                         Home
                     </Link>
@@ -43,14 +48,39 @@ const Navbar = () => {
                     <Link href="/about">
                         About
                     </Link>
-                    <CLink href="#services">
+                    <CLink
+                        textDecor={"inherit"}
+                        color="inherit"
+                        href="#services">
                         Services
                     </CLink>
                     <Link href="/contact">
                         Contact
                     </Link>
                 </HStack>
-                <Cart />
+                <HStack gap="6" justifyContent={"center"}>
+                    <Link href={process.env.NEXT_PUBLIC_FACEBOOK_URL!} target="_blank" rel="noopener noreferrer">
+                        <Icon _hover={{fill:"accent"}}>
+                            <FaFacebook color="#444" size="20" />
+                        </Icon>
+                    </Link>
+                    <Link href={process.env.NEXT_PUBLIC_WHATSAPP_URL!} target="_blank" rel="noopener noreferrer">
+                        <Icon _hover={{fill:"accent"}}>
+                            <FaWhatsapp color="#444" size="20" />
+                        </Icon>
+                    </Link>
+                    <Link href={process.env.NEXT_PUBLIC_TWITTER_URL!} target="_blank" rel="noopener noreferrer">
+                        <Icon _hover={{fill:"accent"}}>
+                            <FaInstagram color="#444" size="20" />
+                        </Icon>
+                    </Link>
+                    <Link href={process.env.NEXT_PUBLIC_INSTAGRAM_URL!} target="_blank" rel="noopener noreferrer">
+                        <Icon _hover={{fill:"accent"}}>
+                            <FaTwitter color="#444" size="20" />
+                        </Icon>
+                    </Link>
+                    <Cart />
+                </HStack>
                 <Drawer.Root>
                     <Drawer.Trigger asChild>
                         <IconButton display={{ md: "none" }}>
@@ -87,7 +117,7 @@ const Navbar = () => {
                                         <Heading fontSize="md" fontWeight="sm">Categories</Heading>
                                         {categories.map((category, index) => (
                                             <Drawer.ActionTrigger asChild key={index}>
-                                                <Link href={`/${category.replaceAll(" ", "_")}`}>
+                                                <Link href={`/${category?.replaceAll(" ", "_")}`}>
                                                     {category}
                                                 </Link>
                                             </Drawer.ActionTrigger>

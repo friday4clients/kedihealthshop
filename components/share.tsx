@@ -1,11 +1,11 @@
 "use client"
 
-import { Product } from "@/lib/utils"
+import { ProductType } from "@/lib/utils"
 import { HStack } from "@chakra-ui/react"
 import { link } from "fs"
 import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon, TwitterShareButton, XIcon, PinterestShareButton, PinterestIcon, LinkedinShareButton, LinkedinIcon } from "react-share"
 
-const Share = (props: { product: Product, link: string }) => {
+const Share = (props: { product: ProductType, link: string }) => {
     const { product, link } = props;
 
     return (

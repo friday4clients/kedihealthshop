@@ -18,17 +18,17 @@ const Footer = async () => {
                         Follow Us
                     </Heading>
                     <HStack gap="6" justifyContent={"center"}>
-                        <Link className="hover:opacity-70" href={process.env.FACEBOOK_URL!} target="_blank" rel="noopener noreferrer">
+                        <Link className="hover:opacity-70" href={process.env.NEXT_PUBLIC_FACEBOOK_URL!} target="_blank" rel="noopener noreferrer">
                             <FaFacebook color="white" size="40" />
                         </Link>
-                        <Link className="hover:opacity-70" href={process.env.WHATSAPP_URL!} target="_blank" rel="noopener noreferrer">
+                        <Link className="hover:opacity-70" href={process.env.NEXT_PUBLIC_WHATSAPP_URL!} target="_blank" rel="noopener noreferrer">
                             <FaWhatsapp color="white" size="40" />
                         </Link>
-                        <Link className="hover:opacity-70" href={process.env.TWITTER_URL!} target="_blank" rel="noopener noreferrer">
+                        <Link className="hover:opacity-70" href={process.env.NEXT_PUBLIC_TWITTER_URL!} target="_blank" rel="noopener noreferrer">
                             <FaInstagram color="white" size="40" />
 
                         </Link>
-                        <Link className="hover:opacity-70" href={process.env.INSTAGRAM_URL!} target="_blank" rel="noopener noreferrer">
+                        <Link className="hover:opacity-70" href={process.env.NEXT_PUBLIC_INSTAGRAM_URL!} target="_blank" rel="noopener noreferrer">
                             <FaTwitter color="white" size="40" />
                         </Link>
                     </HStack>
