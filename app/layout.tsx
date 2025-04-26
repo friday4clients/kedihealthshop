@@ -4,6 +4,7 @@ import "./globals.css";
 import { Provider } from "@/components/ui/provider"
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { CartProvider } from "@/components/cart";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -45,9 +46,11 @@ export default function RootLayout({
         className={`relative ${merriweather.variable} ${montserrat.variable} ${montserratAlternates.variable} ${oswald.variable} antialiased`}
       >
         <Provider>
-          <Navbar />
-          {children}
-          <Footer />
+          <CartProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </CartProvider>
         </Provider>
       </body>
     </html>

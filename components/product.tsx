@@ -2,13 +2,16 @@
 
 import { ProductType } from "@/lib/utils";
 import { Button, FormatNumber, Heading, HStack, Image, RatingGroup, Skeleton, Stack, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { Tooltip } from "./ui/tooltip";
 import Link from "next/link";
 import { LuPlus } from "react-icons/lu";
+import { useCart } from "./cart";
 
 export default function Product({ info }: { info: ProductType }) {
     const [loading, setLoading] = useState(true);
+    const cart = useCart();
+    const [isPending, startTransition] = useTransition();
 
     return (
         <Stack
@@ -60,6 +63,18 @@ export default function Product({ info }: { info: ProductType }) {
                 fontWeight={"bold"}
                 transition={"all 500ms"}
                 _active={{ scale: "0.98" }}
+                loading={isPending}
+                onClick={() => {
+                    startTransition(() => {
+                        cart.addItem({
+                            id: info?.id.toString(),
+                            title: info?.title,
+                            price: info?.price,
+                            quantity: 1,
+                            img_url: info?.imageUrls?.[0]!
+                        });
+                    });
+                }}
                 rounded="lg">
                 <LuPlus />
                 Add To Cart
