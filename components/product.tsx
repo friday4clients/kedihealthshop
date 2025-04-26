@@ -16,8 +16,9 @@ export default function Product({ info }: { info: ProductType }) {
             bg="white"
             gap="3"
             shadow="0 0 15px #eee"
+            _active={{}}
             rounded="xl">
-            <Link href={`/${info.category.replaceAll(" ", "_")}/${info.title.replaceAll(" ", "_")}`} passHref>
+            <Link href={`/${info.category.replaceAll(" ", "_")}/${info.title.replaceAll(" ", "_")}?product_id=${info?.id}`} passHref>
                 <Skeleton rounded="lg" loading={loading}>
                     <HStack
                         rounded="lg"
@@ -35,13 +36,13 @@ export default function Product({ info }: { info: ProductType }) {
                     </HStack>
                 </Skeleton>
             </Link>
-            <Link href={`/${info.category.replaceAll(" ", "_")}/${info.title.replaceAll(" ", "_")}`} passHref>
+            <Link href={`/${info.category.replaceAll(" ", "_")}/${info.title.replaceAll(" ", "_")}?product_id=${info?.id}`} passHref>
                 <RatingGroup.Root colorPalette={"yellow"} readOnly count={5} defaultValue={3} size="sm">
                     <RatingGroup.HiddenInput />
                     <RatingGroup.Control />
                 </RatingGroup.Root>
             </Link>
-            <Link href={`/${info.category.replaceAll(" ", "_")}/${info.title.replaceAll(" ", "_")}`} passHref>
+            <Link href={`/${info.category.replaceAll(" ", "_")}/${info.title.replaceAll(" ", "_")}?product_id=${info?.id}`} passHref>
                 <Stack>
                     <Heading lineClamp={"1"}>{info!.title}</Heading>
                     <Tooltip content={info!.description} openDelay={100} contentProps={{ p: "4", color: "gray.emphasized", rounded: "xl" }}>

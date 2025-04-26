@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 function isActiveLink(path: string, category: string): boolean {
-    return path === `/${category.replaceAll(" ", "_")}`;
+    return path.includes(`/${category.replaceAll(" ", "_")}`);
 }
 export default function SideLinks() {
     // const [categories, setCategories] = useState<Awaited<ReturnType<typeof getCategories>>>([]);

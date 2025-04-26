@@ -8,10 +8,9 @@ import Cart from './cart';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { FaFacebook, FaWhatsapp, FaInstagram, FaTwitter } from 'react-icons/fa';
-import CategoryLinks from './categories';
 
 function isActiveLink(path: string, category: string): boolean {
-    return path === `/${category.replaceAll(" ", "_")}`;
+    return path.includes(`/${category.replaceAll(" ", "_")}`);
 }
 
 const Navbar = () => {

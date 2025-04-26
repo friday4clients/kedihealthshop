@@ -8,6 +8,7 @@ import { BiBadgeCheck, BiSolidBadge, BiSupport } from "react-icons/bi";
 import { FaMoneyBillWave } from "react-icons/fa";
 import Testimonials from "@/components/testimonial";
 import Cart from "@/components/cart";
+import Product from "@/components/product";
 
 
 
@@ -214,36 +215,9 @@ export default async function Home() {
                   size="sm"
                 >Products</Heading>
 
-                <Grid templateColumns="repeat(2, 1fr)" gap="4">
+                <Grid templateColumns="repeat(2, 1fr)" gap="2">
                   {store[category]?.slice(0, 2).map((product, index) => (
-                    <Link
-                      key={index} // Added key prop here
-                      href={`/${category.replaceAll(" ", "_")}/${product.title.replaceAll(" ", "_")}?product_id=${encodeURIComponent(product.id)}`}
-                    >
-                      <Stack
-                        p="4"
-                        border="sm"
-                        borderColor="gray.100"
-                        borderRadius="xl"
-                        overflow="hidden"
-                        h="full"
-                        bg="gray.50"
-                      >
-                        <Image
-                          src={product.imageUrls?.[0]}
-                          alt={product.title}
-                          w="1/2"
-                          display={"block"}
-                          mx="auto"
-                          rounded="xl"
-                          objectFit="contain"
-                          mb="2"
-                        />
-                        <Text fontWeight="semibold" fontSize="sm">
-                          {product.title}
-                        </Text>
-                      </Stack>
-                    </Link>
+                    <Product key={index} info={product} />
                   ))}
                 </Grid>
                 <Button

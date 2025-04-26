@@ -1,11 +1,13 @@
 import { getCategories, getProducts, getProductById } from "@/lib/utils";
-import { Container, Breadcrumb, RatingGroup, IconButton, Image, Box, Button, HStack } from "@chakra-ui/react";
+import { Container, Breadcrumb, RatingGroup, Image, Box, Button, Grid, Stack, GridItem, Heading, Text, FormatNumber, HStack, List, Separator } from "@chakra-ui/react";
 import Link from "next/link";
-import { LuHeart } from "react-icons/lu";
-import Form from "next/form";
-import { FacebookIcon, FacebookShareButton, LinkedinIcon, LinkedinShareButton, PinterestIcon, PinterestShareButton, TwitterShareButton, WhatsappIcon, WhatsappShareButton, XIcon } from "react-share";
-import Share from "@/components/share";
+import { LuMinus, LuPlus } from "react-icons/lu";
+import dynamic from "next/dynamic";
 
+
+const Reviews = dynamic(() => import("@/components/reviews"));
+const Product = dynamic(() => import("@/components/product"));
+const Share = dynamic(() => import("@/components/share"));
 
 export async function generateStaticParams() {
     const categories: Awaited<ReturnType<typeof getCategories>> = await getCategories();
@@ -31,14 +33,14 @@ interface CategoryPageProps {
         product: string
     }>,
     searchParams: Promise<{
-        productId: string
+        product_id: string
     }>
 }
 
 export default async ({ params, searchParams }: CategoryPageProps) => {
     const category = decodeURIComponent((await params).category)?.replaceAll("_", " ");
     const productTitle = decodeURIComponent((await params).product)?.replaceAll("_", " ");
-    const productId = decodeURIComponent(((await searchParams)?.productId));
+    const productId = decodeURIComponent(((await searchParams)?.product_id));
     const product = await getProductById(productId, category);
     const relatedProducts = (await getProducts(category))?.filter((product) => product?.id.toString() !== productId.toString());
     const link = `/${category}/${productTitle}`;
@@ -49,203 +51,123 @@ export default async ({ params, searchParams }: CategoryPageProps) => {
                 <Breadcrumb.Root>
                     <Breadcrumb.List>
                         <Breadcrumb.Item>
-                            <Breadcrumb.Link as={Link} href="/">Home</Breadcrumb.Link>
+                            <Breadcrumb.Link _active={{ ring: "none" }} color="inherit" _hover={{ color: "accent" }} as={Link} href="/">Home</Breadcrumb.Link>
                         </Breadcrumb.Item>
                         <Breadcrumb.Separator />
                         <Breadcrumb.Item>
-                            <Breadcrumb.Link as={Link} href={`/${category}`}>{category}</Breadcrumb.Link>
+                            <Breadcrumb.Link _active={{ ring: "none" }} color="inherit" _hover={{ color: "accent" }} as={Link} href={`/${category.replaceAll(" ", "_")}`}>{category}</Breadcrumb.Link>
                         </Breadcrumb.Item>
                         <Breadcrumb.Separator />
                         <Breadcrumb.Item>
-                            <Breadcrumb.Link as={Link} href={`/${category}/${productTitle}`}>{productTitle}</Breadcrumb.Link>
+                            <Breadcrumb.CurrentLink color="accent">{productTitle}</Breadcrumb.CurrentLink>
                         </Breadcrumb.Item>
                     </Breadcrumb.List>
                 </Breadcrumb.Root>
 
-                <Box mt={8}>
-
-                    <Image
-                        src={product?.imageUrls?.[0]}
-                        alt={product?.title}
-                        style={{ width: "100%", maxHeight: "400px", objectFit: "cover", marginBottom: "16px" }}
-                    />
-
-                    <h1>{productTitle}</h1>
-
-                    <div>
-                        <p><strong>Description:</strong> {product?.description}</p>
-                        <p><strong>Price:</strong> ${product?.price}</p>
-                        <p><strong>Category:</strong> {product?.category}</p>
-                        <RatingGroup.Root readOnly count={5} defaultValue={3} size="sm">
-                            <p><strong>Category:</strong> {product?.benefits}</p>
-                            <RatingGroup.HiddenInput />
-                            <RatingGroup.Control />
-                        </RatingGroup.Root>
-
-                        <IconButton
-                            aria-label="Add to Wishlist"
-                            variant={"ghost"}
-                            size="lg"
-                            mt={4}
-                        >
-                            <LuHeart />
-                        </IconButton>
-                    </div>
-                </Box>
-
-                <Box mt={8} textAlign="center">
-                    <Box display="inline-flex" alignItems="center" gap={4}>
-                        <Button
-                            colorScheme="teal"
-                            size="sm"
-                        >
-                            -
-                        </Button>
-                        <Box as="span" fontSize="lg" fontWeight="bold">
-                            1 {/* Replace with dynamic quantity */}
-                        </Box>
-                        <Button
-                            colorScheme="teal"
-                            size="sm"
-                        >
-                            +
-                        </Button>
-                    </Box>
-                    <Button
-                        colorScheme="teal"
-                        size="lg"
-                        ml={4}
-                    >
-                        Add to Cart
-                    </Button>
-                </Box>
-
-
-                <Share
-                    product={product!}
-                    link={link}
-                />
-
-
-                <Box mt={12}>
-                    <h2>Related Products</h2>
-                    <Box display="grid" gridTemplateColumns="repeat(auto-fit, minmax(200px, 1fr))" gap={6} mt={4}>
-                        {relatedProducts?.map((relatedProduct) => (
-                            <Box
-                                key={relatedProduct.id}
-                                borderWidth="1px"
-                                borderRadius="lg"
-                                overflow="hidden"
-                                textAlign="center"
-                                p={4}
-                            >
-                                <Image
-                                    src={relatedProduct?.imageUrls?.[0]}
-                                    alt={relatedProduct?.title}
-                                    style={{ width: "100%", height: "150px", objectFit: "cover" }}
+                <Grid
+                    mt="8"
+                    border="1px solid {colors.gray.200}" rounded="xl"
+                    p="6"
+                    bg="white"
+                    pr="0"
+                    gap="6"
+                    templateColumns={{ base: "1fr", md: "repeat(3,1fr)" }}
+                >
+                    <GridItem bg="gray.100" rounded="xl">
+                        <Stack h="full" w="full" justifyContent="center" alignItems="center" py="6">
+                            <Image
+                                src={product?.imageUrls?.[0]}
+                                w="fit"
+                                alt={product?.title} />
+                        </Stack>
+                    </GridItem>
+                    <GridItem colSpan={2}>
+                        <Stack gap="4">
+                            <Heading w={{ base: "80%", md: "full" }} size={{ base: "3xl", md: "4xl" }}>{product?.title}</Heading>
+                            <RatingGroup.Root readOnly colorPalette={"yellow"} count={5} defaultValue={3} size="sm">
+                                <RatingGroup.HiddenInput />
+                                <RatingGroup.Control />
+                            </RatingGroup.Root>
+                            <Heading color="accent" size="lg">
+                                <FormatNumber value={product?.price!} currency="NGN" style="currency" />
+                            </Heading>
+                            <Stack mt="6">
+                                <Heading size="xs">Share to</Heading>
+                                <Share
+                                    product={product!}
+                                    link={link}
                                 />
-                                <h3>{relatedProduct?.title}</h3>
-                                <p>${relatedProduct?.price}</p>
-                                <Link href={`/${category}/${relatedProduct?.title?.replaceAll(" ", "_")}?productId=${relatedProduct?.id}`} passHref>
-                                    <Button colorScheme="teal" size="sm" mt={2}>
-                                        View Product
+                            </Stack>
+
+                            <Separator borderColor={"gray.100"} />
+                            <HStack
+                                gap="4"
+                                justifyContent={"start"}
+                                alignItems={{ base: "start", md: "center" }}
+                                flexDir={{ base: "column", md: "row" }}>
+                                <HStack gap={4}>
+                                    <Button
+                                        bg="blue.100"
+                                        size="sm"
+                                        transition={"all 500ms"}
+                                        _active={{ scale: "0.8" }}
+                                    >
+                                        <LuMinus />
                                     </Button>
-                                </Link>
-                            </Box>
-                        ))}
-                    </Box>
-                </Box>
+                                    <Heading>1</Heading>
+                                    <Button
+                                        bg="blue.100"
+                                        size="sm"
+                                        transition={"all 500ms"}
+                                        _active={{ scale: "0.8" }}
+                                    >
+                                        <LuPlus />
+                                    </Button>
+                                </HStack>
+                                <Button
+                                    w="fit"
+                                    px="4"
+                                    size="lg"
+                                    bg='accent'
+                                    color="white"
+                                    _hover={{ bg: "blue.muted", color: "white" }}
+                                    fontWeight={"bold"}
+                                    transition={"all 500ms"}
+                                    _active={{ scale: "0.98" }}
+                                    rounded="lg">
+                                    <LuPlus />
+                                    Add To Cart
+                                </Button>
+                            </HStack>
+
+                        </Stack>
+                    </GridItem>
+                </Grid>
+
+                <Heading mt="8">Description</Heading>
+                <Text mt="4">{product?.description?.repeat(5)}</Text>
+
+                <Heading mt="8">Benefits</Heading>
+                <List.Root listStylePos={"inside"}>
+                    {product?.benefits?.map((benefit, index) => {
+                        return (
+                            <List.Item key={index}>{benefit}</List.Item>
+                        )
+                    })}
+                </List.Root>
+
+                {/* reviews */}
+                <Reviews />
 
                 <Box mt={12}>
-                    <h2>Product Reviews</h2>
-                    <Box mt={4}>
-                        {[
-                            { author: "John Doe", rating: 4, comment: "Great product, highly recommend!" },
-                            { author: "Jane Smith", rating: 5, comment: "Absolutely loved it, will buy again!" },
-                            { author: "Alice Johnson", rating: 3, comment: "It's okay, could be better." }
-                        ].length ? (
-                            [
-                                { author: "John Doe", rating: 4, comment: "Great product, highly recommend!" },
-                                { author: "Jane Smith", rating: 5, comment: "Absolutely loved it, will buy again!" },
-                                { author: "Alice Johnson", rating: 3, comment: "It's okay, could be better." }
-                            ].map((review, index) => (
-                                <Box
-                                    key={index}
-                                    borderWidth="1px"
-                                    borderRadius="lg"
-                                    p={4}
-                                    mb={4}
-                                >
-                                    <h3><strong>{review.author}</strong></h3>
-                                    <RatingGroup.Root readOnly count={5} defaultValue={review.rating} size="sm">
-                                        <RatingGroup.HiddenInput />
-                                        <RatingGroup.Control />
-                                    </RatingGroup.Root>
-                                    <p>{review.comment}</p>
-                                </Box>
-                            ))
-                        ) : (
-                            <p>No reviews yet. Be the first to review this product!</p>
-                        )}
-                    </Box>
-
-                    <Box mt={8}></Box>
-                    <h3>Add a Review</h3>
-                    <Form
-                        action={"/"}
-                    // onSubmit={(e) => {
-                    //     e.preventDefault();
-                    //     const formData = new FormData(e.currentTarget);
-                    //     const newReview = {
-                    //         author: formData.get("author") as string,
-                    //         rating: parseInt(formData.get("rating") as string, 10),
-                    //         comment: formData.get("comment") as string,
-                    //     };
-                    //     console.log("New Review Submitted:", newReview);
-                    //     // Add logic to handle the review submission (e.g., API call)
-                    //     e.currentTarget.reset();
-                    // }}
-                    >
-                        <Box mb={4}>
-                            <label htmlFor="author">Name</label>
-                            <input
-                                id="author"
-                                name="author"
-                                type="text"
-                                required
-                                style={{ width: "100%", padding: "8px", marginTop: "4px", borderRadius: "4px", border: "1px solid #ccc" }}
-                            />
-                        </Box>
-                        <Box mb={4}>
-                            <label htmlFor="rating">Rating</label>
-                            <select
-                                id="rating"
-                                name="rating"
-                                required
-                                style={{ width: "100%", padding: "8px", marginTop: "4px", borderRadius: "4px", border: "1px solid #ccc" }}
-                            >
-                                <option value="">Select Rating</option>
-                                {[1, 2, 3, 4, 5].map((value) => (
-                                    <option key={value} value={value}>
-                                        {value}
-                                    </option>
-                                ))}
-                            </select>
-                        </Box>
-                        <Box mb={4}>
-                            <label htmlFor="comment">Comment</label>
-                            <textarea
-                                id="comment"
-                                name="comment"
-                                rows={4}
-                                required
-                                style={{ width: "100%", padding: "8px", marginTop: "4px", borderRadius: "4px", border: "1px solid #ccc" }}
-                            />
-                        </Box>
-                        <Button type="submit" colorScheme="teal">
-                            Submit Review
-                        </Button>
-                    </Form>
+                    <Heading mt="8">Related Products</Heading>
+                    <Grid display="grid" templateColumns={{ md: "repeat(3, 1fr)" }} gap={2} mt={4}>
+                        {relatedProducts?.map((relatedProduct, index) => (
+                            <GridItem key={index}>
+                                <Product info={relatedProduct} />
+                            </GridItem>
+                        ))}
+                    </Grid>
                 </Box>
 
             </Container>

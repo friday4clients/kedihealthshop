@@ -31,7 +31,7 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
                 <Breadcrumb.Root>
                     <Breadcrumb.List>
                         <Breadcrumb.Item>
-                            <Breadcrumb.Link color="inherit" _hover={{ color: "accent" }} as={Link} href="/">Home</Breadcrumb.Link>
+                            <Breadcrumb.Link _active={{ ring: "none" }} color="inherit" _hover={{ color: "accent" }} as={Link} href="/">Home</Breadcrumb.Link>
                         </Breadcrumb.Item>
                         <Breadcrumb.Separator />
                         <Breadcrumb.Item>

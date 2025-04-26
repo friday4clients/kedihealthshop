@@ -9,7 +9,7 @@ const Share = (props: { product: ProductType, link: string }) => {
     const { product, link } = props;
 
     return (
-        <HStack>
+        <HStack flexWrap={"wrap"}>
             <FacebookShareButton
                 url={link}
                 aria-label="Share on Facebook"
