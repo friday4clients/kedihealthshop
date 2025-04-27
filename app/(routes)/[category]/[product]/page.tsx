@@ -3,6 +3,7 @@ import { Container, Breadcrumb, RatingGroup, Image, Box, Button, Grid, Stack, Gr
 import Link from "next/link";
 import { LuMinus, LuPlus } from "react-icons/lu";
 import dynamic from "next/dynamic";
+import ProductActions from "./product_actions";
 
 
 const Reviews = dynamic(() => import("@/components/reviews"));
@@ -100,46 +101,7 @@ export default async ({ params, searchParams }: CategoryPageProps) => {
                             </Stack>
 
                             <Separator borderColor={"gray.100"} />
-                            <HStack
-                                gap="4"
-                                justifyContent={"start"}
-                                alignItems={{ base: "start", md: "center" }}
-                                flexDir={{ base: "column", md: "row" }}>
-                                <HStack gap={4}>
-                                    <Button
-                                        bg="blue.100"
-                                        size="sm"
-                                        transition={"all 500ms"}
-                                        _active={{ scale: "0.8" }}
-                                    >
-                                        <LuMinus />
-                                    </Button>
-                                    <Heading>1</Heading>
-                                    <Button
-                                        bg="blue.100"
-                                        size="sm"
-                                        transition={"all 500ms"}
-                                        _active={{ scale: "0.8" }}
-                                    >
-                                        <LuPlus />
-                                    </Button>
-                                </HStack>
-                                <Button
-                                    w="fit"
-                                    px="4"
-                                    size="lg"
-                                    bg='accent'
-                                    color="white"
-                                    _hover={{ bg: "blue.muted", color: "white" }}
-                                    fontWeight={"bold"}
-                                    transition={"all 500ms"}
-                                    _active={{ scale: "0.98" }}
-                                    rounded="lg">
-                                    <LuPlus />
-                                    Add To Cart
-                                </Button>
-                            </HStack>
-
+                            <ProductActions product={product!} />
                         </Stack>
                     </GridItem>
                 </Grid>
