@@ -65,8 +65,7 @@ export default function CartItem({ item }: { item: CartItemType }) {
                 <Stack
                     // gap=""
                     justifyContent={"start"}
-                    alignItems={{ base: "start", md: "center" }}
-                    flexDir={{ base: "column", md: "row" }}>
+                    alignItems="start">
                     <HStack gap={4}>
                         <Button
                             disabled={item.quantity == 1}

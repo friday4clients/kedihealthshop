@@ -30,154 +30,156 @@ const Navbar = () => {
     const path = usePathname();
 
     return (
-        <Container
+        <Box
             position="sticky"
             top="0"
             zIndex={"sticky"}
             display={{ md: path === "/" ? "none" : "block" }}
             maxW={{ base: "6xl", md: "full" }} as="nav" bg="white" shadow="0 0 10px #ddd" >
-            <HStack position="relative" h="16" justifyContent={{ base: "space-between" }}>
-                <Link href="/">
-                    <Image src="/logo.png" alt="kedicares logo" w="20" />
-                </Link>
-
-                {/* nav links */}
-                <HStack
-                    display={{ base: "none", md: "flex" }}
-                    position="absolute"
-                    left="50%"
-                    transform={"translateX(-50%)"}
-                    gap="4" className="*:hover:!text-blue-700">
+            <Container maxW={"6xl"}>
+                <HStack position="relative" h="16" justifyContent={{ base: "space-between" }}>
                     <Link href="/">
-                        Home
+                        <Image src="/logo.png" alt="kedicares logo" w="20" />
                     </Link>
-                    <Link href={`/${categories?.[0]?.replaceAll(" ", "_")}`}>
-                        Shop
-                    </Link>
-                    <Link href="/about">
-                        About
-                    </Link>
-                    <CLink
-                        textDecor={"inherit"}
-                        color="inherit"
-                        href="#services">
-                        Services
-                    </CLink>
-                    <Link href="/contact">
-                        Contact
-                    </Link>
-                </HStack>
 
-                <HStack display={{ base: "none", md: "flex" }} gap="6">
-                    <Link href={process.env.NEXT_PUBLIC_FACEBOOK_URL!} target="_blank" rel="noopener noreferrer">
-                        <Icon _hover={{ fill: "accent" }}>
-                            <FaFacebook color="#444" size="20" />
-                        </Icon>
-                    </Link>
-                    <Link href={process.env.NEXT_PUBLIC_WHATSAPP_URL!} target="_blank" rel="noopener noreferrer">
-                        <Icon _hover={{ fill: "accent" }}>
-                            <FaWhatsapp color="#444" size="20" />
-                        </Icon>
-                    </Link>
-                    <Link href={process.env.NEXT_PUBLIC_TWITTER_URL!} target="_blank" rel="noopener noreferrer">
-                        <Icon _hover={{ fill: "accent" }}>
-                            <FaInstagram color="#444" size="20" />
-                        </Icon>
-                    </Link>
-                    <Link href={process.env.NEXT_PUBLIC_INSTAGRAM_URL!} target="_blank" rel="noopener noreferrer">
-                        <Icon _hover={{ fill: "accent" }}>
-                            <FaTwitter color="#444" size="20" />
-                        </Icon>
-                    </Link>
-                    <Cart />
-                </HStack>
+                    {/* nav links */}
+                    <HStack
+                        display={{ base: "none", md: "flex" }}
+                        position="absolute"
+                        left="50%"
+                        transform={"translateX(-50%)"}
+                        gap="4" className="*:hover:!text-blue-700">
+                        <Link href="/">
+                            Home
+                        </Link>
+                        <Link href={`/${categories?.[0]?.replaceAll(" ", "_")}`}>
+                            Shop
+                        </Link>
+                        <Link href="/about">
+                            About
+                        </Link>
+                        <CLink
+                            textDecor={"inherit"}
+                            color="inherit"
+                            href="#services">
+                            Services
+                        </CLink>
+                        <Link href="/contact">
+                            Contact
+                        </Link>
+                    </HStack>
 
-                <HStack display={{ base: "flex", md: "none" }} gap="4">
-                    <Cart />
-                    <Drawer.Root>
-                        <Drawer.Trigger asChild>
-                            <IconButton rounded="lg" _active={{ bg: "accent", color: "white" }}>
-                                <LuAlignRight />
-                            </IconButton>
-                        </Drawer.Trigger>
-                        <Portal>
-                            <Drawer.Backdrop />
-                            <Drawer.Positioner>
-                                <Drawer.Content bg="white">
-                                    <Drawer.Header>
-                                        <Drawer.Title>Menu</Drawer.Title>
-                                    </Drawer.Header>
-                                    <Drawer.Body>
-                                        <Stack gap="4">
-                                            <Drawer.ActionTrigger asChild>
-                                                <Link href="/">
-                                                    <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
-                                                        Home
-                                                    </Heading>
-                                                </Link>
-                                            </Drawer.ActionTrigger>
-                                            <Drawer.ActionTrigger asChild>
-                                                <Link href="/category">
-                                                    <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
-                                                        Category
-                                                    </Heading>
-                                                </Link>
-                                            </Drawer.ActionTrigger>
-                                            <Drawer.ActionTrigger asChild>
-                                                <Link href="/about">
-                                                    <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
-                                                        About
-                                                    </Heading>
-                                                </Link>
-                                            </Drawer.ActionTrigger>
-                                            <Drawer.ActionTrigger asChild>
-                                                <Link href="/services">
-                                                    <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
-                                                        Services
-                                                    </Heading>
-                                                </Link>
-                                            </Drawer.ActionTrigger>
-                                            <Drawer.ActionTrigger asChild>
-                                                <Link href="/contact">
-                                                    <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
-                                                        Contact
-                                                    </Heading>
-                                                </Link>
-                                            </Drawer.ActionTrigger>
-                                        </Stack>
+                    <HStack display={{ base: "none", md: "flex" }} gap="6">
+                        <Link href={process.env.NEXT_PUBLIC_FACEBOOK_URL!} target="_blank" rel="noopener noreferrer">
+                            <Icon _hover={{ fill: "accent" }}>
+                                <FaFacebook color="#444" size="20" />
+                            </Icon>
+                        </Link>
+                        <Link href={process.env.NEXT_PUBLIC_WHATSAPP_URL!} target="_blank" rel="noopener noreferrer">
+                            <Icon _hover={{ fill: "accent" }}>
+                                <FaWhatsapp color="#444" size="20" />
+                            </Icon>
+                        </Link>
+                        <Link href={process.env.NEXT_PUBLIC_TWITTER_URL!} target="_blank" rel="noopener noreferrer">
+                            <Icon _hover={{ fill: "accent" }}>
+                                <FaInstagram color="#444" size="20" />
+                            </Icon>
+                        </Link>
+                        <Link href={process.env.NEXT_PUBLIC_INSTAGRAM_URL!} target="_blank" rel="noopener noreferrer">
+                            <Icon _hover={{ fill: "accent" }}>
+                                <FaTwitter color="#444" size="20" />
+                            </Icon>
+                        </Link>
+                        <Cart />
+                    </HStack>
 
-                                        <Stack mt="6" gap="4">
-                                            <Heading fontSize="md" fontWeight="sm">Categories</Heading>
-                                            {
-                                                categories?.map((category, index) => {
-                                                    const isActive = isActiveLink(path, category);
+                    <HStack display={{ base: "flex", md: "none" }} gap="4">
+                        <Cart />
+                        <Drawer.Root>
+                            <Drawer.Trigger asChild>
+                                <IconButton rounded="lg" _active={{ bg: "accent", color: "white" }}>
+                                    <LuAlignRight />
+                                </IconButton>
+                            </Drawer.Trigger>
+                            <Portal>
+                                <Drawer.Backdrop />
+                                <Drawer.Positioner>
+                                    <Drawer.Content bg="white">
+                                        <Drawer.Header>
+                                            <Drawer.Title>Menu</Drawer.Title>
+                                        </Drawer.Header>
+                                        <Drawer.Body>
+                                            <Stack gap="4">
+                                                <Drawer.ActionTrigger asChild>
+                                                    <Link href="/">
+                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                            Home
+                                                        </Heading>
+                                                    </Link>
+                                                </Drawer.ActionTrigger>
+                                                <Drawer.ActionTrigger asChild>
+                                                    <Link href="/category">
+                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                            Category
+                                                        </Heading>
+                                                    </Link>
+                                                </Drawer.ActionTrigger>
+                                                <Drawer.ActionTrigger asChild>
+                                                    <Link href="/about">
+                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                            About
+                                                        </Heading>
+                                                    </Link>
+                                                </Drawer.ActionTrigger>
+                                                <Drawer.ActionTrigger asChild>
+                                                    <Link href="/services">
+                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                            Services
+                                                        </Heading>
+                                                    </Link>
+                                                </Drawer.ActionTrigger>
+                                                <Drawer.ActionTrigger asChild>
+                                                    <Link href="/contact">
+                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                            Contact
+                                                        </Heading>
+                                                    </Link>
+                                                </Drawer.ActionTrigger>
+                                            </Stack>
 
-                                                    return (
-                                                        <Drawer.ActionTrigger asChild key={index}>
-                                                            <Link href={`/${category?.replaceAll(" ", "_")}`}>
-                                                                <Heading _hover={{ color: "accent" }} fontWeight="medium" _active={{ color: "accent" }} textStyle={"sm"} color={isActive ? "accent" : "inherit"}>
-                                                                    {category}
-                                                                </Heading>
-                                                            </Link>
-                                                        </Drawer.ActionTrigger>
+                                            <Stack mt="6" gap="4">
+                                                <Heading fontSize="md" fontWeight="sm">Categories</Heading>
+                                                {
+                                                    categories?.map((category, index) => {
+                                                        const isActive = isActiveLink(path, category);
+
+                                                        return (
+                                                            <Drawer.ActionTrigger asChild key={index}>
+                                                                <Link href={`/${category?.replaceAll(" ", "_")}`}>
+                                                                    <Heading _hover={{ color: "accent" }} fontWeight="medium" _active={{ color: "accent" }} textStyle={"sm"} color={isActive ? "accent" : "inherit"}>
+                                                                        {category}
+                                                                    </Heading>
+                                                                </Link>
+                                                            </Drawer.ActionTrigger>
+                                                        )
+                                                    }
                                                     )
                                                 }
-                                                )
-                                            }
-                                        </Stack>
-                                    </Drawer.Body>
-                                    <Drawer.Footer>
-                                    </Drawer.Footer>
-                                    <Drawer.CloseTrigger asChild>
-                                        <CloseButton color="black" size="sm" />
-                                    </Drawer.CloseTrigger>
-                                </Drawer.Content>
-                            </Drawer.Positioner>
-                        </Portal>
-                    </Drawer.Root>
+                                            </Stack>
+                                        </Drawer.Body>
+                                        <Drawer.Footer>
+                                        </Drawer.Footer>
+                                        <Drawer.CloseTrigger asChild>
+                                            <CloseButton color="black" size="sm" />
+                                        </Drawer.CloseTrigger>
+                                    </Drawer.Content>
+                                </Drawer.Positioner>
+                            </Portal>
+                        </Drawer.Root>
+                    </HStack>
                 </HStack>
-            </HStack>
-        </Container >
+            </Container>
+        </Box>
     );
 };
 

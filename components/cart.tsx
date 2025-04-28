@@ -20,6 +20,7 @@ type CartContextType = {
     addItem: (item: CartItemType) => void;
     removeItem: (id: string) => void;
     updateItemQuantity: (id: string, quantity: number) => void;
+    clearCart: () => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -56,8 +57,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setItems((prevItems) => prevItems.filter((item) => item.id !== id));
     };
 
+    const clearCart = () => {
+        setItems([]);
+    }
+
     return (
-        <CartContext.Provider value={{ items, addItem, removeItem, updateItemQuantity }}>
+        <CartContext.Provider value={{ items, addItem, removeItem, updateItemQuantity, clearCart }}>
             {children}
         </CartContext.Provider>
     );
@@ -74,7 +79,7 @@ export const useCart = () => {
 const Cart = () => {
     const cart = useCart();
 
-    return <Drawer.Root size={{ md: "lg" }}>
+    return <Drawer.Root size={{ md: "md" }}>
         <Drawer.Trigger asChild>
             <IconButton rounded="lg" _active={{ bg: "accent", color: "white" }} _hover={{ color: "accent" }}>
                 <BiCart />
