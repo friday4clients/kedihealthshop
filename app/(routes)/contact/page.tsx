@@ -1,5 +1,6 @@
-import { HStack, Icon } from '@chakra-ui/react';
+import { Box, Container, Field, Grid, Button, GridItem, Group, Heading, HStack, Icon, Input, Stack, Textarea, Separator, Text } from '@chakra-ui/react';
 import Link from 'next/link';
+import Form from "next/form";
 import React from 'react';
 import { FaWhatsapp, FaPhone, FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
@@ -13,72 +14,55 @@ const socialLinks = [
 
 const ContactUsPage = () => {
     return (
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-            <div className="bg-white shadow-md rounded-lg p-8 max-w-lg w-full">
-                <h1 className="text-2xl font-bold text-gray-800 mb-4">Contact Us</h1>
-                <p className="text-gray-600 mb-6">
-                    Have questions or need assistance? Fill out the form below and we'll get back to you as soon as possible.
-                </p>
-                <HStack justify="center" gap={4} mb={6}>
-                    {socialLinks.map((link, index) => (
-                        <Link
-                            key={index}
-                            href={link.href}
-                            aria-label={link.label}
-                        >
-                            <Icon boxSize={6} color="gray.500" _hover={{ color: "blue.500" }}>
-                                {link.icon}
-                            </Icon>
-                        </Link>
-                    ))}
-                </HStack>
-
-            </div>
-            <form>
-                <div className="mb-4">
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                        Name
-                    </label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Your Name"
-                    />
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                        Email
-                    </label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Your Email"
-                    />
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                        Message
-                    </label>
-                    <textarea
-                        id="message"
-                        name="message"
-                        rows={4}
-                        className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Your Message"
-                    ></textarea>
-                </div>
-                <button
-                    type="submit"
-                    className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                >
-                    Send Message
-                </button>
-            </form>
-        </div>
+        <Box bg={"accent"} color="white" h="calc(100vh - 50px)">
+            <Container h={"full"}>
+                <Grid h="full" templateColumns={{ base: "1fr", md: "1fr 1fr" }}>
+                    <GridItem py="8">
+                        <Heading mb="6" color="white" fontFamily="merriweather" lineHeight={"1.2"} size="5xl">
+                            Contact KediCares
+                        </Heading>
+                        <Form action={"#"}>
+                            <Stack gap="4" color="blue.100">
+                                <Group flexDir={{ base: "column", md: "row" }}>
+                                    <Field.Root required>
+                                        <Field.Label color="colorPalette.100">Full Name</Field.Label>
+                                        <Input variant={"subtle"} bg="blue.solid" name="full_name" />
+                                    </Field.Root>
+                                    <Field.Root required>
+                                        <Field.Label color="colorPalette.100">Phone Number</Field.Label>
+                                        <Input variant={"subtle"} bg="blue.solid" inputMode='decimal' name="tel" placeholder="+2340000000000" />
+                                    </Field.Root>
+                                    <Field.Root required>
+                                        <Field.Label color="colorPalette.100">Subject</Field.Label>
+                                        <Input variant={"subtle"} bg="blue.solid" name="subject" />
+                                    </Field.Root>
+                                </Group>
+                                <Field.Root required>
+                                    <Field.Label color="colorPalette.100">Message</Field.Label>
+                                    <Textarea h="40" variant={"subtle"} bg="blue.solid" name="address">
+                                    </Textarea>
+                                </Field.Root>
+                                <Button
+                                    type="submit"
+                                    fontWeight="bold"
+                                    color="accent"
+                                    w={{ md: "fit" }}
+                                    transition={"all 500ms"}
+                                    _active={{ transform: "scale(0.9)" }}
+                                    _hover={{ bg: "blue.solid" }}
+                                >Send Message</Button>
+                            </Stack>
+                        </Form>
+                        <HStack my="10" w="full">
+                            <Separator flex="1" borderColor="blue.solid" />
+                            <Text color="blue.solid" flexShrink="0">Or</Text>
+                            <Separator flex="1" borderColor="blue.solid" />
+                        </HStack>
+                    </GridItem>
+                    <GridItem></GridItem>
+                </Grid>
+            </Container>
+        </Box>
     );
 };
 
