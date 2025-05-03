@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Heading, Stack, HStack, RatingGroup, Image, Text, Highlight } from "@chakra-ui/react";
+import { Box, Heading, Stack, HStack, RatingGroup, Image, Text } from "@chakra-ui/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

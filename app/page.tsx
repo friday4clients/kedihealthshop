@@ -1,18 +1,20 @@
-import { Button, Container, Heading, Image, Link as CLink, Text, Icon, Box, Grid, GridItem, HStack, Highlight, Stat, Separator, Stack, RatingGroup, Accordion, Input, Skeleton } from "@chakra-ui/react";
+import { Button, Container, Heading, Image, Link as CLink, Text, Icon, Box, Grid, GridItem, HStack, Highlight, Stack, Accordion, Input } from "@chakra-ui/react";
 import Link from "next/link";
 import { LuArrowRight } from "react-icons/lu";
-import { BiBadgeCheck, BiSolidBadge, BiSupport } from "react-icons/bi";
+import { BiBadgeCheck, BiSupport } from "react-icons/bi";
 import { FaMoneyBillWave } from "react-icons/fa";
 import categories from "@/lib/categories";
 import { getProductsByCategory } from "@/lib/actions";
 import { ProductType } from "@/lib/utils";
 import dynamic from "next/dynamic";
 import { Fade, Slide, Zoom } from "react-awesome-reveal";
+import Script from "next/script";
 
 const HeroCarousel = dynamic(() => import("@/components/hero_carousel"));
 const Testimonials = dynamic(() => import("@/components/testimonial"));
 const Product = dynamic(() => import("@/components/product"));
 const Cart = dynamic(() => import("@/components/cart"));
+
 
 const getProducts = async (category: string) => {
   const products = (await getProductsByCategory(category))?.Items?.slice(0, 2) as ProductType[];
@@ -21,6 +23,32 @@ const getProducts = async (category: string) => {
     return <Product key={index} info={product} imgH="40" />
   })
 }
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Kedicares - Affordable Kedi Products",
+  "description": "Your number one store for affordable Kedi products. Explore our shop, learn about our services, and discover why customers trust Kedicares for their wellness journey.",
+  "url": `${process.env.NEXT_PUBLIC_HOSTNAME!}`,
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kedicares",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${process.env.NEXT_PUBLIC_HOSTNAME!}/logo.webp`
+    }
+  },
+  "mainEntity": {
+    "@type": "WebPageElement",
+    "name": "Hero Section",
+    "description": "Highlighting Kedicares as the number one store for affordable Kedi products."
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": `${process.env.NEXT_PUBLIC_HOSTNAME}q={search_term_string}`,
+    "query-input": "required name=search_term_string"
+  }
+};
 
 export default async function Home() {
 
@@ -54,22 +82,17 @@ export default async function Home() {
                 justifyContent={"space-between"}
                 gap="">
                 <Link href="/">
-                  <Image src="/logo.png" alt="kedicares logo" w="20" />
+                  <Image src="/logo.webp" alt="kedicares logo" w="44" h="5" />
                 </Link>
 
                 <HStack gap="4" className="*:hover:!text-blue-700">
-                  <Link href="/">
-                    Home
-                  </Link>
                   <Link href={`/${categories[0]?.category?.replaceAll(" ", "_")}`}>
                     Shop
                   </Link>
                   <Link href="/about">
                     About
                   </Link>
-                  {/* <CLink href="#services">
-                  Services
-                </CLink> */}
+                  
                   <Link href="/contact">
                     Contact
                   </Link>
@@ -543,6 +566,13 @@ export default async function Home() {
           </HStack>
         </Container>
       </Box>
+      
+      {/* jsonld */}
+      <Script
+        id="category-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      ></Script>
     </>
   );
 }

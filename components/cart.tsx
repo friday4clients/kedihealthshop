@@ -1,9 +1,9 @@
 "use client"
 
-import { Box, Button, CloseButton, Drawer, EmptyState, Float, FormatNumber, Heading, HStack, IconButton, Image, List, Portal, Separator, Show, Stack } from "@chakra-ui/react"
-import { BiCart } from "react-icons/bi"
-import React, { createContext, useContext, useEffect, useState, useTransition } from "react";
-import { LuMinus, LuPlus, LuShoppingCart } from "react-icons/lu";
+import { Box, Button, CloseButton, Drawer, EmptyState, Float, FormatNumber, Heading, HStack, IconButton, List, Portal, Separator, Show, Stack } from "@chakra-ui/react";
+import { BiCart } from "react-icons/bi";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { LuShoppingCart } from "react-icons/lu";
 import CartItem from "./cart_item";
 import Link from "next/link";
 
@@ -28,6 +28,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [items, setItems] = useState<CartItemType[]>([]);
 
+
     useEffect(() => {
         const storedCart = localStorage.getItem("cart");
         if (storedCart) {
@@ -35,9 +36,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
     }, []);
 
-    useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(items));
-    }, [items]);
+    // useEffect(() => {
+    //     localStorage.setItem("cart", JSON.stringify(items));
+    // }, [items]);
 
     const addItem = (item: CartItemType) => {
         if (items.find(i => i.product_id === item.product_id)) {
@@ -50,22 +51,29 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 }
             });
             setItems(updatedItems);
+            localStorage.setItem("cart", JSON.stringify(updatedItems));
             return
         } else {
-            setItems((prevItems) => [...prevItems, item]);
+            setItems((prevItems) => {
+                localStorage.setItem("cart", JSON.stringify([...prevItems, item]));
+                return [...prevItems, item]
+            })
         }
     };
 
     const updateItemQuantity = (id: string, quantity: number) => {
-        setItems((prevItems) =>
-            prevItems.map((item) =>
+        setItems((prevItems) => {
+            const i = prevItems.map((item) => (
                 item.product_id === id ? { ...item, quantity: item.quantity + quantity } : item
-            )
-        );
+            ));
+
+            localStorage.setItem("cart", JSON.stringify(i));
+            return i;
+        });
     };
 
     const removeItem = (id: string) => {
-        setItems((prevItems) => prevItems.filter((item) => item.product_id !== id));
+        setItems((prevItems) => (localStorage.setItem("cart", JSON.stringify(prevItems.filter((item) => item.product_id !== id))), prevItems.filter((item) => item.product_id !== id)));
     };
 
     const clearCart = () => {

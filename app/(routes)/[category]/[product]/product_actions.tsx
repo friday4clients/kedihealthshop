@@ -1,10 +1,9 @@
 "use client"
 
-import cart, { useCart } from "@/components/cart";
+import { useCart } from "@/components/cart";
 import { ProductType } from "@/lib/utils";
 import { HStack, Button, Heading } from "@chakra-ui/react";
-import { info } from "console";
-import { startTransition, useCallback, useEffect, useState, useTransition } from "react";
+import { useCallback, useEffect, useState, useTransition } from "react";
 import { LuMinus, LuPlus } from "react-icons/lu";
 
 export default function ProductActions({ product }: { product: ProductType }) {
@@ -28,13 +27,13 @@ export default function ProductActions({ product }: { product: ProductType }) {
         startDecreaseTransition(() => {
             cart.updateItemQuantity(item.product_id, item.quantity === 1 ? 0 : -1);
         });
-    }, [item.quantity]);
+    }, [item.quantity,cart,item.product_id]);
 
     const increaseQuantity = useCallback(() => {
         startIncreaseTransition(() => {
             cart.updateItemQuantity(item.product_id, 1);
         });
-    }, [item.quantity]);
+    }, [cart, item.product_id]);
 
     useEffect(() => {
         const inCart = cart.items.find((_) => _.product_id === item.product_id);
@@ -44,7 +43,7 @@ export default function ProductActions({ product }: { product: ProductType }) {
             setItem(inCart);
             setExist(true);
         }
-    }, [cart.items]);
+    }, [cart.items, cart, item.product_id]);
 
 
     return (

@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /utils/
+
+Sitemap: /sitemap.xml

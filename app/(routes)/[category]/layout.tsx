@@ -1,5 +1,4 @@
-import { Box, Container, Drawer, Grid, GridItem, Heading, Stack, Text } from "@chakra-ui/react";
-import Link from "next/link";
+import { Box, Grid, GridItem } from "@chakra-ui/react";
 import SideLinks from "./side_links";
 
 export default async function CategoryLayout({

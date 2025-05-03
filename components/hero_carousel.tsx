@@ -1,10 +1,9 @@
 "use client"
 
-import { Box, Grid, GridItem, Image, Stack } from "@chakra-ui/react"
-import { Swiper, SwiperSlide } from "swiper/react"
+import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/effect-cards';
-import { EffectCreative, EffectCards, Autoplay } from "swiper/modules";
+import { EffectCards, Autoplay } from "swiper/modules";
 import { useEffect, useState } from "react";
 import { ProductType } from "@/lib/utils";
 import { getProductsByCategory } from "@/lib/actions";

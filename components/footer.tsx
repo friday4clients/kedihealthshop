@@ -1,7 +1,6 @@
 import categories from "@/lib/categories";
-import { getCategories } from "@/lib/utils";
-import { Box, Container, Grid, Stack, Link as CLink, Heading, Text, HStack, IconButton } from "@chakra-ui/react"
-import Link from "next/link"
+import { Box, Container, Grid, Stack, Link as CLink, Heading, Text, HStack, IconButton } from "@chakra-ui/react";
+import Link from "next/link";
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { LuMail, LuPhone, LuMapPin, LuArrowUp } from "react-icons/lu";
 

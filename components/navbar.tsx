@@ -39,7 +39,7 @@ const Navbar = () => {
             <Container maxW={"6xl"}>
                 <HStack position="relative" h="16" justifyContent={{ base: "space-between" }}>
                     <Link href="/">
-                        <Image src="/logo.png" alt="kedicares logo" w="20" />
+                        <Image src="/logo.webp" alt="kedicares logo" w="40" />
                     </Link>
 
                     {/* nav links */}
@@ -72,22 +72,22 @@ const Navbar = () => {
                     <HStack display={{ base: "none", md: "flex" }} gap="6">
                         <Link href={process.env.NEXT_PUBLIC_FACEBOOK_URL!} target="_blank" rel="noopener noreferrer">
                             <Icon _hover={{ fill: "accent" }}>
-                                <FaFacebook color="#444" size="20" />
+                                <FaFacebook color="#444" size="20" aria-label='facebook' />
                             </Icon>
                         </Link>
                         <Link href={process.env.NEXT_PUBLIC_WHATSAPP_URL!} target="_blank" rel="noopener noreferrer">
                             <Icon _hover={{ fill: "accent" }}>
-                                <FaWhatsapp color="#444" size="20" />
+                                <FaWhatsapp color="#444" size="20" aria-label='whatsapp' />
                             </Icon>
                         </Link>
                         <Link href={process.env.NEXT_PUBLIC_TWITTER_URL!} target="_blank" rel="noopener noreferrer">
                             <Icon _hover={{ fill: "accent" }}>
-                                <FaInstagram color="#444" size="20" />
+                                <FaInstagram color="#444" size="20" aria-label='instagram' />
                             </Icon>
                         </Link>
                         <Link href={process.env.NEXT_PUBLIC_INSTAGRAM_URL!} target="_blank" rel="noopener noreferrer">
                             <Icon _hover={{ fill: "accent" }}>
-                                <FaTwitter color="#444" size="20" />
+                                <FaTwitter color="#444" size="20" aria-label='twitter' />
                             </Icon>
                         </Link>
                         <Cart />
@@ -170,7 +170,7 @@ const Navbar = () => {
                                         <Drawer.Footer>
                                         </Drawer.Footer>
                                         <Drawer.CloseTrigger asChild>
-                                            <CloseButton _hover={{ bg: "gray.100" }} color="black" size="sm" />
+                                            <CloseButton _active={{ bg: "gray.100" }} _hover={{ bg: "gray.100" }} color="black" size="sm" />
                                         </Drawer.CloseTrigger>
                                     </Drawer.Content>
                                 </Drawer.Positioner>

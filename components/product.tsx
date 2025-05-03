@@ -2,7 +2,7 @@
 
 import { ProductType } from "@/lib/utils";
 import { Button, FormatNumber, Heading, HStack, Image, RatingGroup, Skeleton, Stack, Text } from "@chakra-ui/react";
-import { Attributes, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import { Tooltip } from "./ui/tooltip";
 import Link from "next/link";
 import { LuPlus } from "react-icons/lu";
@@ -90,22 +90,4 @@ export default function Product({ info, imgH }: { info: ProductType, imgH?: stri
             </Button>
         </Stack>
     )
-}
-
-
-const p = {
-    "product_id": "2NGtHSjMOQtlF8XY",
-    "title": "",
-    "category": "",
-    "img_url": "",
-    "price": "29500",
-    "rating": "4",
-    "specification": "",
-    "pack_size": "",
-    "description": "",
-    "benefits": "",
-    "ingredients": [],
-    "usage": [],
-    "precautions": [],
-    "storage": ""
 }

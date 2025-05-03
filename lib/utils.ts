@@ -1,6 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import store from "@/public/products.json";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -51,4 +50,3 @@ export async function getCategories(): Promise<string[]> {
   const store: Store = await getStore();
   return Object.keys(store);
 }
-``

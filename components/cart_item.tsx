@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback, useTransition } from "react";
-import { CartItemType, useCart } from "./cart"
+import { CartItemType, useCart } from "./cart";
 import { HStack, List, Stack, Heading, FormatNumber, Separator, Button, Image, Box } from "@chakra-ui/react";
 import { LuMinus, LuPlus } from "react-icons/lu";
 
@@ -16,13 +16,13 @@ export default function CartItem({ item }: { item: CartItemType }) {
         startDecreaseTransition(() => {
             cart.updateItemQuantity(item.product_id, item.quantity === 1 ? 0 : -1);
         });
-    }, [item.quantity]);
+    }, [item.quantity, cart, item.product_id]);
 
     const increaseQuantity = useCallback(() => {
         startIncreaseTransition(() => {
             cart.updateItemQuantity(item.product_id, 1);
         });
-    }, [item.quantity]);
+    }, [cart, item.product_id]);
 
     const removeItem = () => {
         startRemoveTransition(() => {
@@ -96,7 +96,7 @@ export default function CartItem({ item }: { item: CartItemType }) {
                         size="xs"
                         bg='red'
                         color="white"
-                        _hover={{ bg: "blue.muted", color: "white" }}
+                        _hover={{ bg: "red.600", color: "white" }}
                         fontWeight={"bold"}
                         transition={"all 500ms"}
                         loading={isRemoving}

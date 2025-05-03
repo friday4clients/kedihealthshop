@@ -1,15 +1,16 @@
-import { getCategories, getProducts, getProductById, ProductType } from "@/lib/utils";
-import { Container, Breadcrumb, RatingGroup, Image, Box, Button, Grid, Stack, GridItem, Heading, Text, FormatNumber, HStack, List, Separator, Stat, Accordion, Span } from "@chakra-ui/react";
+import { ProductType } from "@/lib/utils";
+import { Container, Breadcrumb, RatingGroup, Image, Box, Grid, Stack, GridItem, Heading, Text, FormatNumber, List, Separator, Accordion } from "@chakra-ui/react";
 import Link from "next/link";
-import { LuMinus, LuPlus } from "react-icons/lu";
 import dynamic from "next/dynamic";
 import ProductActions from "./product_actions";
 import categories, { CategoryType } from "@/lib/categories";
 import { getProduct, getProductsByCategory } from "@/lib/actions";
 import { Fade } from "react-awesome-reveal";
+import Script from "next/script";
+import { toTitleCase } from "@/lib/functions";
+import { getProductJSONLD } from "@/lib/jsonld";
 
 
-const Reviews = dynamic(() => import("@/components/reviews"));
 const Product = dynamic(() => import("@/components/product"));
 const Share = dynamic(() => import("@/components/share"));
 
@@ -40,45 +41,63 @@ interface CategoryPageProps {
     }>
 }
 
-
-export async function generateMetadata({ params, searchParams }: CategoryPageProps) {
-    const category = decodeURIComponent((await params).category)?.replaceAll("_", " ");
-    const productTitle = decodeURIComponent((await params).product)?.replaceAll("_", " ");
+export async function generateMetadata({ searchParams }: CategoryPageProps) {
     const productId = decodeURIComponent((await searchParams)?.product_id);
-
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": productTitle,
-        "category": category,
-        "image": `/images/products/${productId}.jpg`,
-        "description": "Detailed description of the product.",
-        "brand": {
-            "@type": "Brand",
-            "name": "YourBrandName"
-        },
-        "offers": {
-            "@type": "Offer",
-            "priceCurrency": "NGN",
-            "price": "1000",
-            "availability": "https://schema.org/InStock"
-        }
-    };
+    const product = await getProduct(productId) as ProductType;
+    const kws = product?.title;
+    const category = product?.category;
 
     return {
-        title: `${productTitle} - ${category}`,
-        description: `Buy ${productTitle} from the ${category} category.`,
-        jsonLd
-    };
+        authors: [{ name: 'Friday Joshua', url: "https://fj4lio.vercel.app" }],
+        creator: 'Friaday Joshua',
+        publisher: 'Friday Joshua',
+        metadataBase: new URL(process.env.NEXT_PUBLIC_HOSTNAME as string),
+        title: `${product?.title} | ${toTitleCase(category)}`,
+        description: product?.description as string,
+        keywords: [kws],
+        twitter: {
+            card: "summary",
+            title: ` ${product?.title} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+            description: product?.description,
+            site: process.env.NEXT_PUBLIC_HOSTNAME,
+            images: [product?.img_url],
+        },
+        openGraph: {
+            title: `${product} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+            description: product?.description,
+            url: process.env.NEXT_PUBLIC_HOSTNAME,
+            siteName: process.env.NEXT_PUBLIC_SITE_NAME,
+            images: [
+                {
+                    url: product?.img_url,
+                    width: 800,
+                    height: 600,
+                },
+                {
+                    url: product?.img_url,
+                    width: 1800,
+                    height: 1600,
+                    alt: product?.title,
+                },
+            ],
+            locale: 'en_US',
+            type: 'website',
+        },
+        other: {
+            title: `${product} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME!}`
+        }
+    }
 }
 
-export default async ({ params, searchParams }: CategoryPageProps) => {
+
+export default async function Page({ params, searchParams }: CategoryPageProps) {
     const category = decodeURIComponent((await params).category)?.replaceAll("_", " ");
     const productTitle = decodeURIComponent((await params).product)?.replaceAll("_", " ");
     const productId = (decodeURIComponent((await searchParams)?.product_id));
     const product = await getProduct(productId) as ProductType;
     const relatedProducts = ((await getProductsByCategory(category))?.Items as ProductType[])?.filter((product) => product?.product_id !== productId);
     const link = `/${category}/${productTitle}`;
+    const jsonLd = await getProductJSONLD(product);
 
     return (
         <>
@@ -208,7 +227,7 @@ export default async ({ params, searchParams }: CategoryPageProps) => {
                                 <Accordion.ItemContent>
                                     <Accordion.ItemBody>
                                         <List.Root listStylePos={"inside"}>
-                                            {typeof(product?.precautions === "string") ? [product?.precautions] : (product?.precautions as string[])?.map((i, j) => {
+                                            {typeof (product?.precautions === "string") ? [product?.precautions] : (product?.precautions as string[])?.map((i, j) => {
                                                 return (
                                                     <List.Item lineHeight={"1.8"} key={j}>{i}</List.Item>
                                                 )
@@ -285,6 +304,13 @@ export default async ({ params, searchParams }: CategoryPageProps) => {
                 </Box>
 
             </Container>
+
+            {/* jsonld */}
+            <Script
+                id="product-jsonld"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            ></Script>
         </>
     )
 }

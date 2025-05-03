@@ -1,12 +1,10 @@
-import { Box, Container, Grid, GridItem, Heading, HStack, Icon, Stack, Text } from '@chakra-ui/react';
-import React from 'react';
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { Box, Container, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
 
-const socialLinks = [
-    { href: "https://facebook.com/yourpage", icon: <FaFacebook />, label: "Facebook" },
-    { href: "https://twitter.com/yourprofile", icon: <FaTwitter />, label: "Twitter" },
-    { href: "https://instagram.com/yourprofile", icon: <FaInstagram />, label: "Instagram" },
-];
+export const metadata = {
+    title: "About Us",
+    description: `Learn more about ${process.env.NEXT_PUBLIC_SITE_NAME} and our mission to bring health and wellness solutions to communities worldwide.`,
+};
+
 
 const AboutUsPage = () => {
     return (
@@ -19,7 +17,7 @@ const AboutUsPage = () => {
                             color="white"
                             fontFamily={"merriweather"}
                         >About {process.env.NEXT_PUBLIC_SITE_NAME}</Heading>
-                        <Text textAlign="center" color="blue.200">
+                        <Text textAlign={{base:"left",md:"center"}} color="blue.200">
                             {process.env.NEXT_PUBLIC_SITE_NAME} is proud to be a trusted partner and distributor of Kedi Healthcare Industries Hong-Kong Limited, located in Hong-Kong China, bringing health and wellness solutions to communities far and wide. Our mission is to empower individuals and families by providing access to high-quality, scientifically-backed healthcare products. Join us on this journey to make a positive impact on lives through innovation and dedication.
                         </Text>
                     </Stack>
@@ -40,7 +38,7 @@ const AboutUsPage = () => {
                         </GridItem>
                         <GridItem colSpan={2}>
                             <Text>
-                                The word KEDI is a Chinese language meaning "Science is unlimited". Kedi healthcare is a giant Multi-level marketing company of our time, entered Nigeria in 2005, utilized the period to accomplish all due process in line with all rules and regulation in the country and commenced operation specifically on 10th June, 2006 very much in contrast with other Multi-level companies
+                                The word KEDI is a Chinese language meaning &quot;Science is unlimited&quot;. Kedi healthcare is a giant Multi-level marketing company of our time, entered Nigeria in 2005, utilized the period to accomplish all due process in line with all rules and regulation in the country and commenced operation specifically on 10th June, 2006 very much in contrast with other Multi-level companies
                             </Text>
                             <Text mt="4">
                                 As part of her overall strategy to build a formidable force in the field of life sciences, KEDI has invested tremendously in research and development by partnering with Research and Development Institutes and Manufacturing Companies across the world to continuously connote a culture that combines an endorsement of globally acceptable standards in healthcare industry practices with a genuine concern for the availability of potent but affordable medical products and equipment to meet the needs of her customers and form a powerful synergy based on a set of values in Africa and beyond. Our product lines have covered Herbal Medicine/TCM, Food Supplements, Personal Care and Medical Device.
