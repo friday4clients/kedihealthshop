@@ -1,7 +1,10 @@
 import Product from "@/components/product";
-import { getCategories, getProducts } from "@/lib/utils";
+import { getProductsByCategory } from "@/lib/actions";
+import categories, { CategoryType } from "@/lib/categories";
+import { ProductType } from "@/lib/utils";
 import { Container, Breadcrumb, RatingGroup, IconButton, Stack, Heading, Text, Grid, GridItem, HStack, Image, Skeleton } from "@chakra-ui/react";
 import Link from "next/link";
+import { Fade } from "react-awesome-reveal";
 import { LuHeart } from "react-icons/lu";
 
 
@@ -12,24 +15,24 @@ interface CategoryPageProps {
 }
 
 export async function generateStaticParams() {
-    const categories: Awaited<ReturnType<typeof getCategories>> = await getCategories();
 
-    return categories?.map((category: string) => {
+    return categories?.map((category: CategoryType) => {
         return {
-            category
+            category: category.category
         }
     });
 }
 
 const CategoryPage = async ({ params }: CategoryPageProps) => {
     const category = decodeURIComponent((await params)?.category)?.replaceAll("_", " ");
-    const products = await getProducts(category);
+    const description = categories.find(c => c.category === category)?.description;
+    const products = (await getProductsByCategory(category))?.Items as ProductType[];
 
     return (
         <>
             <Container maxW="6xl" py="12" pt={{ base: "6" }}>
                 <Breadcrumb.Root>
-                    <Breadcrumb.List>
+                    <Breadcrumb.List flexWrap={"wrap"}>
                         <Breadcrumb.Item>
                             <Breadcrumb.Link _active={{ ring: "none" }} color="inherit" _hover={{ color: "accent" }} as={Link} href="/">Home</Breadcrumb.Link>
                         </Breadcrumb.Item>
@@ -43,7 +46,7 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
                 <Stack gap="4" mt="12">
                     <Heading fontWeight="bold" size="4xl" fontFamily={"merriweather"}>{category}</Heading>
                     <Text>
-                        Explore our wide range of products in the {category} category. Find the perfect items tailored to your needs and preferences.
+                        {description}
                     </Text>
                 </Stack>
 
@@ -53,13 +56,15 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
                     templateColumns={{ md: "1fr 1fr 1fr" }}
                     gap="4"
                 >
-                    {products?.map((product, index) => {
-                        return (
-                            <GridItem key={index}>
-                                <Product info={product} />
-                            </GridItem>
-                        )
-                    })}
+                    <Fade triggerOnce cascade>
+                        {products?.map((product, index) => {
+                            return (
+                                <GridItem key={index}>
+                                    <Product info={product} />
+                                </GridItem>
+                            )
+                        })}
+                    </Fade>
                 </Grid>
             </Container>
         </>

@@ -1,16 +1,16 @@
 "use client"
 
-import { Box, Button, CloseButton, Drawer, Float, FormatNumber, Heading, HStack, IconButton, Image, List, Portal, Separator, Stack } from "@chakra-ui/react"
+import { Box, Button, CloseButton, Drawer, EmptyState, Float, FormatNumber, Heading, HStack, IconButton, Image, List, Portal, Separator, Show, Stack } from "@chakra-ui/react"
 import { BiCart } from "react-icons/bi"
-import React, { createContext, useContext, useState, useTransition } from "react";
-import { LuMinus, LuPlus } from "react-icons/lu";
+import React, { createContext, useContext, useEffect, useState, useTransition } from "react";
+import { LuMinus, LuPlus, LuShoppingCart } from "react-icons/lu";
 import CartItem from "./cart_item";
 import Link from "next/link";
 
 export type CartItemType = {
-    id: string;
+    product_id: string;
     title: string;
-    price: number;
+    price: number | string;
     quantity: number,
     img_url: string
 };
@@ -28,10 +28,21 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [items, setItems] = useState<CartItemType[]>([]);
 
+    useEffect(() => {
+        const storedCart = localStorage.getItem("cart");
+        if (storedCart) {
+            setItems(JSON.parse(storedCart));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(items));
+    }, [items]);
+
     const addItem = (item: CartItemType) => {
-        if (items.find(i => i.id.toString() === item.id.toString())) {
+        if (items.find(i => i.product_id === item.product_id)) {
             const updatedItems = items.map(_ => {
-                if (_.id.toString() === item.id.toString()) {
+                if (_.product_id === item.product_id) {
                     _.quantity += 1;
                     return _;
                 } else {
@@ -48,13 +59,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const updateItemQuantity = (id: string, quantity: number) => {
         setItems((prevItems) =>
             prevItems.map((item) =>
-                item.id === id ? { ...item, quantity: item.quantity + quantity } : item
+                item.product_id === id ? { ...item, quantity: item.quantity + quantity } : item
             )
         );
     };
 
     const removeItem = (id: string) => {
-        setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+        setItems((prevItems) => prevItems.filter((item) => item.product_id !== id));
     };
 
     const clearCart = () => {
@@ -83,7 +94,7 @@ const Cart = () => {
         <Drawer.Trigger asChild>
             <IconButton rounded="lg" _active={{ bg: "accent", color: "white" }} _hover={{ color: "accent" }}>
                 <BiCart />
-                <Float placement="top-end" offsetX="1" offsetY="1">
+                <Float bg="accent" color={"white"} border="xs" borderColor="white" rounded="full" boxSize={"6"} placement="top-end" offsetX="1" offsetY="1">
                     {cart.items.length}
                 </Float>
             </IconButton>
@@ -97,47 +108,74 @@ const Cart = () => {
                     </Drawer.Header>
                     <Drawer.Body>
                         <Stack gap="4">
-                            <Heading fontSize="md" fontWeight="sm">Your Items</Heading>
-                            <List.Root variant="plain" className="*:last:hidden">
-                                {cart.items.map((item, index) => {
-                                    return (
-                                        <React.Fragment key={index}>
-                                            <List.Item >
-                                                <CartItem item={item} />
-                                            </List.Item>
-                                            <Separator borderColor="gray.100" my="4" />
-                                        </React.Fragment>
-                                    );
-                                })}
-                            </List.Root>
+                            <Show when={!cart.items.length}>
+                                <EmptyState.Root>
+                                    <EmptyState.Content>
+                                        <EmptyState.Indicator>
+                                            <LuShoppingCart />
+                                        </EmptyState.Indicator>
+                                        <Stack textAlign="center">
+                                            <EmptyState.Title>Your cart is empty</EmptyState.Title>
+                                            <EmptyState.Description>
+                                                Explore our products and add items to your cart
+                                            </EmptyState.Description>
+                                        </Stack>
+                                        <Drawer.ActionTrigger asChild>
+                                            <Button fontWeight={"bold"} bg="accent" color="white" size="lg" transition={"all 500ms"} _active={{ transform: "scale(0.9)" }} rounded="xl" _hover={{ bg: "blue.muted" }} asChild>
+                                                <Link href={`/Immune_&_General_Wellness`}>
+                                                    Visit Shop
+                                                </Link>
+                                            </Button>
+                                        </Drawer.ActionTrigger>
+                                    </EmptyState.Content>
+                                </EmptyState.Root>
+                            </Show>
+
+                            <Show when={cart.items.length}>
+                                <Heading fontSize="md" fontWeight="sm">Your Items&nbsp; {cart?.items?.length}</Heading>
+                                <List.Root variant="plain" className="*:last:hidden">
+                                    {cart?.items?.toReversed()?.map((item, index) => {
+                                        return (
+                                            <React.Fragment key={index}>
+                                                <List.Item >
+                                                    <CartItem item={item} />
+                                                </List.Item>
+                                                <Separator borderColor="gray.100" my="4" />
+                                            </React.Fragment>
+                                        );
+                                    })}
+                                </List.Root>
+                            </Show>
                         </Stack>
                     </Drawer.Body>
                     <Drawer.Footer justifyContent={"start"} w="full">
-                        <Stack alignItems={"start"} mt="4" gap="4" w="full">
-                            <Heading fontSize="lg" fontWeight="bold" w="full">
-                                <HStack justifyContent={"space-between"} w="full">
-                                    <Box>
-                                        Total
-                                    </Box>
-                                    <FormatNumber value={cart.items.reduce((total, item) => total + item.price * item.quantity, 0)} currency="NGN" style="currency" />
-                                </HStack>
-                            </Heading>
-                            <Drawer.ActionTrigger asChild>
-                                <Link href="/checkout">
-                                    <Button rounded="xl" fontWeight={"bold"} bg="accent" color="white">
-                                        Proceed to Checkout
-                                    </Button>
-                                </Link>
-                            </Drawer.ActionTrigger>
-                        </Stack>
+                        <Show when={cart.items.length}>
+                            <Stack alignItems={"start"} mt="4" gap="4" w="full">
+                                <Heading fontSize="lg" fontWeight="bold" w="full">
+                                    <HStack justifyContent={"space-between"} w="full">
+                                        <Box>
+                                            Total
+                                        </Box>
+                                        <FormatNumber value={cart.items.reduce((total, item) => !isNaN(Number(item.price)) ? total + Number(item.price) * item.quantity : total, 0)} currency="NGN" style="currency" />
+                                    </HStack>
+                                </Heading>
+                                <Drawer.ActionTrigger asChild>
+                                    <Link href="/checkout">
+                                        <Button rounded="xl" fontWeight={"bold"} bg="accent" color="white">
+                                            Proceed to Checkout
+                                        </Button>
+                                    </Link>
+                                </Drawer.ActionTrigger>
+                            </Stack>
+                        </Show>
                     </Drawer.Footer>
                     <Drawer.CloseTrigger asChild>
-                        <CloseButton color="gray.900" _hover={{ bg: "gray.100" }} size="sm" />
+                        <CloseButton color="gray.900" _active={{ bg: "gray.100" }} _hover={{ bg: "gray.100" }} size="sm" />
                     </Drawer.CloseTrigger>
                 </Drawer.Content>
             </Drawer.Positioner>
         </Portal>
-    </Drawer.Root>
+    </Drawer.Root >
 }
 
 export default Cart;

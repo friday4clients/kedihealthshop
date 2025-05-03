@@ -14,21 +14,21 @@ export default function CartItem({ item }: { item: CartItemType }) {
 
     const decreaseQuantity = useCallback(() => {
         startDecreaseTransition(() => {
-            cart.updateItemQuantity(item.id.toString(), item.quantity === 1 ? 0 : -1);
+            cart.updateItemQuantity(item.product_id, item.quantity === 1 ? 0 : -1);
         });
     }, [item.quantity]);
 
     const increaseQuantity = useCallback(() => {
         startIncreaseTransition(() => {
-            cart.updateItemQuantity(item.id.toString(), 1);
+            cart.updateItemQuantity(item.product_id, 1);
         });
     }, [item.quantity]);
 
-    const removeItem = useCallback(() => {
+    const removeItem = () => {
         startRemoveTransition(() => {
-            cart.removeItem(item.id.toString())
+            cart.removeItem(item.product_id)
         });
-    }, [item.quantity]);
+    };
 
     return (
         <HStack alignItems={"start"} w="full">
@@ -51,10 +51,10 @@ export default function CartItem({ item }: { item: CartItemType }) {
             <Stack gap="2" w="full">
                 <Heading lineClamp={"1"} size="sm">{item?.title}</Heading>
                 <Heading color="gray.emphasized" size="xs">
-                    <FormatNumber value={item?.price * item.quantity} currency="NGN" style="currency" />
+                    {!isNaN(Number(item?.price)) ? <FormatNumber value={Number(item?.price)} currency="NGN" style="currency" /> : "Negotiable"}
                     <Box display={item.quantity > 1 ? "block" : "none"} color="gray.300" fontSize={"xs"}>
                         (
-                        <FormatNumber value={item?.price} currency="NGN" style="currency" />
+                        {!isNaN(Number(item?.price)) ? <FormatNumber value={Number(item?.price)} currency="NGN" style="currency" /> : "Negotiable"}
                         &nbsp;*&nbsp;{item.quantity}
                         )
                     </Box>

@@ -7,13 +7,23 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export type ProductType = {
-  id: string;
+  product_id: string;
   title: string;
   category: string;
-  price: number;
+  price: number | string;
   description?: string;
-  imageUrls?: string[];
-  benefits: string[]
+  benefits?: string | string[];
+  ingredients?: string | string[];
+  pack_size?: string;
+  img_url: string;
+  precautions?: string | string[];
+  rating: string;
+  specification?: string;
+  storage?: string;
+  usage?: string | string[];
+  functions?: string[];
+  treatments?:string[];
+
 };
 
 export type Store = Record<string, ProductType[]>;
@@ -34,7 +44,7 @@ export async function getProducts(category: string): Promise<ProductType[]> {
 
 export async function getProductById(id: string, category: string): Promise<ProductType | undefined> {
   const products: ProductType[] = await getProducts(category.replaceAll("_", " "));
-  return products?.find((product) => product.id.toString() === id);
+  return products?.find((product) => product.product_id.toString() === id);
 }
 
 export async function getCategories(): Promise<string[]> {

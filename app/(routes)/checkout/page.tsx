@@ -27,31 +27,10 @@ const CheckoutPage = () => {
         })()
     }, [])
 
-    // const prepareCartForWhatsApp = () => {
-    //     if (!cart.items.length) return "";
-
-    //     const cartMarkdown = cart.items
-    //         .map(
-    //             (item, index) =>
-    //                 `${index + 1}. *${item.title}*:
-    // Price: NGN ${item.price.toLocaleString()}
-    // Quantity: ${item.quantity}
-    //             `
-    //         )
-    //         .join("\n");
-
-    //     const total = cart.items.reduce(
-    //         (sum, item) => sum + item.price * item.quantity,
-    //         0
-    //     );
-
-    //     return `*New Order From :*\n\n ${cartMarkdown}\n\n*Total:* NGN ${total.toLocaleString()}`;
-    // };
-
     const getBillingDetails = () => {
-        const fullName = (document.querySelector('input[name="full_name"]') as HTMLInputElement)?.value || "N/A";
-        const phoneNumber = (document.querySelector('input[name="tel"]') as HTMLInputElement)?.value || "N/A";
-        const billingAddress = (document.querySelector('textarea[name="address"]') as HTMLTextAreaElement)?.value || "N/A";
+        const fullName = (document.querySelector('input[name="full_name"]') as HTMLInputElement)?.value;
+        const phoneNumber = (document.querySelector('input[name="tel"]') as HTMLInputElement)?.value;
+        const billingAddress = (document.querySelector('textarea[name="address"]') as HTMLTextAreaElement)?.value;
 
         return { fullName, phoneNumber, billingAddress };
     };
@@ -60,6 +39,8 @@ const CheckoutPage = () => {
         if (!cart.items.length) return "";
 
         const { fullName, phoneNumber, billingAddress } = getBillingDetails();
+
+        if (!fullName || !phoneNumber || !billingAddress) return;
 
         const cartMarkdown = cart.items
             .map(
@@ -70,15 +51,14 @@ const CheckoutPage = () => {
             )
             .join("\n");
 
-        const total = cart.items.reduce(
-            (sum, item) => sum + item.price * item.quantity,
-            0
-        );
+        const total = cart.items.reduce((total, item) => !isNaN(Number(item.price)) ? total + Number(item.price) * item.quantity : total, 0);
 
         return `*New Order:*\n\n*Full Name:* ${fullName}\n*Phone Number:* ${phoneNumber}\n*Billing Address:* ${billingAddress}\n\n *Items*:\n*${cartMarkdown}\n\n*Total:* NGN ${total.toLocaleString()}`;
     };
     const shareCartToWhatsApp = () => {
         const message = prepareCartForWhatsApp();
+        if (!message) return;
+
         if (message) {
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `${process.env.NEXT_PUBLIC_WHATSAPP_URL}&text=${encodedMessage}`;
@@ -88,6 +68,8 @@ const CheckoutPage = () => {
 
     const shareCartToEmail = () => {
         const message = prepareCartForWhatsApp();
+        if (!message) return;
+
         if (message) {
             const emailMessage = message
                 .replace(/\*/g, "") // Remove markdown asterisks
@@ -117,7 +99,7 @@ const CheckoutPage = () => {
                         </HStack>
 
                         <List.Root variant="plain" className="*:last:hidden">
-                            {cart.items.map((item, index) => {
+                            {cart?.items?.reverse()?.map((item, index) => {
                                 return (
                                     <React.Fragment key={index}>
                                         <List.Item >
@@ -151,102 +133,108 @@ const CheckoutPage = () => {
                         </EmptyState.Root>
                     </Show>
                 </GridItem>
-                <GridItem
-                    position={"sticky"}
-                    top="88px"
-                    h="fit"
-                    rounded="xl"
-                    bg="white"
-                    shadow={"0 0 15px {colors.gray.100}"}
-                    p="6"
-                >
-                    <Heading mb="4" size="md">Billing Information</Heading>
-                    <Form action={() => { }}>
-                        <Stack gap="4">
-                            <Group>
-                                <Field.Root required>
-                                    <Field.Label>Full Name</Field.Label>
-                                    <Input variant={"subtle"} bg="gray.100" name="full_name" placeholder="Enter your full name" />
-                                </Field.Root>
-                                <Field.Root required>
-                                    <Field.Label>Phone Number</Field.Label>
-                                    <Input type="tel" variant={"subtle"} bg="gray.100" inputMode='decimal' name="tel" placeholder="+2340000000000" />
-                                </Field.Root>
-                            </Group>
-                            <Field.Root required>
-                                <Field.Label>Billing Address</Field.Label>
-                                <Textarea variant={"subtle"} bg="gray.100" name="address">
-                                </Textarea>
-                            </Field.Root>
-                        </Stack>
-                    </Form>
-                    <Separator my="10" borderColor="gray.100" />
-                    <Stack>
-                        <Heading fontSize="lg" fontWeight="bold" w="full">
-                            <HStack justifyContent={"space-between"} w="full">
-                                <Box>
-                                    Total
-                                </Box>
-                                <FormatNumber value={cart.items.reduce((total, item) => total + item.price * item.quantity, 0)} currency="NGN" style="currency" />
-                            </HStack>
-                        </Heading>
-                        <Heading size="md">Place your order</Heading>
-                        <Stack>
-                            <ButtonGroup orientation={{ base: "vertical", md: "horizontal" }}>
-                                <Button
-                                    rounded="xl"
-                                    bg="#25D366"
-                                    color="white"
-                                    w={{ base: "full", md: "fit" }}
-                                    size="lg"
-                                    transition={"all 500ms"}
-                                    _active={{ transform: "scale(0.9)" }}
-                                    fontWeight={"bold"}
-                                    onClick={shareCartToWhatsApp}
-                                    _hover={{ bg: "green.500" }}
-                                >
-                                    <FaWhatsapp /> On WhatsApp
-                                </Button>
-                                <HStack w="full">
-                                    <Separator flex="1" borderColor="gray.100" />
-                                    <Text flexShrink="0">Or</Text>
-                                    <Separator flex="1" borderColor="gray.100" />
-                                </HStack>
-                                <Button
-                                    rounded="xl"
-                                    bg="gray.900"
-                                    color="white"
-                                    w={{ base: "full", md: "fit" }}
-                                    size="lg"
-                                    transition={"all 500ms"}
-                                    _active={{ transform: "scale(0.9)" }}
-                                    onClick={shareCartToEmail}
-                                    fontWeight={"bold"}
-                                    _hover={{ bg: "gray.muted" }}
-                                >
-                                    <LuMail /> By Email
-                                </Button>
-                                <Button
-                                    rounded="xl"
-                                    bg="gray.900"
-                                    color="white"
-                                    w={{ base: "full", md: "fit" }}
-                                    asChild
-                                    size="lg"
-                                    transition={"all 500ms"}
-                                    _active={{ transform: "scale(0.9)" }}
-                                    fontWeight={"bold"}
-                                    _hover={{ bg: "gray.muted" }}
-                                >
-                                    <Link href={`tel:${retailerDetails.phone}`} target="_blank">
-                                        <LuPhoneCall />By Phone Call
-                                    </Link>
-                                </Button>
-                            </ButtonGroup>
-                        </Stack>
-                    </Stack>
 
-                </GridItem>
+                <Show when={cart.items.length}>
+                    <GridItem
+                        position={"sticky"}
+                        top="88px"
+                        h="fit"
+                        rounded="xl"
+                        bg="white"
+                        shadow={"0 0 15px {colors.gray.100}"}
+                        p="6"
+                    >
+                        <Heading mb="4" size="md">Billing Information</Heading>
+                        <Form id="billing_form" action={() => { }}>
+                            <Stack gap="4">
+                                <Group>
+                                    <Field.Root required>
+                                        <Field.Label>Full Name</Field.Label>
+                                        <Input variant={"subtle"} bg="gray.100" name="full_name" placeholder="Enter your full name" />
+                                    </Field.Root>
+                                    <Field.Root required>
+                                        <Field.Label>Phone Number</Field.Label>
+                                        <Input type="tel" variant={"subtle"} bg="gray.100" inputMode='decimal' name="tel" placeholder="+2340000000000" />
+                                    </Field.Root>
+                                </Group>
+                                <Field.Root required>
+                                    <Field.Label>Billing Address</Field.Label>
+                                    <Textarea variant={"subtle"} bg="gray.100" name="address">
+                                    </Textarea>
+                                </Field.Root>
+                            </Stack>
+                        </Form>
+                        <Separator my="10" borderColor="gray.100" />
+                        <Stack>
+                            <Heading fontSize="lg" fontWeight="bold" w="full">
+                                <HStack justifyContent={"space-between"} w="full">
+                                    <Box>
+                                        Total
+                                    </Box>
+                                    <FormatNumber value={cart.items.reduce((total, item) => !isNaN(Number(item.price)) ? total + Number(item.price) * item.quantity : total , 0)} currency="NGN" style="currency" />
+                                </HStack>
+                            </Heading>
+                            <Heading size="md">Place your order</Heading>
+                            <Stack>
+                                <ButtonGroup orientation={{ base: "vertical", md: "horizontal" }}>
+                                    <Button
+                                        form="billing_form"
+                                        type="submit"
+                                        rounded="xl"
+                                        bg="#25D366"
+                                        color="white"
+                                        w={{ base: "full", md: "fit" }}
+                                        size="lg"
+                                        transition={"all 500ms"}
+                                        _active={{ transform: "scale(0.9)" }}
+                                        fontWeight={"bold"}
+                                        onClick={shareCartToWhatsApp}
+                                        _hover={{ bg: "green.500" }}
+                                    >
+                                        <FaWhatsapp /> On WhatsApp
+                                    </Button>
+                                    <HStack w="full">
+                                        <Separator flex="1" borderColor="gray.100" />
+                                        <Text flexShrink="0">Or</Text>
+                                        <Separator flex="1" borderColor="gray.100" />
+                                    </HStack>
+                                    <Button
+                                        form="billing_form"
+                                        type="submit"
+                                        rounded="xl"
+                                        bg="gray.900"
+                                        color="white"
+                                        w={{ base: "full", md: "fit" }}
+                                        size="lg"
+                                        transition={"all 500ms"}
+                                        _active={{ transform: "scale(0.9)" }}
+                                        onClick={shareCartToEmail}
+                                        fontWeight={"bold"}
+                                        _hover={{ bg: "gray.muted" }}
+                                    >
+                                        <LuMail /> By Email
+                                    </Button>
+                                    <Button
+                                        rounded="xl"
+                                        bg="gray.900"
+                                        color="white"
+                                        w={{ base: "full", md: "fit" }}
+                                        asChild
+                                        size="lg"
+                                        transition={"all 500ms"}
+                                        _active={{ transform: "scale(0.9)" }}
+                                        fontWeight={"bold"}
+                                        _hover={{ bg: "gray.muted" }}
+                                    >
+                                        <Link href={`tel:${retailerDetails.phone}`} target="_blank">
+                                            <LuPhoneCall />By Phone Call
+                                        </Link>
+                                    </Button>
+                                </ButtonGroup>
+                            </Stack>
+                        </Stack>
+                    </GridItem>
+                </Show>
             </Grid>
         </Container >
     );

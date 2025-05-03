@@ -35,7 +35,7 @@ const Navbar = () => {
             top="0"
             zIndex={"sticky"}
             display={{ md: path === "/" ? "none" : "block" }}
-            maxW={{ base: "6xl", md: "full" }} as="nav" bg="white" shadow="0 0 10px #ddd" >
+            maxW={{ base: "6xl", md: "full" }} as="nav" bg="white" borderBottom="sm" borderColor="gray.100">
             <Container maxW={"6xl"}>
                 <HStack position="relative" h="16" justifyContent={{ base: "space-between" }}>
                     <Link href="/">
@@ -61,7 +61,7 @@ const Navbar = () => {
                         <CLink
                             textDecor={"inherit"}
                             color="inherit"
-                            href="#services">
+                            href="/#services">
                             Services
                         </CLink>
                         <Link href="/contact">
@@ -118,9 +118,9 @@ const Navbar = () => {
                                                     </Link>
                                                 </Drawer.ActionTrigger>
                                                 <Drawer.ActionTrigger asChild>
-                                                    <Link href="/category">
+                                                    <Link href={`/${categories?.[0]?.replaceAll(" ", "_")}`}>
                                                         <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
-                                                            Category
+                                                            Shop
                                                         </Heading>
                                                     </Link>
                                                 </Drawer.ActionTrigger>
@@ -132,7 +132,7 @@ const Navbar = () => {
                                                     </Link>
                                                 </Drawer.ActionTrigger>
                                                 <Drawer.ActionTrigger asChild>
-                                                    <Link href="/services">
+                                                    <Link href="/#services">
                                                         <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
                                                             Services
                                                         </Heading>
@@ -170,7 +170,7 @@ const Navbar = () => {
                                         <Drawer.Footer>
                                         </Drawer.Footer>
                                         <Drawer.CloseTrigger asChild>
-                                            <CloseButton color="black" size="sm" />
+                                            <CloseButton _hover={{ bg: "gray.100" }} color="black" size="sm" />
                                         </Drawer.CloseTrigger>
                                     </Drawer.Content>
                                 </Drawer.Positioner>

@@ -1,21 +1,29 @@
-import { Button, Container, Heading, Image, Link as CLink, Text, Icon, Box, Grid, GridItem, HStack, Highlight, Stat, Separator, Stack, RatingGroup, Accordion, Input } from "@chakra-ui/react";
+import { Button, Container, Heading, Image, Link as CLink, Text, Icon, Box, Grid, GridItem, HStack, Highlight, Stat, Separator, Stack, RatingGroup, Accordion, Input, Skeleton } from "@chakra-ui/react";
 import Link from "next/link";
-import { getCategories, getStore } from "@/lib/utils";
-import { getProducts } from "@/lib/utils";
 import { LuArrowRight } from "react-icons/lu";
-import HeroCarousel from "@/components/hero_carousel";
 import { BiBadgeCheck, BiSolidBadge, BiSupport } from "react-icons/bi";
 import { FaMoneyBillWave } from "react-icons/fa";
-import Testimonials from "@/components/testimonial";
-import Cart from "@/components/cart";
-import Product from "@/components/product";
+import categories from "@/lib/categories";
+import { getProductsByCategory } from "@/lib/actions";
+import { ProductType } from "@/lib/utils";
+import dynamic from "next/dynamic";
+import { Fade, Slide, Zoom } from "react-awesome-reveal";
 
+const HeroCarousel = dynamic(() => import("@/components/hero_carousel"));
+const Testimonials = dynamic(() => import("@/components/testimonial"));
+const Product = dynamic(() => import("@/components/product"));
+const Cart = dynamic(() => import("@/components/cart"));
 
+const getProducts = async (category: string) => {
+  const products = (await getProductsByCategory(category))?.Items?.slice(0, 2) as ProductType[];
+
+  return products?.map((product, index) => {
+    return <Product key={index} info={product} imgH="40" />
+  })
+}
 
 export default async function Home() {
 
-  const categories: Awaited<ReturnType<typeof getCategories>> = await getCategories();
-  const store: Awaited<ReturnType<typeof getStore>> = await getStore();
 
   return (
     <>
@@ -36,118 +44,93 @@ export default async function Home() {
             px={{ base: "4", md: "12" }}>
 
             {/* nav links */}
-            <HStack
-              border="1px solid {colors.gray.200}"
-              rounded="xl"
-              p="4"
-              bg="gray.100"
-              display={{ base: "none", md: "flex" }}
-              justifyContent={"space-between"}
-              gap="">
-              <Link href="/">
-                <Image src="/logo.png" alt="kedicares logo" w="20" />
-              </Link>
-
-              <HStack gap="4" className="*:hover:!text-blue-700">
+            <Slide direction="down">
+              <HStack
+                border="1px solid {colors.gray.200}"
+                rounded="xl"
+                p="4"
+                bg="gray.100"
+                display={{ base: "none", md: "flex" }}
+                justifyContent={"space-between"}
+                gap="">
                 <Link href="/">
-                  Home
+                  <Image src="/logo.png" alt="kedicares logo" w="20" />
                 </Link>
-                <Link href={`/${categories[0].replaceAll(" ", "_")}`}>
-                  Shop
-                </Link>
-                <Link href="/about">
-                  About
-                </Link>
-                {/* <CLink href="#services">
+
+                <HStack gap="4" className="*:hover:!text-blue-700">
+                  <Link href="/">
+                    Home
+                  </Link>
+                  <Link href={`/${categories[0]?.category?.replaceAll(" ", "_")}`}>
+                    Shop
+                  </Link>
+                  <Link href="/about">
+                    About
+                  </Link>
+                  {/* <CLink href="#services">
                   Services
                 </CLink> */}
-                <Link href="/contact">
-                  Contact
-                </Link>
-                <Cart />
+                  <Link href="/contact">
+                    Contact
+                  </Link>
+                  <Cart />
+                </HStack>
               </HStack>
-            </HStack>
+            </Slide>
+
 
             <Box mt="8">
-              <Heading
-                as="h1"
-                size="5xl"
-                fontWeight={"black"}
-                fontFamily={"merriweather"}
-                mb="6">
-                <Highlight
-                  query={"Number One"}
-                  styles={{
-                    color: "blue.contrast",
-                    display: "block",
-                    w: "fit",
-                    px: "4",
-                    transform: "skewX(-20deg)",
-                    fontWeight: "thin",
-                    bg: "accent"
-                  }}
-                >
-                  Your Number One Store For Affordable Kedi Products
-                </Highlight>
-              </Heading>
-              <HStack gap="4">
-                <Button
-                  variant={"solid"}
-                  rounded="xl"
-                  color="white"
-                  bg="accent"
-                  _hover={{ bg: "blue.muted" }}
-                  asChild
-                  size="lg">
-                  <Link href={`/${categories[0].replaceAll(" ", "_")}`}>
-                    Shop Now
-                  </Link>
-                </Button>
-                <Button
-                  variant="outline"
-                  color="accent"
-                  rounded="xl"
-                  _hover={{ bg: "blue.50" }}
-                  borderColor="accent"
-                  size="lg">
-                  <CLink color="accent" _hover={{ textDecor: "none" }} href={`#explore`}>
-                    Learn More
-                  </CLink>
-                </Button>
-              </HStack>
+              <Fade>
+                <Heading
+                  as="h1"
+                  size="5xl"
+                  fontWeight={"black"}
+                  fontFamily={"merriweather"}
+                  mb="6">
+                  <Highlight
+                    query={"Number One"}
+                    styles={{
+                      color: "blue.contrast",
+                      display: "block",
+                      w: "fit",
+                      px: "4",
+                      transform: "skewX(-20deg)",
+                      fontWeight: "thin",
+                      bg: "accent"
+                    }}
+                  >
+                    Your Number One Store For Affordable Kedi Products
+                  </Highlight>
+                </Heading>
+              </Fade>
 
-              <HStack
-                w="fit"
-                mt="12"
-                h="20"
-                gap="6"
-                border="sm"
-                borderColor="gray.200"
-                p="6"
-                py="12"
-                rounded="xl"
-                overflow={"hidden"}
-                justifyContent={"start"}>
-                <Stat.Root>
-                  <Stat.Label>Products Sold</Stat.Label>
-                  <Stat.ValueText
-                    textStyle="3xl"
-                    fontWeight={"black"}
-                    color="accent">500</Stat.ValueText>
-                </Stat.Root>
-                <Separator
-                  h="vh"
-                  borderColor="gray.200"
-                  orientation={"vertical"} />
-                <Stat.Root w="fit">
-                  <Stat.Label>Monthly&nbsp;Visitors</Stat.Label>
-                  <Stat.ValueText
-                    textStyle="3xl"
-                    fontWeight={"black"}
+              <Fade direction="up">
+                <HStack gap="4">
+                  <Button
+                    variant={"solid"}
+                    rounded="xl"
+                    color="white"
+                    bg="accent"
+                    _hover={{ bg: "blue.muted" }}
+                    asChild
+                    size="lg">
+                    <Link href={`/${categories[0]?.category?.replaceAll(" ", "_")}`}>
+                      Shop Now
+                    </Link>
+                  </Button>
+                  <Button
+                    variant="outline"
                     color="accent"
-                  >200</Stat.ValueText>
-                </Stat.Root>
-              </HStack>
+                    rounded="xl"
+                    _hover={{ bg: "blue.50" }}
+                    borderColor="accent"
+                    size="lg">
+                    <CLink color="accent" _hover={{ textDecor: "none" }} href={`#explore`}>
+                      Learn More
+                    </CLink>
+                  </Button>
+                </HStack>
+              </Fade>
             </Box>
 
           </GridItem>
@@ -157,17 +140,19 @@ export default async function Home() {
             maxW={"full"}
             rounded="xl"
             h="full"
+            bg="accent"
             overflow={"hidden"}
             display={{ base: "none", md: "block" }}>
-            <Stack
-              h="full"
-              justifyContent={"center"}
-              alignItems={"center"}
-              rounded="xl"
-            >
-
-              <HeroCarousel />
-            </Stack>
+            <Zoom delay={500} className="!h-full">
+              <Stack
+                h="full"
+                justifyContent={"center"}
+                alignItems={"center"}
+                rounded="xl"
+              >
+                <HeroCarousel />
+              </Stack>
+            </Zoom>
           </GridItem>
         </Grid>
       </Box>
@@ -175,141 +160,147 @@ export default async function Home() {
       {/* Featured Categories Section */}
       <Box py="32" id="explore">
         <Container maxW="6xl">
-          <Heading
-            as="h2"
-            size={{ base: "3xl", md: "5xl" }}
-            fontWeight={"bold"}
-            w="2/3"
-            mx="auto"
-            mb="8"
-            fontFamily={"merriweather"}
-            textAlign="center">
-            Explore Our Shop
-          </Heading>
-          <Grid
-            templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
-            gap="0"
-            className="md:*:nth-[odd]:!border-r *:nth-[3]:!border-b *:md:nth-[3]:!border-0 *:nth-[1]:!border-b *:nth-[2]:!border-b !rounded-xl !overflow-hidden"
-          >
-            {categories.slice(0, 4).map((category, index) => (
-              <Stack
-                key={index}
-                p={{ base: "8", md: "12" }}
-                borderColor={"gray.200"}
-                // borderRadius="lg"
-                bg="white"
-                // shadow="0 0 15px {colors.gray.100}"
-                gap="3"
-              >
-                <Heading
-                  as="h3"
-                  size="2xl"
-                  w={{ base: "70%", md: "1/2" }}
-                  fontWeight={"semibold"}>
-                  {category}
-                </Heading>
-                <Text>
-                  Discover a wide range of products in the {category} category, carefully curated to meet your needs and preferences.
-                </Text>
-                <Heading
-                  size="sm"
-                >Products</Heading>
+          <Fade direction="up">
+            <Heading
+              as="h2"
+              size={{ base: "3xl", md: "5xl" }}
+              fontWeight={"bold"}
+              w="2/3"
+              mx="auto"
+              mb="8"
+              fontFamily={"merriweather"}
+              textAlign="center">
+              Explore Our Shop
+            </Heading>
+          </Fade>
 
-                <Grid templateColumns="repeat(2, 1fr)" gap="2">
-                  {store[category]?.slice(0, 2).map((product, index) => (
-                    <Product key={index} info={product} />
-                  ))}
-                </Grid>
-                <Button
-                  variant="solid"
-                  color="accent"
-                  bg="blue.50"
-                  size="sm"
-                  w="fit"
-                  className="group"
-                  rounded="xl"
-                  mt="4"
-                  asChild
+          <Fade delay={500}>
+            <Grid
+              templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
+              gap="0"
+              className="md:*:nth-[odd]:!border-r *:nth-[3]:!border-b *:md:nth-[3]:!border-0 *:nth-[1]:!border-b *:nth-[2]:!border-b !rounded-xl !overflow-hidden"
+            >
+              {categories.slice(0, 4).map((category, index) => (
+                <Stack
+                  key={index}
+                  p={{ base: "8", md: "12" }}
+                  borderColor={"gray.200"}
+                  bg="white"
+                  gap="3"
                 >
-                  <Link href={`/${category.replaceAll(" ", "_")}`}>
-                    View All Products
-                    <LuArrowRight className="transition-transform duration-300 group-hover:translate-x-3" />
-                  </Link>
-                </Button>
-              </Stack>
-            ))}
-          </Grid>
+                  <Heading
+                    as="h3"
+                    size="2xl"
+                    w={{ base: "70%", md: "1/2" }}
+                    fontWeight={"semibold"}>
+                    {category?.category}
+                  </Heading>
+                  <Text lineClamp={"5"}>
+                    {category.description}
+                  </Text>
+                  <Heading
+                    size="sm"
+                  >Products</Heading>
+
+                  <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap="2">
+                    {getProducts(category?.category)}
+                  </Grid>
+                  <Button
+                    variant="solid"
+                    color="accent"
+                    bg="blue.50"
+                    size="sm"
+                    w="fit"
+                    className="group"
+                    rounded="xl"
+                    mt="4"
+                    asChild
+                  >
+                    <Link href={`/${category?.category?.replaceAll(" ", "_")}`}>
+                      View All Products
+                      <LuArrowRight className="transition-transform duration-300 group-hover:translate-x-3" />
+                    </Link>
+                  </Button>
+                </Stack>
+              ))}
+            </Grid>
+          </Fade>
         </Container>
       </Box>
 
       {/* Features Section */}
       <Box pt={{ base: "0", md: "12" }} pb={{ base: "24", md: "52" }}>
         <Container maxW="6xl">
-          <Heading
-            as="h2"
-            size={{ base: "3xl", md: "5xl" }}
-            fontWeight="bold"
-            fontFamily="merriweather"
-            textAlign="center"
-            mb="8"
-            w={{ base: "50%", md: "full" }}
-            mx="auto"
-          >
-            Why Choose Us
-          </Heading>
+          <Fade direction="up">
+            <Heading
+              as="h2"
+              size={{ base: "3xl", md: "5xl" }}
+              fontWeight="bold"
+              fontFamily="merriweather"
+              textAlign="center"
+              mb="8"
+              w={{ base: "50%", md: "full" }}
+              mx="auto"
+            >
+              Why Choose Us
+            </Heading>
+          </Fade>
+
           <Grid
             templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
             gap="6"
             className="md:*:nth-[odd]:!translate-y-12"
           >
-            {[
-              {
-                title: "High-Quality Products",
-                description:
-                  "We offer only the best Kedi products to ensure your health and wellness.",
-                icon: <BiBadgeCheck color="white" />,
-              },
-              {
-                title: "Affordable Prices",
-                description:
-                  "Our products are priced to fit your budget without compromising quality.",
-                icon: <FaMoneyBillWave color="white" />,
-              },
-              {
-                title: "Excellent Support",
-                description:
-                  "Our team is always ready to assist you with any inquiries or concerns.",
-                icon: <BiSupport color="white" />,
-              },
-            ].map((feature, index) => (
-              <Stack
-                key={index}
-                p="10"
-                gap="6"
-                borderWidth="sm"
-                borderColor="border"
-                rounded="xl"
-                bg="accent"
-                shadow="xs"
-                textAlign="center"
-              >
-                <Icon
-                  mx="auto"
-                  fill="blue.400"
-                  boxSize={"32"}
-                  size={"2xl"}>
-                  {feature.icon}
-                </Icon>
-                <Heading
-                  as="h3"
-                  size="xl"
-                  color="blue.50"
-                  fontWeight="semibold">
-                  {feature.title}
-                </Heading>
-                <Text color="blue.300">{feature.description}</Text>
-              </Stack>
-            ))}
+            <Slide cascade delay={400}>
+              {[
+                {
+                  title: "High-Quality Products",
+                  description:
+                    "We offer only the best Kedi products to ensure your health and wellness.",
+                  icon: <BiBadgeCheck color="white" />,
+                },
+                {
+                  title: "Affordable Prices",
+                  description:
+                    "Our products are priced to fit your budget without compromising quality.",
+                  icon: <FaMoneyBillWave color="white" />,
+                },
+                {
+                  title: "Excellent Support",
+                  description:
+                    "Our team is always ready to assist you with any inquiries or concerns.",
+                  icon: <BiSupport color="white" />,
+                },
+              ].map((feature, index) => (
+                <Stack
+                  key={index}
+                  p="10"
+                  gap="6"
+                  borderWidth="sm"
+                  borderColor="border"
+                  rounded="xl"
+                  bg="accent"
+                  shadow="xs"
+                  textAlign="center"
+                >
+                  <Icon
+                    mx="auto"
+                    fill="blue.400"
+                    boxSize={"32"}
+                    size={"2xl"}>
+                    {feature.icon}
+                  </Icon>
+                  <Heading
+                    as="h3"
+                    size="xl"
+                    color="blue.50"
+                    fontWeight="semibold">
+                    {feature.title}
+                  </Heading>
+                  <Text color="blue.300">{feature.description}</Text>
+                </Stack>
+              ))}
+            </Slide>
           </Grid>
         </Container>
       </Box>
@@ -317,18 +308,19 @@ export default async function Home() {
       {/* Services Section */}
       <Box id="services" py={{ base: "20", md: "40" }} bg="white">
         <Container maxW="6xl">
-          <Heading
-            as="h2"
-            size={{ base: "3xl", md: "5xl" }}
-            fontWeight="bold"
-            fontFamily="merriweather"
-            textAlign="center"
-            mb="16"
-          >
-            Our Services
-          </Heading>
+          <Fade>
+            <Heading
+              as="h2"
+              size={{ base: "3xl", md: "5xl" }}
+              fontWeight="bold"
+              fontFamily="merriweather"
+              textAlign="center"
+              mb="16"
+            >
+              Our Services
+            </Heading>
+          </Fade>
           <Stack gap={{ base: "12", md: "20" }}
-          // className="*:nth-[odd]:!-translate-y-12"
           >
             {[
               {
@@ -354,14 +346,16 @@ export default async function Home() {
                 templateColumns={{ base: "1fr", md: "1fr 1fr" }}
                 gap={{ base: "3", md: "12" }}
                 key={index}>
-                <GridItem
-                  order={{ base: "0", md: index === 1 ? "1" : "0" }}
-                  bgImg={`url(${service.icon})`}
-                  bgSize={"cover"}
-                  bgPos="center"
-                  h="300px"
-                  rounded="xl"
-                ></GridItem>
+                <Slide fraction={0}>
+                  <GridItem
+                    order={{ base: "0", md: index === 1 ? "1" : "0" }}
+                    bgImg={`url(${service.icon})`}
+                    bgSize={"cover"}
+                    bgPos="center"
+                    h="300px"
+                    rounded="xl"
+                  ></GridItem>
+                </Slide>
                 <GridItem>
                   <Stack
                     p="6"

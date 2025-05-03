@@ -2,7 +2,6 @@
 
 import { ProductType } from "@/lib/utils"
 import { HStack } from "@chakra-ui/react"
-import { link } from "fs"
 import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon, TwitterShareButton, XIcon, PinterestShareButton, PinterestIcon, LinkedinShareButton, LinkedinIcon } from "react-share"
 
 const Share = (props: { product: ProductType, link: string }) => {
@@ -32,16 +31,16 @@ const Share = (props: { product: ProductType, link: string }) => {
                 aria-label="Share on X(Twitter)"
                 className="flex justify-start items-center gap-4 !p-2 rounded-md hover:!bg-gray-100"
                 url={link}
-                title={product!.title}
-                hashtags={[product!.title!, ...(product!.benefits! as string[])]}
-                related={[product!.title]}>
+                title={product?.title}
+                hashtags={[product?.title]}
+                related={[product?.title]}>
                 <XIcon round size={16} />
                 X(Twitter)
             </TwitterShareButton>
 
             <PinterestShareButton
                 aria-label="Share on Pinterest"
-                media={product!.imageUrls![0]}
+                media={product?.img_url}
                 className="flex justify-start items-center gap-4 !p-2 rounded-md hover:!bg-gray-100"
                 url={link}
                 title={product?.title}>

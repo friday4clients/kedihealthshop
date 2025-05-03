@@ -16,28 +16,28 @@ export default function ProductActions({ product }: { product: ProductType }) {
     const [exist, setExist] = useState(false);
     const [item, setItem] = useState(
         {
-            id: product?.id.toString(),
+            product_id: product?.product_id,
             title: product?.title,
-            price: product?.price,
+            price: !isNaN(Number(product?.price)) ? Number(product?.price) : product?.price,
             quantity: 1,
-            img_url: product?.imageUrls?.[0]!
+            img_url: product?.img_url
         }
     );
 
     const decreaseQuantity = useCallback(() => {
         startDecreaseTransition(() => {
-            cart.updateItemQuantity(item.id.toString(), item.quantity === 1 ? 0 : -1);
+            cart.updateItemQuantity(item.product_id, item.quantity === 1 ? 0 : -1);
         });
     }, [item.quantity]);
 
     const increaseQuantity = useCallback(() => {
         startIncreaseTransition(() => {
-            cart.updateItemQuantity(item.id.toString(), 1);
+            cart.updateItemQuantity(item.product_id, 1);
         });
     }, [item.quantity]);
 
     useEffect(() => {
-        const inCart = cart.items.find((_) => _.id.toString() === item.id.toString());
+        const inCart = cart.items.find((_) => _.product_id === item.product_id);
         if (!inCart) {
             setExist(false);
         } else {

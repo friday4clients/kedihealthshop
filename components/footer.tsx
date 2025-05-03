@@ -1,14 +1,23 @@
+import categories from "@/lib/categories";
 import { getCategories } from "@/lib/utils";
-import { Box, Container, Grid, Stack, Heading, Text, HStack } from "@chakra-ui/react"
+import { Box, Container, Grid, Stack, Link as CLink, Heading, Text, HStack, IconButton } from "@chakra-ui/react"
 import Link from "next/link"
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { LuMail, LuPhone, LuMapPin, LuArrowUp } from "react-icons/lu";
 
 const Footer = async () => {
-    const categories: Awaited<ReturnType<typeof getCategories>> = await getCategories();
 
     return (
         <Box bg="accent" color="blue.emphasized" py="12" pb="4" >
             <Container maxW="6xl">
+                <IconButton position="fixed" bottom="4" right="4" asChild color="accent" shadow={"0 0 15px #777"} zIndex="docked" boxSize={"10"} rounded="full">
+                    <CLink
+                        href="#"
+                        aria-label="Scroll to top"
+                    >
+                        <LuArrowUp />
+                    </CLink>
+                </IconButton>
                 <Stack gap="4"
                     textStyle={"sm"}
                     color="blue.400"
@@ -54,16 +63,19 @@ const Footer = async () => {
                         <Link href="/">
                             Home
                         </Link>
+                        <Link href="/checkout">
+                            Checkout
+                        </Link>
                         <Link href="/about">
                             About
                         </Link>
-                        <Link href="/services">
+                        <Link href="/#services">
                             Services
                         </Link>
                         <Link href="/contact">
                             Contact
                         </Link>
-                        <Link href="/partner">
+                        <Link href="/contact">
                             Become a Kedi Partner
                         </Link>
                     </Stack>
@@ -73,8 +85,8 @@ const Footer = async () => {
                             Shop
                         </Heading>
                         {categories.map((category, index) => (
-                            <Link key={index} href={`/${category.replaceAll(" ", "_")}`}>
-                                {category}
+                            <Link key={index} href={`/${category.category.replaceAll(" ", "_")}`}>
+                                {category.category}
                             </Link>
                         ))}
                     </Stack>
@@ -82,9 +94,31 @@ const Footer = async () => {
                         <Heading color="white" as="h3" size="md">
                             Contact Us
                         </Heading>
-                        <Text color="blue.400">Email: support@kedicares.com</Text>
-                        <Text color="blue.400">Phone: +123 456 7890</Text>
-                        <Text color="blue.400">Address: 123 Wellness Street, City, Country</Text>
+                        <Stack mt="" gap="4">
+                            <HStack alignItems={"center"} gap="4">
+                                <LuMail color="white" />
+                                <Stack gap="0">
+                                    <Heading color="white" size="md">Email address</Heading>
+                                    <Text color="blue.400">{process.env.NEXT_PUBLIC_EMAIL}</Text>
+                                </Stack>
+                            </HStack>
+
+                            <HStack alignItems={"center"} gap="4">
+                                <LuPhone color="white" />
+                                <Stack gap="0">
+                                    <Heading color="white" size="md">Phone Numbers</Heading>
+                                    <Text color="blue.400" >{process.env.NEXT_PUBLIC_PHONE_NUMBERS}</Text>
+                                </Stack>
+                            </HStack>
+
+                            <HStack alignItems={"center"} gap="4">
+                                <LuMapPin color="white" size="32" />
+                                <Stack gap="0">
+                                    <Heading color="white" size="md">Location</Heading>
+                                    <Text color="blue.400" >{process.env.NEXT_PUBLIC_LOCATION}</Text>
+                                </Stack>
+                            </HStack>
+                        </Stack>
                     </Stack>
                 </Grid>
                 <Text
