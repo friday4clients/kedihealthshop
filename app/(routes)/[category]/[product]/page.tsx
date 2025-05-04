@@ -96,7 +96,7 @@ export default async function Page({ params, searchParams }: CategoryPageProps) 
     const productId = (decodeURIComponent((await searchParams)?.product_id));
     const product = await getProduct(productId) as ProductType;
     const relatedProducts = ((await getProductsByCategory(category))?.Items as ProductType[])?.filter((product) => product?.product_id !== productId);
-    const link = `/${category}/${productTitle}`;
+    const link = `${process.env.NEXT_PUBLIC_HOSTNAME}/${product?.category?.replaceAll(" ", "_")}/${product?.title?.replaceAll(" ", "_")}?product_id=${product?.product_id}`;
     const jsonLd = await getProductJSONLD(product);
 
     return (
