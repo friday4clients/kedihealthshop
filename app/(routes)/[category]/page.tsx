@@ -41,13 +41,13 @@ export async function generateMetadata({ params }: CategoryPageProps) {
             card: "summary",
             title: ` ${decodeURIComponent(category.replaceAll("_", " ")) } Products | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
             description: desc,
-            site: process.env.NEXT_PUBLIC_HOSTNAME as string,
+            site: `${process.env.NEXT_PUBLIC_HOSTNAME}/${category?.replaceAll(" ", "_")}`,
             images: [""],
         },
         openGraph: {
             title: `${decodeURIComponent(category.replaceAll("_", " ")) } Products | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
             description: desc,
-            url: process.env.NEXT_PUBLIC_HOSTNAME,
+            url: `${process.env.NEXT_PUBLIC_HOSTNAME}/${category?.replaceAll(" ", "_")}`,
             siteName: process.env.NEXT_PUBLIC_SITE_NAME,
             images: [
                 {

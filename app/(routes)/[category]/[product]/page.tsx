@@ -59,13 +59,13 @@ export async function generateMetadata({ searchParams }: CategoryPageProps) {
             card: "summary",
             title: ` ${product?.title} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
             description: product?.description,
-            site: process.env.NEXT_PUBLIC_HOSTNAME,
+            site: `${process.env.NEXT_PUBLIC_HOSTNAME}/${product?.category?.replaceAll(" ", "_")}/${product?.title?.replaceAll(" ", "_")}?product_id=${product?.product_id}`,
             images: [product?.img_url],
         },
         openGraph: {
             title: `${product} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
             description: product?.description,
-            url: process.env.NEXT_PUBLIC_HOSTNAME,
+            url: `${process.env.NEXT_PUBLIC_HOSTNAME}/${product?.category?.replaceAll(" ", "_")}/${product?.title?.replaceAll(" ", "_")}?product_id=${product?.product_id}`,
             siteName: process.env.NEXT_PUBLIC_SITE_NAME,
             images: [
                 {
