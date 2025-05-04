@@ -24,7 +24,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: {
     template: `%s | ${process.env.NEXT_PUBLIC_SITE_NAME} | Kedi Healthcare`,
-    default: `${process.env.NEXT_PUBLIC_SITE_NAME} | Kedi Healthcare - Your Number One Store For Affordable Kedi Products`,
+    default: `${process.env.NEXT_PUBLIC_SITE_NAME} | Kedi Healthcare - Your Number One Store For Affordable Kedi Healthcare Products`,
   },
   keywords: ["Kedi Healthcare", "Kedi Healthcare product", "Kedi", "Health", "Healthcare"],
   description: "Your number one store for affordable Kedi Healthcare products. Explore our shop, learn about our services, and discover why customers trust Kedicares for their wellness journey.",
