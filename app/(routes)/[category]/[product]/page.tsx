@@ -52,18 +52,18 @@ export async function generateMetadata({ searchParams }: CategoryPageProps) {
         creator: 'Friaday Joshua',
         publisher: 'Friday Joshua',
         metadataBase: new URL(process.env.NEXT_PUBLIC_HOSTNAME as string),
-        title: `${product?.title} | ${toTitleCase(category)}`,
+        title: `${product?.title} Kedi Healthcare product | ${toTitleCase(category)}`,
         description: product?.description as string,
-        keywords: [kws],
+        keywords: [kws,"Kedi Healthcare", "Kedi", "Healthcare", "Healthcare product"],
         twitter: {
             card: "summary",
-            title: ` ${product?.title} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+            title: ` ${product?.title} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME} | Kedi Healthcare`,
             description: product?.description,
             site: `${process.env.NEXT_PUBLIC_HOSTNAME}/${product?.category?.replaceAll(" ", "_")}/${product?.title?.replaceAll(" ", "_")}?product_id=${product?.product_id}`,
             images: [product?.img_url],
         },
         openGraph: {
-            title: `${product?.title} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+            title: `${product?.title} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME} | Kedi Healthcare`,
             description: product?.description,
             url: `${process.env.NEXT_PUBLIC_HOSTNAME}/${product?.category?.replaceAll(" ", "_")}/${product?.title?.replaceAll(" ", "_")}?product_id=${product?.product_id}`,
             siteName: process.env.NEXT_PUBLIC_SITE_NAME,
@@ -84,7 +84,7 @@ export async function generateMetadata({ searchParams }: CategoryPageProps) {
             type: 'website',
         },
         other: {
-            title: `${product?.title} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME!}`
+            title: `${product?.title} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME!} | Kedi Healthcare`
         }
     }
 }

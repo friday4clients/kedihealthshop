@@ -3,7 +3,7 @@ import Script from 'next/script';
 
 export const metadata = {
     title: "About Us",
-    description: `Learn more about ${process.env.NEXT_PUBLIC_SITE_NAME} and our mission to bring health and wellness solutions to communities worldwide.`,
+    description: `Learn more about ${process.env.NEXT_PUBLIC_SITE_NAME}, Kedi Healthcare, and our mission to bring health and wellness solutions to communities worldwide.`,
 };
 
 const jsonLd = {

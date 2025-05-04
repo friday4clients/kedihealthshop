@@ -36,16 +36,16 @@ export async function generateMetadata({ params }: CategoryPageProps) {
         metadataBase: new URL(process.env.NEXT_PUBLIC_HOSTNAME as string),
         title: `${decodeURIComponent(category.replaceAll("_"," "))} Products`,
         description: desc,
-        keywords: [decodeURIComponent(category.replaceAll("_", " "))],
+        keywords: [decodeURIComponent(category.replaceAll("_", " ")), "Kedi Healthcare", "Kedi", "Healthcare", "Healthcare product"],
         twitter: {
             card: "summary",
-            title: ` ${decodeURIComponent(category.replaceAll("_", " ")) } Products | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+            title: ` ${decodeURIComponent(category.replaceAll("_", " ")) } Products | ${process.env.NEXT_PUBLIC_SITE_NAME} | Kedi Healthcare`,
             description: desc,
             site: `${process.env.NEXT_PUBLIC_HOSTNAME}/${category?.replaceAll(" ", "_")}`,
             images: [""],
         },
         openGraph: {
-            title: `${decodeURIComponent(category.replaceAll("_", " ")) } Products | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+            title: `${decodeURIComponent(category.replaceAll("_", " "))} Products | ${process.env.NEXT_PUBLIC_SITE_NAME} | Kedi Healthcare`,
             description: desc,
             url: `${process.env.NEXT_PUBLIC_HOSTNAME}/${category?.replaceAll(" ", "_")}`,
             siteName: process.env.NEXT_PUBLIC_SITE_NAME,
@@ -66,7 +66,7 @@ export async function generateMetadata({ params }: CategoryPageProps) {
             type: 'website',
         },
         other: {
-            title: `${decodeURIComponent(category.replaceAll("_", " ")) } Products | ${process.env.NEXT_PUBLIC_SITE_NAME!}`
+            title: `${decodeURIComponent(category.replaceAll("_", " "))} Products | ${process.env.NEXT_PUBLIC_SITE_NAME!} | Kedi Healthcare`
         }
     }
 }

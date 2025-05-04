@@ -27,7 +27,7 @@ const getProducts = async (category: string) => {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": `${process.env.NEXT_PUBLIC_SITE_NAME} - Affordable Kedi Products`,
+  "name": `${process.env.NEXT_PUBLIC_SITE_NAME} | Kedi Healthcare - Affordable Kedi Healthcare Products`,
   "description": `Your number one store for affordable Kedi products. Explore our shop, learn about our services, and discover why customers trust ${process.env.NEXT_PUBLIC_HOSTNAME} for their wellness journey.`,
   "url": `${process.env.NEXT_PUBLIC_HOSTNAME!}`,
   "publisher": {
@@ -122,7 +122,7 @@ export default async function Home() {
                       bg: "accent"
                     }}
                   >
-                    Your Number One Store For Affordable Kedi Products
+                    Your Number One Store For Affordable Kedi Healthcare Products
                   </Highlight>
                 </Heading>
               </Fade>

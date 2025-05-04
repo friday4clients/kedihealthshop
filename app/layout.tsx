@@ -23,12 +23,13 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: {
-    template: `%s | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
-    default: `${process.env.NEXT_PUBLIC_SITE_NAME} - Your Number One Store For Affordable Kedi Products`,
+    template: `%s | ${process.env.NEXT_PUBLIC_SITE_NAME} | Kedi Healthcare`,
+    default: `${process.env.NEXT_PUBLIC_SITE_NAME} | Kedi Healthcare - Your Number One Store For Affordable Kedi Products`,
   },
-  description: "Your number one store for affordable Kedi products. Explore our shop, learn about our services, and discover why customers trust Kedicares for their wellness journey.",
+  keywords: ["Kedi Healthcare", "Kedi Healthcare product", "Kedi", "Health", "Healthcare"],
+  description: "Your number one store for affordable Kedi Healthcare products. Explore our shop, learn about our services, and discover why customers trust Kedicares for their wellness journey.",
   openGraph: {
-    title: `${process.env.NEXT_PUBLIC_SITE_NAME} - Affordable Kedi Products`,
+    title: `${process.env.NEXT_PUBLIC_SITE_NAME} - Affordable Kedi Healthcare Products`,
     description: `Your number one store for affordable Kedi products. Explore our shop, learn about our services, and discover why customers trust ${process.env.NEXT_PUBLIC_SITE_NAME} for their wellness journey.`,
     url: process.env.NEXT_PUBLIC_HOSTNAME,
     images: [
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${process.env.NEXT_PUBLIC_SITE_NAME} - Affordable Kedi Products`,
+    title: `${process.env.NEXT_PUBLIC_SITE_NAME} - Affordable Kedi Healthcare Products`,
     description: `Your number one store for affordable Kedi products. Explore our shop, learn about our services, and discover why customers trust ${process.env.NEXT_PUBLIC_SITE_NAME} for their wellness journey.`,
     images: [`${process.env.NEXT_PUBLIC_HOSTNAME}/logo.webp`],
   },
