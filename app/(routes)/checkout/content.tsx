@@ -275,7 +275,7 @@ const CheckoutPage = () => {
                     </GridItem>
                 </Show>
             </Grid>
-        </Container >
+        </Container>
     );
 };
 

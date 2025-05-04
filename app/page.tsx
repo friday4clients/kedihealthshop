@@ -27,12 +27,12 @@ const getProducts = async (category: string) => {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Kedicares - Affordable Kedi Products",
-  "description": "Your number one store for affordable Kedi products. Explore our shop, learn about our services, and discover why customers trust Kedicares for their wellness journey.",
+  "name": `${process.env.NEXT_PUBLIC_SITE_NAME} - Affordable Kedi Products`,
+  "description": `Your number one store for affordable Kedi products. Explore our shop, learn about our services, and discover why customers trust ${process.env.NEXT_PUBLIC_HOSTNAME} for their wellness journey.`,
   "url": `${process.env.NEXT_PUBLIC_HOSTNAME!}`,
   "publisher": {
     "@type": "Organization",
-    "name": "Kedicares",
+    "name": `${process.env.NEXT_PUBLIC_SITE_NAME}`,
     "logo": {
       "@type": "ImageObject",
       "url": `${process.env.NEXT_PUBLIC_HOSTNAME!}/logo.webp`
@@ -41,7 +41,7 @@ const jsonLd = {
   "mainEntity": {
     "@type": "WebPageElement",
     "name": "Hero Section",
-    "description": "Highlighting Kedicares as the number one store for affordable Kedi products."
+    "description": `Highlighting ${process.env.NEXT_PUBLIC_SITE_NAME} as the number one store for affordable Kedi products`
   },
   "potentialAction": {
     "@type": "SearchAction",
@@ -82,7 +82,7 @@ export default async function Home() {
                 justifyContent={"space-between"}
                 gap="">
                 <Link href="/">
-                  <Image src="/logo.webp" alt="kedicares logo" w="44" h="5" />
+                  <Image src="/logo.webp" alt={`${process.env.NEXT_PUBLIC_SITE_NAME} logo`} w="44" h="5" />
                 </Link>
 
                 <HStack gap="4" className="*:hover:!text-blue-700">
@@ -423,7 +423,7 @@ export default async function Home() {
               w={{ base: "90%", md: "70%" }}
               color="blue.50"
               mb="6">
-              Discover the benefits of Kedi products today. Join thousands of satisfied customers who trust Kedicares for their wellness journey.
+              Discover the benefits of Kedi products today. Join thousands of satisfied customers who trust`${process.env.NEXT_PUBLIC_HOSTNAME} for their wellness journe`.
             </Text>
             <Button
               variant="solid"

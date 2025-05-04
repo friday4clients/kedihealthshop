@@ -6,6 +6,28 @@ import Form from "next/form";
 import React from 'react';
 import { FaWhatsapp, FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { LuMail, LuMapPin, LuPhone } from 'react-icons/lu';
+import Script from 'next/script';
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": process.env.NEXT_PUBLIC_SITE_NAME,
+    "url": `${process.env.NEXT_PUBLIC_HOSTNAME}/contact`,
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "07068453179",
+        "email": process.env.NEXT_PUBLIC_EMAIL,
+        "contactType": "Customer Service",
+        "areaServed": "Global",
+        "availableLanguage": ["English"]
+    },
+    "sameAs": [
+        process.env.NEXT_PUBLIC_FACEBOOK_URL,
+        process.env.NEXT_PUBLIC_WHATSAPP_URL,
+        process.env.NEXT_PUBLIC_TWITTER_URL,
+        process.env.NEXT_PUBLIC_INSTAGRAM_URL
+    ]
+};
 
 
 const ContactUsPage = () => {
@@ -104,7 +126,7 @@ const ContactUsPage = () => {
                             </HStack>
                         </Stack>
                     </GridItem>
-                    <GridItem pl={{ base: "0", md: "10" }} py="12"  color="white" bg="transparent">
+                    <GridItem pl={{ base: "0", md: "10" }} py="12" color="white" bg="transparent">
                         <Heading color="white">Contact Information</Heading>
                         <Stack mt="10" gap="4">
                             <HStack alignItems={"center"} gap="4">
@@ -134,6 +156,13 @@ const ContactUsPage = () => {
                     </GridItem>
                 </Grid>
             </Container>
+
+            {/* jsonld */}
+            <Script
+                id="contact-jsonld"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            ></Script>
         </Box>
     );
 };

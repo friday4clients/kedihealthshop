@@ -1,8 +1,28 @@
 import { Box, Container, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
+import Script from 'next/script';
 
 export const metadata = {
     title: "About Us",
     description: `Learn more about ${process.env.NEXT_PUBLIC_SITE_NAME} and our mission to bring health and wellness solutions to communities worldwide.`,
+};
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": process.env.NEXT_PUBLIC_SITE_NAME,
+    "url": process.env.NEXT_PUBLIC_HOSTNAME,
+    "logo": `${process.env.NEXT_PUBLIC_HOSTNAME}/logo.webp`,
+    "description": "Learn more about our mission to bring health and wellness solutions to communities worldwide.",
+    "sameAs": [
+        `https://www.facebook.com/${process.env.NEXT_PUBLIC_FACEBOOK_URL}`,
+        `https://www.twitter.com/${process.env.NEXT_PUBLIC_TWITTER_URL}`,
+        `https://www.instagram.com/${process.env.NEXT_PUBLIC_INSTAGRAM_URL}`
+    ],
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+2347068453179",
+        "contactType": "Customer Service"
+    }
 };
 
 
@@ -17,7 +37,7 @@ const AboutUsPage = () => {
                             color="white"
                             fontFamily={"merriweather"}
                         >About {process.env.NEXT_PUBLIC_SITE_NAME}</Heading>
-                        <Text textAlign={{base:"left",md:"center"}} color="blue.200">
+                        <Text textAlign={{ base: "left", md: "center" }} color="blue.200">
                             {process.env.NEXT_PUBLIC_SITE_NAME} is proud to be a trusted partner and distributor of Kedi Healthcare Industries Hong-Kong Limited, located in Hong-Kong China, bringing health and wellness solutions to communities far and wide. Our mission is to empower individuals and families by providing access to high-quality, scientifically-backed healthcare products. Join us on this journey to make a positive impact on lives through innovation and dedication.
                         </Text>
                     </Stack>
@@ -110,6 +130,13 @@ const AboutUsPage = () => {
                     </Grid>
                 </Container>
             </Box>
+
+            {/* jsonld */}
+            <Script
+                id="about-jsonld"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            ></Script>
         </>
     );
 };
