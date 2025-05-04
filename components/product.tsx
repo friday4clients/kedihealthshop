@@ -2,14 +2,13 @@
 
 import { ProductType } from "@/lib/utils";
 import { Button, FormatNumber, Heading, HStack, Image, RatingGroup, Skeleton, Stack, Text } from "@chakra-ui/react";
-import { useState, useTransition } from "react";
+import { useTransition } from "react";
 import { Tooltip } from "./ui/tooltip";
 import Link from "next/link";
 import { LuPlus } from "react-icons/lu";
 import { useCart } from "./cart";
 
 export default function Product({ info, imgH }: { info: ProductType, imgH?: string }) {
-    const [loading, setLoading] = useState(true);
     const cart = useCart();
     const [isPending, startTransition] = useTransition();
 
@@ -25,27 +24,24 @@ export default function Product({ info, imgH }: { info: ProductType, imgH?: stri
             _hover={{ borderColor: "gray.200" }}
             rounded="xl">
             <Link href={`/${info.category.replaceAll(" ", "_")}/${info.title.replaceAll(" ", "_")}?product_id=${info?.product_id}`} passHref>
-                <Skeleton rounded="lg" loading={loading}>
-                    <HStack
-                        rounded="lg"
-                        justifyContent={"center"}
-                        alignItems={"center"}
-                        p="4"
-                        h={imgH || "64"}
-                        bg="gray.100"
-                    >
-                        <Image
-                            onLoad={() => setLoading(false)}
-                            alt={info!.title}
-                            src={info?.img_url}
-                            transition={"transform"}
-                            transitionDuration={"300ms"}
-                            _hover={{ transform: "scale(1.1)" }}
-                            w="fit"
-                            h="full"
-                            objectFit="contain" />
-                    </HStack>
-                </Skeleton>
+                <HStack
+                    rounded="lg"
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    p="4"
+                    h={imgH || "64"}
+                    bg="gray.100"
+                >
+                    <Image
+                        alt={info!.title}
+                        src={info?.img_url}
+                        transition={"transform"}
+                        transitionDuration={"300ms"}
+                        _hover={{ transform: "scale(1.1)" }}
+                        w="fit"
+                        h="full"
+                        objectFit="contain" />
+                </HStack>
             </Link>
             <Link href={`/${info.category.replaceAll(" ", "_")}/${info.title.replaceAll(" ", "_")}?product_id=${info?.product_id}`} passHref>
                 <RatingGroup.Root colorPalette={"yellow"} readOnly count={5} defaultValue={3} size="sm">

@@ -206,7 +206,7 @@ export default async function Home() {
               {categories.slice(0, 4).map(async (category, index) => (
                 <Stack
                   key={index}
-                  p={{ base: "8", md: "12" }}
+                  p={{ base: "5", md: "12" }}
                   borderColor={"gray.200"}
                   bg="white"
                   gap="3"
@@ -274,7 +274,7 @@ export default async function Home() {
             gap="6"
             className="md:*:nth-[odd]:!translate-y-12"
           >
-            <Slide cascade delay={400}>
+            <Slide cascade>
               {[
                 {
                   title: "High-Quality Products",
