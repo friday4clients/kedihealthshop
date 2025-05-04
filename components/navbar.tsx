@@ -8,25 +8,13 @@ import Cart from './cart';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { FaFacebook, FaWhatsapp, FaInstagram, FaTwitter } from 'react-icons/fa';
+import categories from '@/lib/categories';
 
 function isActiveLink(path: string, category: string): boolean {
     return path.includes(`/${category.replaceAll(" ", "_")}`);
 }
 
 const Navbar = () => {
-    const [categories, setCategories] = useState<Awaited<ReturnType<typeof getCategories>>>([]);
-
-    useEffect(() => {
-        (async () => {
-            const response = await fetch('/products.json');
-            if (!response.ok) {
-                throw new Error(`Failed to fetch products: ${response.statusText}`);
-            }
-            const store = await response.json();
-            setCategories(Object.keys(store));
-        })();
-    }, []);
-
     const path = usePathname();
 
     return (
@@ -52,7 +40,7 @@ const Navbar = () => {
                         <Link href="/">
                             Home
                         </Link>
-                        <Link href={`/${categories?.[0]?.replaceAll(" ", "_")}`}>
+                        <Link href={`/${categories?.[0]?.category?.replaceAll(" ", "_")}`}>
                             Shop
                         </Link>
                         <Link href="/about">
@@ -118,7 +106,7 @@ const Navbar = () => {
                                                     </Link>
                                                 </Drawer.ActionTrigger>
                                                 <Drawer.ActionTrigger asChild>
-                                                    <Link href={`/${categories?.[0]?.replaceAll(" ", "_")}`}>
+                                                    <Link href={`/${categories?.[0]?.category?.replaceAll(" ", "_")}`}>
                                                         <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
                                                             Shop
                                                         </Heading>
@@ -151,13 +139,13 @@ const Navbar = () => {
                                                 <Heading fontSize="md" fontWeight="sm">Categories</Heading>
                                                 {
                                                     categories?.map((category, index) => {
-                                                        const isActive = isActiveLink(path, category);
+                                                        const isActive = isActiveLink(path, category.category);
 
                                                         return (
                                                             <Drawer.ActionTrigger asChild key={index}>
-                                                                <Link href={`/${category?.replaceAll(" ", "_")}`}>
+                                                                <Link href={`/${category?.category?.replaceAll(" ", "_")}`}>
                                                                     <Heading _hover={{ color: "accent" }} fontWeight="medium" _active={{ color: "accent" }} textStyle={"sm"} color={isActive ? "accent" : "inherit"}>
-                                                                        {category}
+                                                                        {category.category}
                                                                     </Heading>
                                                                 </Link>
                                                             </Drawer.ActionTrigger>
