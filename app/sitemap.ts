@@ -43,13 +43,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     },
     {
-        url: `${process.env.APP_URL}/about`,
+        url: `${process.env.NEXT_PUBLIC_HOSTNAME}/about`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 0.8,
     },
     {
-        url: `${process.env.APP_URL}/contact`,
+        url: `${process.env.NEXT_PUBLIC_HOSTNAME}/contact`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 0.8,

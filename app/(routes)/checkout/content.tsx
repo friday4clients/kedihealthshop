@@ -1,9 +1,8 @@
 "use client"
 
 import { Alert, Box, Button, ButtonGroup, Clipboard, Container, EmptyState, Field, FormatNumber, Grid, GridItem, Group, Heading, HStack, Input, List, Separator, Show, Stack, Text, Textarea } from '@chakra-ui/react';
-import { getCategories } from '@/lib/utils';
 import { useCart } from '@/components/cart';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import CartItem from '@/components/cart_item';
 import { LuMail, LuPhoneCall, LuShoppingCart } from 'react-icons/lu';
 import Link from 'next/link';

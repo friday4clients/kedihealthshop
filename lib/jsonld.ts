@@ -18,7 +18,7 @@ export const getCategoryJSONLD = async (category: CategoryType, products: Produc
                 return {
                     "@type": "Product",
                     "name": (product?.title as string),
-                    "url": `${process.env.NEXT_PUBLIC_HOSTNAME}/${encodeURIComponent((product?.category as string))}?product_id=${product?.product_id}`,
+                    "url": `${process.env.NEXT_PUBLIC_HOSTNAME}/${encodeURIComponent((product?.category?.replaceAll(" ", "_") as string))}/${encodeURIComponent((product?.title?.replaceAll(" ", "_") as string))}?product_id=${product?.product_id}`,
                     "image": product?.img_url as string,
                     "description": (product?.description as string),
                     "brand": {
@@ -44,7 +44,7 @@ export const getProductJSONLD = async (product: ProductType) => {
         "@context": "https://schema.org",
         "@type": "Product",
         "name": (product?.title as string),
-        "url": `${process.env.NEXT_PUBLIC_HOSTNAME}/${encodeURIComponent((product?.category as string)?.replaceAll(" ", "_"))}/${encodeURIComponent((product?.title as string))}?product_id=${product?.product_id}`,
+        "url": `${process.env.NEXT_PUBLIC_HOSTNAME}/${encodeURIComponent((product?.category as string)?.replaceAll(" ", "_"))}/${encodeURIComponent((product?.title?.replaceAll(" ", "_") as string))}?product_id=${product?.product_id}`,
         "image": product?.img_url,
         "description": (product?.description as string),
         "brand": {
@@ -53,7 +53,7 @@ export const getProductJSONLD = async (product: ProductType) => {
         },
         "offers": {
             "@type": "Offer",
-            "url": `${process.env.NEXT_PUBLIC_HOSTNAME}/${encodeURIComponent((product?.category as string)?.replaceAll(" ", "_"))}/${encodeURIComponent((product?.title as string))}?product_id=${product?.product_id}`,
+            "url": `${process.env.NEXT_PUBLIC_HOSTNAME}/${encodeURIComponent((product?.category as string)?.replaceAll(" ", "_"))}/${encodeURIComponent((product?.title?.replaceAll(" ", "_") as string))}?product_id=${product?.product_id}`,
             "priceCurrency": "NGN",
             "price": product?.price as string,
             "itemCondition": "https://schema.org/NewCondition",
