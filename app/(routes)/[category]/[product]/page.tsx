@@ -63,7 +63,7 @@ export async function generateMetadata({ searchParams }: CategoryPageProps) {
             images: [product?.img_url],
         },
         openGraph: {
-            title: `${product} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+            title: `${product?.title} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
             description: product?.description,
             url: `${process.env.NEXT_PUBLIC_HOSTNAME}/${product?.category?.replaceAll(" ", "_")}/${product?.title?.replaceAll(" ", "_")}?product_id=${product?.product_id}`,
             siteName: process.env.NEXT_PUBLIC_SITE_NAME,
@@ -84,7 +84,7 @@ export async function generateMetadata({ searchParams }: CategoryPageProps) {
             type: 'website',
         },
         other: {
-            title: `${product} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME!}`
+            title: `${product?.title} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME!}`
         }
     }
 }
@@ -174,6 +174,20 @@ export default async function Page({ params, searchParams }: CategoryPageProps) 
                     })}
                 </List.Root>
 
+                {product?.functions?.length ?
+                    <>
+                        <Heading mt="8">Functions</Heading>
+                        <List.Root listStylePos={"inside"}>
+                            {typeof (product?.functions) === "string" ? [product?.functions] : product?.functions?.map((func, index) => {
+                                return (
+                                    <List.Item lineHeight={"1.8"} key={index}>{func}</List.Item>
+                                )
+                            })}
+                        </List.Root>
+                    </> :
+                    null
+                }
+
                 <Accordion.Root
                     mt="10"
                     variant={"subtle"}
@@ -181,112 +195,129 @@ export default async function Page({ params, searchParams }: CategoryPageProps) 
                     collapsible
                     defaultValue={[product?.ingredients?.[0] as string]}>
                     <Grid gap={{ base: "4", md: "6" }} templateColumns={{ base: "1fr", md: "1fr 1fr" }}>
-                        <GridItem>
-                            <Accordion.Item
-                                bg="white"
-                                _open={{ bg: "white" }}
-                                rounded="xl"
-                                py="2"
-                                key={"ingredients"}
-                                value={product?.ingredients?.[0] as string}>
-                                <Accordion.ItemTrigger
-                                    cursor={"pointer"}>
-                                    <Heading _hover={{ color: "accent" }} flex="1" as="h3" size="md">
-                                        Ingredients
-                                    </Heading>
-                                    <Accordion.ItemIndicator />
-                                </Accordion.ItemTrigger>
-                                <Accordion.ItemContent>
-                                    <Accordion.ItemBody>
-                                        <List.Root listStylePos={"inside"}>
-                                            {(product?.ingredients as string[])?.map((i, j) => {
-                                                return (
-                                                    <List.Item lineHeight={"1.8"} key={j}>{i}</List.Item>
-                                                )
-                                            })}
-                                        </List.Root>
-                                    </Accordion.ItemBody>
-                                </Accordion.ItemContent>
-                            </Accordion.Item>
-                        </GridItem>
-                        <GridItem>
-                            <Accordion.Item
-                                bg="white"
-                                _open={{ bg: "white" }}
-                                rounded="xl"
-                                py="2"
-                                key={"precautions"}
-                                value={product?.precautions?.[0] as string}>
-                                <Accordion.ItemTrigger
-                                    cursor={"pointer"}>
-                                    <Heading _hover={{ color: "accent" }} flex="1" as="h3" size="md">
-                                        Precautions
-                                    </Heading>
-                                    <Accordion.ItemIndicator />
-                                </Accordion.ItemTrigger>
-                                <Accordion.ItemContent>
-                                    <Accordion.ItemBody>
-                                        <List.Root listStylePos={"inside"}>
-                                            {typeof (product?.precautions === "string") ? [product?.precautions] : (product?.precautions as string[])?.map((i, j) => {
-                                                return (
-                                                    <List.Item lineHeight={"1.8"} key={j}>{i}</List.Item>
-                                                )
-                                            })}
-                                        </List.Root>
-                                    </Accordion.ItemBody>
-                                </Accordion.ItemContent>
-                            </Accordion.Item>
-                        </GridItem>
-                        <GridItem>
-                            <Accordion.Item
-                                bg="white"
-                                _open={{ bg: "white" }}
-                                rounded="xl"
-                                py="2"
-                                key={"usage"}
-                                value={product?.usage?.[0] as string}>
-                                <Accordion.ItemTrigger
-                                    cursor={"pointer"}>
-                                    <Heading _hover={{ color: "accent" }} flex="1" as="h3" size="md">
-                                        How To Use {product?.title}
-                                    </Heading>
-                                    <Accordion.ItemIndicator />
-                                </Accordion.ItemTrigger>
-                                <Accordion.ItemContent>
-                                    <Accordion.ItemBody>
-                                        <List.Root listStylePos={"inside"}>
-                                            {(typeof (product?.usage) === "string" ? [product?.usage] : product?.usage as string[])?.map((i, j) => {
-                                                return (
-                                                    <List.Item lineHeight={"1.8"} key={j}>{i}</List.Item>
-                                                )
-                                            })}
-                                        </List.Root>
-                                    </Accordion.ItemBody>
-                                </Accordion.ItemContent>
-                            </Accordion.Item>
-                        </GridItem>
-                        <GridItem>
-                            <Accordion.Item
-                                bg="white"
-                                _open={{ bg: "white" }}
-                                rounded="xl"
-                                py="2"
-                                key={"storage"}
-                                value={product?.storage as string}>
-                                <Accordion.ItemTrigger
-                                    cursor={"pointer"}>
-                                    <Heading _hover={{ color: "accent" }} flex="1" as="h3" size="md">
-                                        How To Store {product?.title}
-                                    </Heading>
-                                    <Accordion.ItemIndicator />
-                                </Accordion.ItemTrigger>
-                                <Accordion.ItemContent>
-                                    <Accordion.ItemBody>
-                                        {product?.storage}
-                                    </Accordion.ItemBody>
-                                </Accordion.ItemContent>
-                            </Accordion.Item>
-                        </GridItem>
+
+                        {product?.ingredients?.length ?
+                            <GridItem>
+                                <Accordion.Item
+                                    bg="white"
+                                    _open={{ bg: "white" }}
+                                    rounded="xl"
+                                    py="2"
+                                    key={"ingredients"}
+                                    value={product?.ingredients?.[0] as string}>
+                                    <Accordion.ItemTrigger
+                                        cursor={"pointer"}>
+                                        <Heading _hover={{ color: "accent" }} flex="1" as="h3" size="md">
+                                            Ingredients
+                                        </Heading>
+                                        <Accordion.ItemIndicator />
+                                    </Accordion.ItemTrigger>
+                                    <Accordion.ItemContent>
+                                        <Accordion.ItemBody>
+                                            <List.Root listStylePos={"inside"}>
+                                                {(product?.ingredients as string[])?.map((i, j) => {
+                                                    return (
+                                                        <List.Item lineHeight={"1.8"} key={j}>{i}</List.Item>
+                                                    )
+                                                })}
+                                            </List.Root>
+                                        </Accordion.ItemBody>
+                                    </Accordion.ItemContent>
+                                </Accordion.Item>
+                            </GridItem>
+                            : null
+                        }
+
+                        {product?.precautions?.length ?
+                            <GridItem>
+                                <Accordion.Item
+                                    bg="white"
+                                    _open={{ bg: "white" }}
+                                    rounded="xl"
+                                    py="2"
+                                    key={"precautions"}
+                                    value={product?.precautions?.[0] as string}>
+                                    <Accordion.ItemTrigger
+                                        cursor={"pointer"}>
+                                        <Heading _hover={{ color: "accent" }} flex="1" as="h3" size="md">
+                                            Precautions
+                                        </Heading>
+                                        <Accordion.ItemIndicator />
+                                    </Accordion.ItemTrigger>
+                                    <Accordion.ItemContent>
+                                        <Accordion.ItemBody>
+                                            <List.Root listStylePos={"inside"}>
+                                                {typeof (product?.precautions === "string") ? [product?.precautions] : (product?.precautions as string[])?.map((i, j) => {
+                                                    return (
+                                                        <List.Item lineHeight={"1.8"} key={j}>{i}</List.Item>
+                                                    )
+                                                })}
+                                            </List.Root>
+                                        </Accordion.ItemBody>
+                                    </Accordion.ItemContent>
+                                </Accordion.Item>
+                            </GridItem>
+                            : null
+                        }
+
+                        {product?.usage?.length ?
+                            <GridItem>
+                                <Accordion.Item
+                                    bg="white"
+                                    _open={{ bg: "white" }}
+                                    rounded="xl"
+                                    py="2"
+                                    key={"usage"}
+                                    value={product?.usage?.[0] as string}>
+                                    <Accordion.ItemTrigger
+                                        cursor={"pointer"}>
+                                        <Heading _hover={{ color: "accent" }} flex="1" as="h3" size="md">
+                                            How To Use {product?.title}
+                                        </Heading>
+                                        <Accordion.ItemIndicator />
+                                    </Accordion.ItemTrigger>
+                                    <Accordion.ItemContent>
+                                        <Accordion.ItemBody>
+                                            <List.Root listStylePos={"inside"}>
+                                                {(typeof (product?.usage) === "string" ? [product?.usage] : product?.usage as string[])?.map((i, j) => {
+                                                    return (
+                                                        <List.Item lineHeight={"1.8"} key={j}>{i}</List.Item>
+                                                    )
+                                                })}
+                                            </List.Root>
+                                        </Accordion.ItemBody>
+                                    </Accordion.ItemContent>
+                                </Accordion.Item>
+                            </GridItem>
+                            : null
+                        }
+
+                        {product?.storage?.length ?
+                            <GridItem>
+                                <Accordion.Item
+                                    bg="white"
+                                    _open={{ bg: "white" }}
+                                    rounded="xl"
+                                    py="2"
+                                    key={"storage"}
+                                    value={product?.storage as string}>
+                                    <Accordion.ItemTrigger
+                                        cursor={"pointer"}>
+                                        <Heading _hover={{ color: "accent" }} flex="1" as="h3" size="md">
+                                            How To Store {product?.title}
+                                        </Heading>
+                                        <Accordion.ItemIndicator />
+                                    </Accordion.ItemTrigger>
+                                    <Accordion.ItemContent>
+                                        <Accordion.ItemBody>
+                                            {product?.storage}
+                                        </Accordion.ItemBody>
+                                    </Accordion.ItemContent>
+                                </Accordion.Item>
+                            </GridItem>
+                            : null
+                        }
+
                     </Grid>
                 </Accordion.Root>
 
