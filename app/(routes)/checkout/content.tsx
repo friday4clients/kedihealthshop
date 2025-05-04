@@ -9,10 +9,9 @@ import { LuMail, LuPhoneCall, LuShoppingCart } from 'react-icons/lu';
 import Link from 'next/link';
 import { FaWhatsapp } from 'react-icons/fa';
 import Form from "next/form";
+import categories from '@/lib/categories';
 
 const CheckoutPage = () => {
-    const [categories, setCategories] = useState<string[]>(["Immune & General Wellness"]);
-    // const []
     const cart = useCart();
     const retailerDetails = {
         name: process.env.NEXT_PUBLIC_VENDOR_NAME,
@@ -20,11 +19,7 @@ const CheckoutPage = () => {
         phone: "07068453179",
         whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_URL,
     };
-    useEffect(() => {
-        (async () => {
-            setCategories(await getCategories());
-        })()
-    }, [])
+
 
     const getBillingDetails = () => {
         const fullName = (document.querySelector('input[name="full_name"]') as HTMLInputElement)?.value;
@@ -102,7 +97,7 @@ const CheckoutPage = () => {
                                 <Text>{process.env.NEXT_PUBLIC_ACC_NUMBER}</Text>
                                 <Clipboard.Root value={process.env.NEXT_PUBLIC_ACC_NUMBER} timeout={1000}>
                                     <Clipboard.Trigger asChild>
-                                        <Button variant="ghost" size="xs" color="gray.900" _hover={{color:"white", bg:"accent"}}>
+                                        <Button variant="ghost" size="xs" color="gray.900" _hover={{ color: "white", bg: "accent" }}>
                                             <Clipboard.Indicator />
                                             <Clipboard.CopyText />
                                         </Button>
@@ -158,7 +153,7 @@ const CheckoutPage = () => {
                                     </EmptyState.Description>
                                 </Stack>
                                 <Button fontWeight={"bold"} bg="accent" color="white" size="lg" transition={"all 500ms"} _active={{ transform: "scale(0.9)" }} rounded="xl" _hover={{ bg: "blue.muted" }} asChild>
-                                    <Link href={`/${categories?.[0]?.replaceAll(" ", "_")}`}>
+                                    <Link href={`/${categories?.[0]?.category?.replaceAll(" ", "_")}`}>
                                         Visit Shop
                                     </Link>
                                 </Button>
