@@ -3,7 +3,7 @@
 import { Box, Button, CloseButton, Drawer, EmptyState, Float, FormatNumber, Heading, HStack, IconButton, List, Portal, Separator, Show, Stack } from "@chakra-ui/react";
 import { BiCart } from "react-icons/bi";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { LuShoppingCart } from "react-icons/lu";
+import { LuArrowRight, LuShoppingCart } from "react-icons/lu";
 import CartItem from "./cart_item";
 import Link from "next/link";
 
@@ -55,8 +55,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             return
         } else {
             setItems((prevItems) => {
-                localStorage.setItem("cart", JSON.stringify([...prevItems, item]));
-                return [...prevItems, item]
+                localStorage.setItem("cart", JSON.stringify([item, ...prevItems]));
+                return [item, ...prevItems]
             })
         }
     };
@@ -142,7 +142,7 @@ const Cart = () => {
                             <Show when={cart.items.length}>
                                 <Heading fontSize="md" fontWeight="sm">Your Items&nbsp; {cart?.items?.length}</Heading>
                                 <List.Root variant="plain" className="*:last:hidden">
-                                    {cart?.items?.toReversed()?.map((item, index) => {
+                                    {cart?.items?.map((item, index) => {
                                         return (
                                             <React.Fragment key={index}>
                                                 <List.Item >
@@ -167,13 +167,26 @@ const Cart = () => {
                                         <FormatNumber value={cart.items.reduce((total, item) => !isNaN(Number(item.price)) ? total + Number(item.price) * item.quantity : total, 0)} currency="NGN" style="currency" />
                                     </HStack>
                                 </Heading>
-                                <Drawer.ActionTrigger asChild>
-                                    <Link href="/checkout">
-                                        <Button rounded="xl" fontWeight={"bold"} bg="accent" color="white">
-                                            Proceed to Checkout
-                                        </Button>
-                                    </Link>
-                                </Drawer.ActionTrigger>
+                                <HStack>
+                                    <Drawer.ActionTrigger asChild>
+                                        <Link href="/checkout">
+                                            <Button rounded="xl" fontWeight={"bold"} bg="accent" color="white">
+                                                Proceed to Checkout
+                                                <LuArrowRight />
+                                            </Button>
+                                        </Link>
+                                    </Drawer.ActionTrigger>
+                                    <Button
+                                        variant="ghost"
+                                        _hover={{bg:"red.50"}}
+                                        onClick={() => cart.clearCart()}
+                                        rounded="xl"
+                                        fontWeight={"bold"}
+                                        color="red">
+                                        Empty Cart
+                                    </Button>
+                                </HStack>
+
                             </Stack>
                         </Show>
                     </Drawer.Footer>

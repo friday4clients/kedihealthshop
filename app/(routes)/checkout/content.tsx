@@ -41,7 +41,8 @@ const CheckoutPage = () => {
                 (item, index) =>
                     `${index + 1}. *${item.title}*:
     Price: NGN ${item.price.toLocaleString()}
-    Quantity: ${item.quantity}`
+    Quantity: ${item.quantity}
+    `
             )
             .join("\n");
 
@@ -57,6 +58,9 @@ const CheckoutPage = () => {
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `${process.env.NEXT_PUBLIC_WHATSAPP_URL}&text=${encodedMessage}`;
             window.open(whatsappUrl, "_blank");
+
+            // clear cart
+            cart.clearCart();
         }
     };
 
@@ -70,6 +74,9 @@ const CheckoutPage = () => {
                 .replace(/\n/g, "%0D%0A"); // Replace newlines with email line breaks
             const mailtoUrl = `mailto:${retailerDetails.email}?subject=New Order&body=${emailMessage}`;
             window.open(mailtoUrl, "_blank");
+
+            // clear cart
+            cart.clearCart();
         }
     };
 
@@ -127,7 +134,7 @@ const CheckoutPage = () => {
                         </HStack>
 
                         <List.Root variant="plain" className="*:last:hidden">
-                            {cart?.items?.reverse()?.map((item, index) => {
+                            {cart?.items?.map((item, index) => {
                                 return (
                                     <React.Fragment key={index}>
                                         <List.Item >
@@ -191,7 +198,7 @@ const CheckoutPage = () => {
                                 </Group>
                                 <Field.Root required>
                                     <Field.Label>Billing Address</Field.Label>
-                                    <Textarea variant={"subtle"} bg="gray.100" name="address">
+                                    <Textarea placeholder="Enter your delivery address" variant={"subtle"} bg="gray.100" name="address">
                                     </Textarea>
                                 </Field.Root>
                             </Stack>

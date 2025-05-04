@@ -92,7 +92,7 @@ export default async function Home() {
                   <Link href="/about">
                     About
                   </Link>
-                  
+
                   <Link href="/contact">
                     Contact
                   </Link>
@@ -203,7 +203,7 @@ export default async function Home() {
               gap="0"
               className="md:*:nth-[odd]:!border-r *:nth-[3]:!border-b *:md:nth-[3]:!border-0 *:nth-[1]:!border-b *:nth-[2]:!border-b !rounded-xl !overflow-hidden"
             >
-              {categories.slice(0, 4).map((category, index) => (
+              {categories.slice(0, 4).map(async (category, index) => (
                 <Stack
                   key={index}
                   p={{ base: "8", md: "12" }}
@@ -226,7 +226,7 @@ export default async function Home() {
                   >Products</Heading>
 
                   <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap="2">
-                    {getProducts(category?.category)}
+                    {await getProducts(category?.category)}
                   </Grid>
                   <Button
                     variant="solid"
@@ -371,7 +371,7 @@ export default async function Home() {
                 key={index}>
                 <Slide fraction={0}>
                   <GridItem
-                    order={{ base: "0", md: index === 1 ? "1" : "0" }}
+                    order={{ base: "0", md: index === 1 ? "-1" : "0" }}
                     bgImg={`url(${service.icon})`}
                     bgSize={"cover"}
                     bgPos="center"
@@ -566,7 +566,7 @@ export default async function Home() {
           </HStack>
         </Container>
       </Box>
-      
+
       {/* jsonld */}
       <Script
         id="category-jsonld"

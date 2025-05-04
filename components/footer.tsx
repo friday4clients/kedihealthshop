@@ -50,7 +50,7 @@ const Footer = async () => {
                             About Us
                         </Heading>
                         <Text color="blue.50">
-                            Kedicares is your trusted store for affordable and high-quality Kedi products. We are committed to your wellness and satisfaction.
+                            {process.env.NEXT_PUBLIC_SITE_NAME} is your trusted store for affordable and high-quality Kedi products. We are committed to your wellness and satisfaction.
                         </Text>
                     </Stack>
 
@@ -124,7 +124,7 @@ const Footer = async () => {
                     textStyle={"xs"}
                     textAlign="center"
                     mt="8" color="blue.400">
-                    © {new Date().getFullYear()} Kedicares. All rights reserved.
+                    © {new Date().getFullYear()} {process.env.NEXT_PUBLIC_SITE_NAME}. All rights reserved.
                     Developed&nbsp;by&nbsp;
                     <Link className="!font-bold !text-white" href="https://fj4lio.vercel.app" target="_blank" rel="nofollow">Friday Joshua</Link>
                 </Text>
