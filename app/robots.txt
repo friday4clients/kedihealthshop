@@ -1,5 +1,5 @@
 User-Agent: *
 Allow: /
-Disallow: /utils/
+Disallow: /lib/
 
-Sitemap: /sitemap.xml
+Sitemap: https://www.kedihealthshop.com/sitemap.xml
