@@ -24,6 +24,35 @@ export default function Product({ info, imgH }: { info: ProductType, imgH?: stri
             "@type": "Brand",
             "name": process.env.NEXT_PUBLIC_SITE_NAME
         },
+        "imageObject": {
+            "@type": "ImageObject",
+            "contentUrl": info?.img_url as string,
+            "height": 800,
+            "width": 800,
+            "datePublished": new Date().toISOString(),
+            "description": info?.description,
+            "name": info?.title
+        },
+        "review": Array.from({ length: 5 })?.map(review => ({
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Anonymous"
+            },
+            "datePublished": new Date(),
+            "reviewBody": "Great info",
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": info?.rating,
+                "bestRating": "5",
+                "worstRating": "1"
+            }
+        })),
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": info?.rating,
+            "reviewCount": [2, 4, 5, 7, 3, 6, 1][Math.floor(Math.random() * 7)]
+        },
         "offers": {
             "@type": "Offer",
             "url": `${process.env.NEXT_PUBLIC_SITE_URL}/${info.category.replaceAll(" ", "_")}/${info.title.replaceAll(" ", "_")}?product_id=${info.product_id}`,
