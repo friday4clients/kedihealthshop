@@ -54,7 +54,7 @@ export async function generateMetadata({ searchParams }: CategoryPageProps) {
         metadataBase: new URL(process.env.NEXT_PUBLIC_HOSTNAME as string),
         title: `${product?.title} Kedi Healthcare product | ${toTitleCase(category)}`,
         description: product?.description as string,
-        keywords: [kws,"Kedi Healthcare", "Kedi", "Healthcare", "Healthcare product"],
+        keywords: [kws, "Kedi Healthcare", "Kedi Healthcare Product", "Kedi", "Healthcare", "Healthcare product"],
         twitter: {
             card: "summary",
             title: ` ${product?.title} | ${toTitleCase(category)} | ${process.env.NEXT_PUBLIC_SITE_NAME} | Kedi Healthcare`,

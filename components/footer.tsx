@@ -126,7 +126,7 @@ const Footer = async () => {
                     mt="8" color="blue.400">
                     © {new Date().getFullYear()} {process.env.NEXT_PUBLIC_SITE_NAME}. All rights reserved.
                     Developed&nbsp;by&nbsp;
-                    <Link className="!font-bold !text-white" href="https://fj4lio.vercel.app" target="_blank" rel="nofollow">Friday Joshua</Link>
+                    <Link className="!font-bold !text-white" href="https://api.whatsapp.com/send?phone=2348173406386" target="_blank" rel="nofollow">Izidor Precious</Link>
                 </Text>
             </Container>
         </Box >
