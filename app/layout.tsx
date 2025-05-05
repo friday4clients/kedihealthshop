@@ -37,14 +37,14 @@ export const metadata: Metadata = {
         url: `${process.env.NEXT_PUBLIC_HOSTNAME}/logo.webp`,
         width: 800,
         height: 600,
-        alt: `${process.env.NEXT_PUBLIC_SITE_NAME} Kedicares Logo`,
+        alt: `${process.env.NEXT_PUBLIC_SITE_NAME} Kedi Healthcare Logo`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${process.env.NEXT_PUBLIC_SITE_NAME} - Affordable Kedi Healthcare Products`,
-    description: `Your number one store for affordable Kedi products. Explore our shop, learn about our services, and discover why customers trust ${process.env.NEXT_PUBLIC_SITE_NAME} for their wellness journey.`,
+    description: `Your number one store for affordable Kedi Kedi Healthcare products. Explore our shop, learn about our services, and discover why customers trust ${process.env.NEXT_PUBLIC_SITE_NAME} for their wellness journey.`,
     images: [`${process.env.NEXT_PUBLIC_HOSTNAME}/logo.webp`],
   },
 };

@@ -28,7 +28,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": `${process.env.NEXT_PUBLIC_SITE_NAME} | Kedi Healthcare - Affordable Kedi Healthcare Products`,
-  "description": `Your number one store for affordable Kedi products. Explore our shop, learn about our services, and discover why customers trust ${process.env.NEXT_PUBLIC_HOSTNAME} for their wellness journey.`,
+  "description": `Your number one store for affordable Kedi Healthcare products. Explore our shop, learn about our services, and discover why customers trust ${process.env.NEXT_PUBLIC_HOSTNAME} for their wellness journey.`,
   "url": `${process.env.NEXT_PUBLIC_HOSTNAME!}`,
   "publisher": {
     "@type": "Organization",
@@ -41,11 +41,11 @@ const jsonLd = {
   "mainEntity": {
     "@type": "WebPageElement",
     "name": "Hero Section",
-    "description": `Highlighting ${process.env.NEXT_PUBLIC_SITE_NAME} as the number one store for affordable Kedi products`
+    "description": `Highlighting ${process.env.NEXT_PUBLIC_SITE_NAME} as the number one store for affordable Kedi Healthcare products`
   },
   "potentialAction": {
     "@type": "SearchAction",
-    "target": `${process.env.NEXT_PUBLIC_HOSTNAME}q={search_term_string}`,
+    "target": `${process.env.NEXT_PUBLIC_HOSTNAME}`,
     "query-input": "required name=search_term_string"
   }
 };
