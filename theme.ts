@@ -5,13 +5,13 @@ const config = defineConfig({
     globalCss: {
         "html,body": {
             bg: "gray.100",
-            color: "gray.emphasized",
+            color: "gray.600",
         },
         "P": {
-            color: "gray.emphasized",
+            color: "gray.600",
         },
         "h1,h2,h3,h4,h5,h6": {
-            color: "gray.contrast",
+            color: "gray.900",
         },
     },
     theme: {

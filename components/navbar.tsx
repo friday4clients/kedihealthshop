@@ -43,6 +43,9 @@ const Navbar = () => {
                         <Link href={`/${categories?.[0]?.category?.replaceAll(" ", "_")}`}>
                             Shop
                         </Link>
+                        <Link href={`/checkout`}>
+                            Checkout
+                        </Link>
                         <Link href="/about">
                             About
                         </Link>

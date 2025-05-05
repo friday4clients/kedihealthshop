@@ -134,7 +134,7 @@ export default async function Home() {
                     rounded="xl"
                     color="white"
                     bg="accent"
-                    _hover={{ bg: "blue.muted" }}
+                    _hover={{ bg: "blue.muted", color: "accent", _dark: { color: "white" } }}
                     asChild
                     size="lg">
                     <Link href={`/${categories[0]?.category?.replaceAll(" ", "_")}`}>
@@ -423,14 +423,15 @@ export default async function Home() {
               w={{ base: "90%", md: "70%" }}
               color="blue.50"
               mb="6">
-              Discover the benefits of Kedi products today. Join thousands of satisfied customers who trust`${process.env.NEXT_PUBLIC_HOSTNAME} for their wellness journe`.
+              Discover the benefits of Kedi Healthcare products today. Join thousands of satisfied customers who trust Kedi Healthcare products for their wellness journe.
             </Text>
             <Button
               variant="solid"
               color="white"
+              rounded="xl"
               bg="accent"
+             _hover={{ bg: "blue.muted", color: "accent", _dark: { color: "white" } }}
               w="fit"
-              _hover={{ bg: "blue.muted" }}
               size="lg"
             >
               Get Started
@@ -556,10 +557,11 @@ export default async function Home() {
             <Button
               type="submit"
               size="lg"
+              rounded="xl"
               color="blue.50"
+             _hover={{ bg: "blue.muted", color: "accent", _dark: { color: "white" } }}
               px="8"
               bg="accent"
-              _hover={{ bg: "blue.muted" }}
             >
               Subscribe
             </Button>

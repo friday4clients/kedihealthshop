@@ -133,7 +133,7 @@ export default async function Page({ params, searchParams }: CategoryPageProps) 
                                 src={product?.img_url}
                                 w="fit"
                                 h="full"
-                                alt={product?.title} />
+                                alt={`${product?.title} Kedi Healthcare product`} />
                         </Stack>
                     </GridItem>
                     <GridItem colSpan={2}>

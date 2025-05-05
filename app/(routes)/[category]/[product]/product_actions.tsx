@@ -27,7 +27,7 @@ export default function ProductActions({ product }: { product: ProductType }) {
         startDecreaseTransition(() => {
             cart.updateItemQuantity(item.product_id, item.quantity === 1 ? 0 : -1);
         });
-    }, [item.quantity,cart,item.product_id]);
+    }, [item.quantity, cart, item.product_id]);
 
     const increaseQuantity = useCallback(() => {
         startIncreaseTransition(() => {
@@ -58,7 +58,10 @@ export default function ProductActions({ product }: { product: ProductType }) {
                     onClick={decreaseQuantity}
                     loading={isDecreasing}
                     bg="blue.100"
+                    color="black"
                     size="sm"
+                    rounded={"xl"}
+                    _hover={{ bg: "blue.muted", color: "accent", _dark: { color: "white" } }}
                     transition={"all 500ms"}
                     _active={{ scale: "0.8" }}
                 >
@@ -69,7 +72,10 @@ export default function ProductActions({ product }: { product: ProductType }) {
                     disabled={!exist}
                     onClick={increaseQuantity}
                     bg="blue.100"
+                    color="black"
+                    _hover={{ bg: "blue.muted", color: "accent", _dark: { color: "white" } }}
                     size="sm"
+                    rounded={"xl"}
                     loading={isIncreasing}
                     transition={"all 500ms"}
                     _active={{ scale: "0.8" }}
@@ -83,7 +89,8 @@ export default function ProductActions({ product }: { product: ProductType }) {
                 size="lg"
                 bg='accent'
                 color="white"
-                _hover={{ bg: "blue.muted", color: "white" }}
+                rounded={"xl"}
+                _hover={{ bg: "blue.muted", color: "accent", _dark: { color: "white" } }}
                 fontWeight={"bold"}
                 transition={"all 500ms"}
                 _active={{ scale: "0.98" }}
@@ -92,8 +99,7 @@ export default function ProductActions({ product }: { product: ProductType }) {
                     startTransition(() => {
                         cart.addItem(item);
                     });
-                }}
-                rounded="lg">
+                }}>
                 <LuPlus />
                 Add To Cart
             </Button>

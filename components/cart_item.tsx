@@ -70,8 +70,10 @@ export default function CartItem({ item }: { item: CartItemType }) {
                         <Button
                             disabled={item.quantity == 1}
                             bg="blue.100"
+                            color="black"
                             size="xs"
                             transition={"all 500ms"}
+                            _hover={{ bg: "blue.muted" }}
                             _active={{ scale: "0.8" }}
                             loading={isDecreasing}
                             onClick={decreaseQuantity}
@@ -83,6 +85,8 @@ export default function CartItem({ item }: { item: CartItemType }) {
                             bg="blue.100"
                             size="xs"
                             transition={"all 500ms"}
+                            _hover={{ bg: "blue.muted"}}
+                            color="black"
                             loading={isIncreasing}
                             onClick={increaseQuantity}
                             _active={{ scale: "0.8" }}

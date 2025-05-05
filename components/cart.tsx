@@ -78,6 +78,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     const clearCart = () => {
         setItems([]);
+        localStorage.setItem("cart", JSON.stringify([]));
     }
 
     return (
@@ -100,7 +101,7 @@ const Cart = () => {
 
     return <Drawer.Root size={{ md: "md" }}>
         <Drawer.Trigger asChild>
-            <IconButton rounded="lg" _active={{ bg: "accent", color: "white" }} _hover={{ color: "accent" }}>
+            <IconButton bg="white" color="black" rounded="lg" _active={{ bg: "accent", color: "white" }} _hover={{ bg: "accent", color: "white" }}>
                 <BiCart />
                 <Float bg="accent" color={"white"} border="xs" borderColor="white" rounded="full" boxSize={"6"} placement="top-end" offsetX="1" offsetY="1">
                     {cart.items.length}
@@ -170,7 +171,9 @@ const Cart = () => {
                                 <HStack>
                                     <Drawer.ActionTrigger asChild>
                                         <Link href="/checkout">
-                                            <Button rounded="xl" fontWeight={"bold"} bg="accent" color="white">
+                                            <Button rounded="xl" fontWeight={"bold"} bg="accent" 
+                                                _hover={{ bg: "blue.muted", color: "accent", _dark: { color: "white" } }}
+                                            color="white">
                                                 Proceed to Checkout
                                                 <LuArrowRight />
                                             </Button>
