@@ -7,10 +7,37 @@ import { Tooltip } from "./ui/tooltip";
 import Link from "next/link";
 import { LuPlus } from "react-icons/lu";
 import { useCart } from "./cart";
+import Script from "next/script";
 
 export default function Product({ info, imgH }: { info: ProductType, imgH?: string }) {
     const cart = useCart();
     const [isPending, startTransition] = useTransition();
+
+    const productJsonLd = {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": info?.title,
+        "image": info?.img_url,
+        "description": info?.description,
+        "sku": info?.product_id,
+        "brand": {
+            "@type": "Brand",
+            "name": process.env.NEXT_PUBLIC_SITE_NAME
+        },
+        "offers": {
+            "@type": "Offer",
+            "url": `${process.env.NEXT_PUBLIC_SITE_URL}/${info.category.replaceAll(" ", "_")}/${info.title.replaceAll(" ", "_")}?product_id=${info.product_id}`,
+            "priceCurrency": "NGN",
+            "price": info?.price,
+            "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
+            "itemCondition": "https://schema.org/NewCondition",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+                "@type": "Organization",
+                "name": process.env.NEXT_PUBLIC_SITE_NAME
+            }
+        }
+    };
 
     return (
         <Stack
@@ -33,7 +60,7 @@ export default function Product({ info, imgH }: { info: ProductType, imgH?: stri
                     bg="gray.100"
                 >
                     <Image
-                        alt={info!.title}
+                        alt={`${info!.title} Kedi Healthcare product | ${process.env.NEXT_PUBLIC_SITE_NAME}`}
                         src={info?.img_url}
                         transition={"transform"}
                         transitionDuration={"300ms"}
@@ -84,6 +111,12 @@ export default function Product({ info, imgH }: { info: ProductType, imgH?: stri
                 <LuPlus />
                 Add To Cart
             </Button>
+
+            {/* jsonld */}
+            <Script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+            ></Script>
         </Stack>
     )
 }
