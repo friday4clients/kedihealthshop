@@ -3,9 +3,7 @@
 import Link from 'next/link';
 import { Container, HStack, Link as CLink, Image, IconButton, Stack, Drawer, Portal, CloseButton, Heading, Icon, Box } from '@chakra-ui/react';
 import { LuAlignRight } from 'react-icons/lu';
-import { getCategories } from '@/lib/utils';
 import Cart from './cart';
-import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { FaFacebook, FaWhatsapp, FaInstagram, FaTwitter } from 'react-icons/fa';
 import categories from '@/lib/categories';
@@ -103,35 +101,35 @@ const Navbar = () => {
                                             <Stack gap="4">
                                                 <Drawer.ActionTrigger asChild>
                                                     <Link href="/">
-                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} _active={{ color: "accent" }} fontWeight="medium">
                                                             Home
                                                         </Heading>
                                                     </Link>
                                                 </Drawer.ActionTrigger>
                                                 <Drawer.ActionTrigger asChild>
                                                     <Link href={`/${categories?.[0]?.category?.replaceAll(" ", "_")}`}>
-                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} _active={{ color: "accent" }} fontWeight="medium">
                                                             Shop
                                                         </Heading>
                                                     </Link>
                                                 </Drawer.ActionTrigger>
                                                 <Drawer.ActionTrigger asChild>
                                                     <Link href="/about">
-                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} _active={{ color: "accent" }} fontWeight="medium">
                                                             About
                                                         </Heading>
                                                     </Link>
                                                 </Drawer.ActionTrigger>
                                                 <Drawer.ActionTrigger asChild>
                                                     <Link href="/#services">
-                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} _active={{ color: "accent" }} fontWeight="medium">
                                                             Services
                                                         </Heading>
                                                     </Link>
                                                 </Drawer.ActionTrigger>
                                                 <Drawer.ActionTrigger asChild>
                                                     <Link href="/contact">
-                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} color="gray.emphasized" _active={{ color: "accent" }} fontWeight="medium">
+                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} _active={{ color: "accent" }} fontWeight="medium">
                                                             Contact
                                                         </Heading>
                                                     </Link>
