@@ -56,6 +56,9 @@ const Navbar = () => {
                         <Link href="/contact">
                             Contact
                         </Link>
+                        <Link href="/register">
+                            Register
+                        </Link>
                     </HStack>
 
                     <HStack display={{ base: "none", md: "flex" }} gap="6">
@@ -69,7 +72,7 @@ const Navbar = () => {
                                 <FaWhatsapp color="#444" size="20" aria-label='whatsapp' />
                             </Icon>
                         </Link>
-                        <Link href={process.env.NEXT_PUBLIC_TWITTER_URL!} target="_blank" rel="noopener noreferrer">
+                        {/* <Link href={process.env.NEXT_PUBLIC_TWITTER_URL!} target="_blank" rel="noopener noreferrer">
                             <Icon _hover={{ fill: "accent" }}>
                                 <FaInstagram color="#444" size="20" aria-label='instagram' />
                             </Icon>
@@ -78,7 +81,7 @@ const Navbar = () => {
                             <Icon _hover={{ fill: "accent" }}>
                                 <FaTwitter color="#444" size="20" aria-label='twitter' />
                             </Icon>
-                        </Link>
+                        </Link> */}
                         <Cart />
                     </HStack>
 
@@ -134,6 +137,14 @@ const Navbar = () => {
                                                         </Heading>
                                                     </Link>
                                                 </Drawer.ActionTrigger>
+                                                <Drawer.ActionTrigger asChild>
+                                                    <Link href="/register">
+                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} _active={{ color: "accent" }} fontWeight="medium">
+                                                            Become a Kedi Distributor
+                                                        </Heading>
+                                                    </Link>
+                                                </Drawer.ActionTrigger>
+
                                             </Stack>
 
                                             <Stack mt="6" gap="4">

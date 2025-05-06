@@ -1,5 +1,7 @@
-import { Box, Container, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
+import { Box, Button, Container, Grid, GridItem, Heading, Image, Stack, Text } from '@chakra-ui/react';
+import Link from 'next/link';
 import Script from 'next/script';
+import { LuArrowRight } from 'react-icons/lu';
 
 export const metadata = {
     title: "About Us",
@@ -25,26 +27,91 @@ const jsonLd = {
     }
 };
 
+const retailerDetails = {
+    name: process.env.NEXT_PUBLIC_VENDOR_NAME,
+    email: process.env.NEXT_PUBLIC_EMAIL,
+    phone: "07068453179",
+    whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_URL,
+};
 
 const AboutUsPage = () => {
     return (
         <>
             <Box bg="accent" lineHeight={"2"}>
-                <Container maxW="6xl">
-                    <Stack py="12" alignItems="center" gap="6">
-                        <Heading
-                            size={{ base: "3xl", md: "5xl" }}
-                            color="white"
-                            fontFamily={"merriweather"}
-                        >About {process.env.NEXT_PUBLIC_SITE_NAME}</Heading>
-                        <Text textAlign={{ base: "left", md: "center" }} color="blue.200">
-                            {process.env.NEXT_PUBLIC_SITE_NAME} is proud to be a trusted partner and distributor of Kedi Healthcare Industries Hong-Kong Limited, located in Hong-Kong China, bringing health and wellness solutions to communities far and wide. Our mission is to empower individuals and families by providing access to high-quality, scientifically-backed healthcare products. Join us on this journey to make a positive impact on lives through innovation and dedication.
-                        </Text>
-                    </Stack>
-                </Container>
-            </Box>
+                <Container maxW="6xl" h={{ base: "full", md: "calc(100vh - 55px)" }}>
+                    <Grid
+                        pb="6"
+                        gap={{ base: "4", md: "10" }}
+                        h="full"
+                        templateColumns={{ base: "1fr", md: "1fr 1fr" }}>
+                        <Stack py="12" alignItems="left" gap="6">
+                            <Heading
+                                size={{ base: "3xl", md: "5xl" }}
+                                color="white"
+                                fontFamily={"merriweather"}
+                            >About {process.env.NEXT_PUBLIC_SITE_NAME}</Heading>
+                            <Text textAlign={{ base: "left" }} color="blue.200">
+                                {process.env.NEXT_PUBLIC_SITE_NAME} is proud to be a trusted partner and distributor of Kedi Healthcare Industries Hong-Kong Limited, located in Hong-Kong China, bringing health and wellness solutions to communities far and wide. Our mission is to empower individuals and families by providing access to high-quality, scientifically-backed healthcare products. Join us on this journey to make a positive impact on lives through innovation and dedication.
+                            </Text>
+                            <Heading
+                                display={{ base: "none", md: "block" }}
+                                mt="6"
+                                size={{ base: "sm", md: "xl" }}
+                                color="white"
+                                fontFamily={"merriweather"}
+                            >- {retailerDetails?.name}</Heading>
+                            <Link color="accent" href={`/register`}>
+                                <Button
+                                    display={{ base: "none", md: "flex" }}
+                                    color="white"
+                                    rounded="xl"
+                                    w="fit"
+                                    borderColor="accent"
+                                    size="lg">
+                                    Become a Distributor
+                                    <LuArrowRight />
+                                </Button>
+                            </Link>
+                        </Stack>
 
-            <Box bg="white" py="12" lineHeight={"2"}>
+                        <Stack gap="4" h="full" py="2">
+                            <Image
+                                src="/kedi_distributor.jpg"
+                                alt={`${retailerDetails?.name} is a Kedi healthcare distributor`}
+                                rounded={"xl"}
+                                objectPosition={"top"}
+                                border="xl"
+                                borderColor={{ base: "white", md: "accent" }}
+                                w="full"
+                                h="full"
+                            />
+                            <Heading
+                                display={{ md: "none" }}
+                                mt="6"
+                                size={{ base: "lg", md: "2xl" }}
+                                color="white"
+                                fontFamily={"merriweather"}
+                            >{retailerDetails?.name}</Heading>
+                            <Text display={{ md: "none" }} color="gray.200">- Kedi Distributor</Text>
+
+                            <Link color="accent" href={`/register`}>
+                                <Button
+                                    display={{ md: "none" }}
+                                    color="white"
+                                    rounded="xl"
+                                    w="fit"
+                                    borderColor="accent"
+                                    size="lg">
+                                    Become a Distributor
+                                    <LuArrowRight />
+                                </Button>
+                            </Link>
+                        </Stack>
+                    </Grid>
+                </Container>
+            </Box >
+
+            <Box bg="white" py="12" pt="80" lineHeight={"2"}>
                 <Container maxW="6xl">
                     <Grid gap={{ base: "4", md: "0" }} templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }}>
                         <GridItem

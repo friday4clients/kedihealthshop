@@ -32,13 +32,13 @@ const Footer = async () => {
                         <Link className="hover:opacity-70" href={process.env.NEXT_PUBLIC_WHATSAPP_URL!} target="_blank" rel="noopener noreferrer">
                             <FaWhatsapp color="white" size="40" />
                         </Link>
-                        <Link className="hover:opacity-70" href={process.env.NEXT_PUBLIC_TWITTER_URL!} target="_blank" rel="noopener noreferrer">
+                        {/* <Link className="hover:opacity-70" href={process.env.NEXT_PUBLIC_TWITTER_URL!} target="_blank" rel="noopener noreferrer">
                             <FaInstagram color="white" size="40" />
 
                         </Link>
                         <Link className="hover:opacity-70" href={process.env.NEXT_PUBLIC_INSTAGRAM_URL!} target="_blank" rel="noopener noreferrer">
                             <FaTwitter color="white" size="40" />
-                        </Link>
+                        </Link> */}
                     </HStack>
                 </Stack>
                 <Grid
@@ -74,8 +74,8 @@ const Footer = async () => {
                         <Link href="/contact">
                             Contact
                         </Link>
-                        <Link href="/contact">
-                            Become a Kedi Partner
+                        <Link href="/register">
+                            Become a Kedi Distributor
                         </Link>
                     </Stack>
                     <Stack gap="2" textStyle={"sm"} color="blue.400"

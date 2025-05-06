@@ -115,7 +115,7 @@ const Testimonials = () => {
                             {testimonial.feedback}
                         </Text>
                         <HStack justifyContent="center">
-                            <RatingGroup.Root readOnly count={5} defaultValue={testimonial.rating} size="sm">
+                            <RatingGroup.Root colorPalette={"yellow"} readOnly count={5} defaultValue={testimonial.rating} size="sm">
                                 <RatingGroup.HiddenInput />
                                 <RatingGroup.Control />
                             </RatingGroup.Root>

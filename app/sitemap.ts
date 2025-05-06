@@ -54,6 +54,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: 'monthly',
         priority: 0.8,
     },
+    {
+        url: `${process.env.NEXT_PUBLIC_HOSTNAME}/register`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.8,
+    },
 
     ...(_categories.filter((category): category is MetadataRoute.Sitemap[number] => category !== undefined)),
     ...p
