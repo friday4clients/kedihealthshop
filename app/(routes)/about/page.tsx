@@ -111,7 +111,7 @@ const AboutUsPage = () => {
                 </Container>
             </Box >
 
-            <Box bg="white" py="12" pt="80" lineHeight={"2"}>
+            <Box bg="white" py="12" pt={{ base: "20", md: "80" }} lineHeight={"2"}>
                 <Container maxW="6xl">
                     <Grid gap={{ base: "4", md: "0" }} templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }}>
                         <GridItem
