@@ -41,6 +41,53 @@ const jsonLd = {
       "url": `${process.env.NEXT_PUBLIC_HOSTNAME!}/logo.webp`
     }
   },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": `${process.env.NEXT_PUBLIC_HOSTNAME}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Shop",
+        "item": `${process.env.NEXT_PUBLIC_HOSTNAME}/${categories[0]?.category?.replaceAll(" ", "_")}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "About",
+        "item": `${process.env.NEXT_PUBLIC_HOSTNAME}/about`
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Contact",
+        "item": `${process.env.NEXT_PUBLIC_HOSTNAME}/contact`
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "FAQs",
+        "item": `${process.env.NEXT_PUBLIC_HOSTNAME}/#faqs`
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "name": "Services",
+        "item": `${process.env.NEXT_PUBLIC_HOSTNAME}/#services`
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "name": "Register",
+        "item": `${process.env.NEXT_PUBLIC_HOSTNAME}/register`
+      }
+    ]
+  },
   "mainEntity": {
     "@type": "WebPageElement",
     "name": "Hero Section",
@@ -571,7 +618,7 @@ export default async function Home() {
       <Testimonials />
 
       {/* FAQ Section */}
-      <Box py={{ base: "20", md: "40" }} bg="white">
+      <Box id="faqs" py={{ base: "20", md: "40" }} bg="white">
         <Container maxW="6xl">
           <Heading
             as="h2"
