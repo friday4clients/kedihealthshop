@@ -34,12 +34,12 @@ export async function generateMetadata({ params }: CategoryPageProps) {
         creator: 'Friaday Joshua',
         publisher: 'Friday Joshua',
         metadataBase: new URL(process.env.NEXT_PUBLIC_HOSTNAME as string),
-        title: `${decodeURIComponent(category.replaceAll("_"," "))} Products`,
+        title: `${decodeURIComponent(category.replaceAll("_", " "))} Products`,
         description: desc,
         keywords: [decodeURIComponent(category.replaceAll("_", " ")), "Kedi Healthcare", "Kedi", "Healthcare", "Healthcare product"],
         twitter: {
             card: "summary",
-            title: ` ${decodeURIComponent(category.replaceAll("_", " ")) } Products | ${process.env.NEXT_PUBLIC_SITE_NAME} | Kedi Healthcare`,
+            title: ` ${decodeURIComponent(category.replaceAll("_", " "))} Products | ${process.env.NEXT_PUBLIC_SITE_NAME} | Kedi Healthcare`,
             description: desc,
             site: `${process.env.NEXT_PUBLIC_HOSTNAME}/${category?.replaceAll(" ", "_")}`,
             images: [""],
@@ -76,7 +76,12 @@ export async function generateMetadata({ params }: CategoryPageProps) {
 const CategoryPage = async ({ params }: CategoryPageProps) => {
     const _category = decodeURIComponent((await params)?.category)?.replaceAll("_", " ");
     const category = categories.find(c => c.category === _category) as CategoryType;
-    const products = (await getProductsByCategory(category?.category))?.Items as ProductType[];
+    let products = (await getProductsByCategory(category?.category))?.Items as ProductType[];
+    products = (products || [])?.sort((a, b) => {
+        if (a?.title < b?.title) return -1;
+        if (a?.title > b?.title) return 1;
+        return 0;
+    });
 
     const jsonLd = await getCategoryJSONLD(category, products);
 

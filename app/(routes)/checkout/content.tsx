@@ -86,7 +86,7 @@ const CheckoutPage = () => {
                 <Alert.Indicator color="accent" />
                 <Alert.Content>
                     <Alert.Title color="accent" fontSize="md" fontWeight={"bold"}>
-                        Vendors Account Information
+                        Kedi Distributor&apos;s Account Information
                     </Alert.Title>
                     <Alert.Description>
                         <Stack gap="0" mt="4">

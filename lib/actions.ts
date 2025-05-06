@@ -10,6 +10,7 @@ export const getProductsByCategory = async (category: string) => {
         const products = docClient.send(new ScanCommand({
             TableName: "kedi",
             FilterExpression: "category = :categoryValue",
+            
             ExpressionAttributeValues: {
                 ":categoryValue": category
             }
