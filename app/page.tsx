@@ -549,7 +549,6 @@ export default async function Home() {
             </Heading>
             <Text
               w={{ base: "90%", md: "70%" }}
-              // color="blue.50"
               mb="6">
               Discover the benefits of Kedi Healthcare products today. Join thousands of satisfied customers who trust Kedi Healthcare products for their wellness journe.
             </Text>
@@ -591,31 +590,31 @@ export default async function Home() {
               size="lg"
               gap="4"
               collapsible>
-                {[
+              {[
                 {
                   question: "When did Kedi commence business in Nigeria?",
                   answer:
-                  "Kedi Healthcare received CAC registration and NAFDAC approval in 2006 and began operations the same year.",
+                    "Kedi Healthcare received CAC registration and NAFDAC approval in 2006 and began operations the same year.",
                 },
                 {
                   question: "Is Kedi a Nigerian company?",
                   answer:
-                  "Kedi Healthcare Industries Nigeria Ltd is a wholly‑owned subsidiary of Kedi Healthcare Industries Co. (Hong Kong). Raw materials are imported from China; packaging is done locally by Fidson Healthcare PLC.",
+                    "Kedi Healthcare Industries Nigeria Ltd is a wholly‑owned subsidiary of Kedi Healthcare Industries Co. (Hong Kong). Raw materials are imported from China; packaging is done locally by Fidson Healthcare PLC.",
                 },
                 {
                   question: "How can I place an order?",
                   answer:
-                  "You can place an order by contacting our office through email, Whatsappp, or phone call, find more details in the contact us page",
+                    "You can place an order by contacting our office through email, Whatsappp, or phone call, find more details in the contact us page",
                 },
                 {
                   question: "What kind of products does Kedi produce?",
                   answer:
-                  "Kedi is a network‑marketing firm that offers nutritional supplements, herbal beverages, personal‑care items, and health‑diagnostic/therapy equipment.",
+                    "Kedi is a network‑marketing firm that offers nutritional supplements, herbal beverages, personal‑care items, and health‑diagnostic/therapy equipment.",
                 },
                 {
                   question: "What type of diseases can Kedi products help with?",
                   answer:
-                  "As nutritional supplements, Kedi products may support management of diabetes, stroke, menopausal syndrome, infertility, hypertension, impotence, asthma, cancer, fibroids, and more; they are not positioned as pharmaceutical cures.",
+                    "As nutritional supplements, Kedi products may support management of diabetes, stroke, menopausal syndrome, infertility, hypertension, impotence, asthma, cancer, fibroids, and more; they are not positioned as pharmaceutical cures.",
                 },
                 {
                   question: "How do I store KEDI products?",
@@ -624,34 +623,34 @@ export default async function Home() {
                 {
                   question: "Are Kedi products approved by NAFDAC?",
                   answer:
-                  "Yes, all Kedi products are registered and approved by NAFDAC, ensuring they meet the required safety and quality standards.",
+                    "Yes, all Kedi products are registered and approved by NAFDAC, ensuring they meet the required safety and quality standards.",
                 },
                 {
                   question: "Can Kedi products be used alongside prescription medications?",
                   answer:
-                  "Kedi products are nutritional supplements and can generally be used alongside prescription medications. However, it is advisable to consult your healthcare provider before combining them.",
+                    "Kedi products are nutritional supplements and can generally be used alongside prescription medications. However, it is advisable to consult your healthcare provider before combining them.",
                 },
                 {
                   question: "How can I become a Kedi distributor?",
                   answer:
-                  "To become a Kedi distributor, you need to register with a one-time fee and purchase a starter pack. Visit our registration page for more details.",
+                    "To become a Kedi distributor, you need to register with a one-time fee and purchase a starter pack. Visit our registration page for more details.",
                 },
                 {
                   question: "What is the refund policy for Kedi products?",
                   answer:
-                  "Kedi offers a refund or exchange policy for defective or damaged products. Ensure you retain your receipt and contact customer service for assistance.",
+                    "Kedi offers a refund or exchange policy for defective or damaged products. Ensure you retain your receipt and contact customer service for assistance.",
                 },
                 {
                   question: "Are there any side effects of using Kedi products?",
                   answer:
-                  "Kedi products are made from natural ingredients and are generally safe for use. However, individual reactions may vary, and it is recommended to follow the usage instructions provided.",
+                    "Kedi products are made from natural ingredients and are generally safe for use. However, individual reactions may vary, and it is recommended to follow the usage instructions provided.",
                 },
                 {
                   question: "Where can I find Kedi training centers?",
                   answer:
-                  "Kedi has training centers across Nigeria where you can learn about the business and products. Contact our support team for the nearest center to you.",
+                    "Kedi has training centers across Nigeria where you can learn about the business and products. Contact our support team for the nearest center to you.",
                 }
-                ].map((faq, index) => (
+              ].map((faq, index) => (
                 <Accordion.Item
                   _open={{ bg: "gray.100" }}
                   rounded="xl"
@@ -659,19 +658,19 @@ export default async function Home() {
                   key={index}
                   value={faq.answer}>
                   <Accordion.ItemTrigger
-                  cursor={"pointer"}>
-                  <Heading _hover={{ color: "accent" }} flex="1" as="h3" size="md">
-                    {faq.question}
-                  </Heading>
-                  <Accordion.ItemIndicator />
+                    cursor={"pointer"}>
+                    <Heading _hover={{ color: "accent" }} flex="1" as="h3" size="md">
+                      {faq.question}
+                    </Heading>
+                    <Accordion.ItemIndicator />
                   </Accordion.ItemTrigger>
                   <Accordion.ItemContent>
-                  <Accordion.ItemBody>
-                    <Text>{faq.answer}</Text>
-                  </Accordion.ItemBody>
+                    <Accordion.ItemBody>
+                      <Text>{faq.answer}</Text>
+                    </Accordion.ItemBody>
                   </Accordion.ItemContent>
                 </Accordion.Item>
-                ))}
+              ))}
             </Accordion.Root>
           </Stack>
         </Container>

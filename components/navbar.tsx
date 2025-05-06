@@ -36,28 +36,39 @@ const Navbar = () => {
                         transform={"translateX(-50%)"}
                         gap="4" className="*:hover:!text-blue-700">
                         <Link href="/">
-                            Home
+                            <Heading _hover={{ color: "accent" }} fontWeight={path === "/" ? "bold" : "medium"} _active={{ color: "accent" }} textStyle={"sm"} color={path == "/" ? "accent" : "inherit"}>
+                                Home
+                            </Heading>
                         </Link>
                         <Link href={`/${categories?.[0]?.category?.replaceAll(" ", "_")}`}>
-                            Shop
+                            <Heading _hover={{ color: "accent" }} fontWeight={path === `/${categories?.[0]?.category?.replaceAll(" ", "_")}` ? "bold" : "medium"} _active={{ color: "accent" }} textStyle={"sm"} color={path == `/${categories?.[0]?.category?.replaceAll(" ", "_")}` ? "accent" : "inherit"}>
+                                Shop
+                            </Heading>
                         </Link>
                         <Link href={`/checkout`}>
-                            Checkout
+                            <Heading _hover={{ color: "accent" }} fontWeight={path === "/checkout" ? "bold" : "medium"} _active={{ color: "accent" }} textStyle={"sm"} color={path == "/checkout" ? "accent" : "inherit"}>
+                                Checkout
+                            </Heading>
                         </Link>
                         <Link href="/about">
-                            About
+                            <Heading _hover={{ color: "accent" }} fontWeight={path === "/about" ? "bold" : "medium"} _active={{ color: "accent" }} textStyle={"sm"} color={path == "/about" ? "accent" : "inherit"}>
+                                About
+                            </Heading>
                         </Link>
-                        <CLink
-                            textDecor={"inherit"}
-                            color="inherit"
-                            href="/#services">
-                            Services
-                        </CLink>
+                        <Link href="/#services">
+                            <Heading _hover={{ color: "accent" }} fontWeight={path === "/#services" ? "bold" : "medium"} _active={{ color: "accent" }} textStyle={"sm"} color={path == "/services" ? "accent" : "inherit"}>
+                                Services
+                            </Heading>
+                        </Link>
                         <Link href="/contact">
-                            Contact
+                            <Heading _hover={{ color: "accent" }} fontWeight={path === "/contact" ? "bold" : "medium"} _active={{ color: "accent" }} textStyle={"sm"} color={path == "/contact" ? "accent" : "inherit"}>
+                                Contact
+                            </Heading>
                         </Link>
                         <Link href="/register">
-                            Register
+                            <Heading _hover={{ color: "accent" }} fontWeight={path === "/register" ? "bold" : "medium"} _active={{ color: "accent" }} textStyle={"sm"} color={path == "/register" ? "accent" : "inherit"}>
+                                Register
+                            </Heading>
                         </Link>
                     </HStack>
 

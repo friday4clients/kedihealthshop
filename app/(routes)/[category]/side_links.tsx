@@ -9,7 +9,7 @@ function isActiveLink(path: string, category: string): boolean {
     return path.includes(`/${category.replaceAll(" ", "_")}`);
 }
 export default function SideLinks() {
-    const path = usePathname();
+    const path = decodeURIComponent(usePathname());
 
     return (
         <Stack mt="6" gap="3" px={12} pb="6">
