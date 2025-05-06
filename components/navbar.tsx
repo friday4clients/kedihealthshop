@@ -86,7 +86,7 @@ const Navbar = () => {
                         <Cart />
                         <Drawer.Root>
                             <Drawer.Trigger asChild>
-                                <IconButton rounded="lg" _active={{ bg: "accent", color: "white" }}>
+                                <IconButton bg="white" color="gray.900" rounded="lg" _active={{ bg: "accent", color: "white" }}>
                                     <LuAlignRight />
                                 </IconButton>
                             </Drawer.Trigger>
