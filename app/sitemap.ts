@@ -43,6 +43,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     },
     {
+        url: `${process.env.NEXT_PUBLIC_HOSTNAME}/#services`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.8,
+    },
+    {
+        url: `${process.env.NEXT_PUBLIC_HOSTNAME}/#faqs`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.8,
+    },
+    {
         url: `${process.env.NEXT_PUBLIC_HOSTNAME}/about`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
@@ -56,6 +68,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
         url: `${process.env.NEXT_PUBLIC_HOSTNAME}/register`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.8,
+    },
+    {
+        url: `${process.env.NEXT_PUBLIC_HOSTNAME}/book_appointment`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 0.8,
