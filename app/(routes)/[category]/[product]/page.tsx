@@ -147,7 +147,7 @@ export default async function Page({ params, searchParams }: CategoryPageProps) 
                             </RatingGroup.Root>
 
                             <Heading color="accent" size="lg">
-                                {!isNaN(Number(product?.price)) ? <FormatNumber value={Number(product?.price)} currency="NGN" style="currency" /> : product?.price}
+                                {!isNaN(Number(product?.price)) ? <FormatNumber value={Number(product?.price)} currency="NGN" style="currency" currencyDisplay="narrowSymbol" /> : product?.price}
                             </Heading>
                             <Stack mt="6">
                                 <Heading size="xs">Share to</Heading>

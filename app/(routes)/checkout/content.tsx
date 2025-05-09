@@ -209,7 +209,7 @@ const CheckoutPage = () => {
                                     <Box>
                                         Total
                                     </Box>
-                                    <FormatNumber value={cart.items.reduce((total, item) => !isNaN(Number(item.price)) ? total + Number(item.price) * item.quantity : total, 0)} currency="NGN" style="currency" />
+                                    <FormatNumber currencyDisplay="narrowSymbol" value={cart.items.reduce((total, item) => !isNaN(Number(item.price)) ? total + Number(item.price) * item.quantity : total, 0)} currency="NGN" style="currency" />
                                 </HStack>
                             </Heading>
                             <Heading size="md">Place your order</Heading>

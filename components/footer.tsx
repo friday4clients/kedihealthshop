@@ -74,6 +74,9 @@ const Footer = async () => {
                         <Link href="/contact">
                             Contact
                         </Link>
+                        <Link href="/book_appointment">
+                            Book Appointment
+                        </Link>
                         <Link href="/register">
                             Become a Kedi Distributor
                         </Link>

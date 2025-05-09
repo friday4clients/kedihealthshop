@@ -112,7 +112,7 @@ const Navbar = () => {
                                             <Drawer.Title>Menu</Drawer.Title>
                                         </Drawer.Header>
                                         <Drawer.Body>
-                                            <Stack gap="4">
+                                            <Stack gap="4" fontWeight="bold">
                                                 <Drawer.ActionTrigger asChild>
                                                     <Link href="/">
                                                         <Heading _hover={{ color: "accent" }} textStyle={"sm"} _active={{ color: "accent" }} fontWeight="medium">
@@ -145,6 +145,13 @@ const Navbar = () => {
                                                     <Link href="/contact">
                                                         <Heading _hover={{ color: "accent" }} textStyle={"sm"} _active={{ color: "accent" }} fontWeight="medium">
                                                             Contact
+                                                        </Heading>
+                                                    </Link>
+                                                </Drawer.ActionTrigger>
+                                                <Drawer.ActionTrigger asChild>
+                                                    <Link href="/book_appointment">
+                                                        <Heading _hover={{ color: "accent" }} textStyle={"sm"} _active={{ color: "accent" }} fontWeight="medium">
+                                                            Book Appointment
                                                         </Heading>
                                                     </Link>
                                                 </Drawer.ActionTrigger>

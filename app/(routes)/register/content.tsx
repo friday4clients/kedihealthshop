@@ -139,13 +139,14 @@ const RegistrationPage = () => {
         <>
             <Box bg="white"
                 py="12"
+                pb="28"
                 lineHeight={"2"}>
                 <Container maxW="6xl">
-                    <Stack py="12" alignItems="center" gap="0">
+                    <Stack alignItems="center" gap="0">
                         <Heading
                             size={{ base: "3xl", md: "3xl" }}
                             fontFamily={"merriweather"}
-                            w="80%"
+                            w={{ md: "80%" }}
                             textAlign="center"
                         >
                             Become A Kedi Distributor Today
@@ -223,7 +224,7 @@ const RegistrationPage = () => {
                                     color="accent"
                                     variant={"subtle"}
                                     bg="white">
-                                    Proceed To Submittion
+                                    Proceed With Submittion
                                 </Button>
                                 <Field.HelperText color="white">You will be redirected to WhatsApp to submit the form</Field.HelperText>
                             </Field.Root>

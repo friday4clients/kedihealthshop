@@ -51,10 +51,10 @@ export default function CartItem({ item }: { item: CartItemType }) {
             <Stack gap="2" w="full">
                 <Heading lineClamp={"1"} size="sm">{item?.title}</Heading>
                 <Heading color="gray.emphasized" size="xs">
-                    {!isNaN(Number(item?.price)) ? <FormatNumber value={Number(item?.price)} currency="NGN" style="currency" /> : "Negotiable"}
+                    {!isNaN(Number(item?.price)) ? <FormatNumber currencyDisplay="narrowSymbol" value={Number(item?.price)} currency="NGN" style="currency" /> : "Negotiable"}
                     <Box display={item.quantity > 1 ? "block" : "none"} color="gray.300" fontSize={"xs"}>
                         (
-                        {!isNaN(Number(item?.price)) ? <FormatNumber value={Number(item?.price)} currency="NGN" style="currency" /> : "Negotiable"}
+                        {!isNaN(Number(item?.price)) ? <FormatNumber currencyDisplay="narrowSymbol" value={Number(item?.price)} currency="NGN" style="currency" /> : "Negotiable"}
                         &nbsp;*&nbsp;{item.quantity}
                         )
                     </Box>

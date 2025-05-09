@@ -112,7 +112,7 @@ export default function Product({ info, imgH }: { info: ProductType, imgH?: stri
                         <Text fontSize={"sm"} lineClamp={"2"}>{info!.description}</Text>
                     </Tooltip>
                     <Heading color="accent" size="sm">
-                        {!isNaN(Number(info?.price)) ? <FormatNumber value={Number(info?.price)} currency="NGN" style="currency" /> : info?.price}
+                        {!isNaN(Number(info?.price)) ? <FormatNumber value={Number(info?.price)} currency="NGN" style="currency" currencyDisplay="narrowSymbol" /> : info?.price}
                     </Heading>
                 </Stack>
             </Link>
