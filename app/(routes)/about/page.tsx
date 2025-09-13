@@ -1,4 +1,5 @@
-import { Box, Button, Container, Grid, GridItem, Heading, Image, Stack, Text } from '@chakra-ui/react';
+import Testimonials from '@/components/testimonial';
+import { Box, Button, Container, Em, Grid, GridItem, Heading, Image, Stack, Text, VisuallyHidden } from '@chakra-ui/react';
 import Link from 'next/link';
 import Script from 'next/script';
 import { LuArrowRight } from 'react-icons/lu';
@@ -37,6 +38,31 @@ const retailerDetails = {
 const AboutUsPage = () => {
     return (
         <>
+            <VisuallyHidden>
+                <Em>Kedi</Em>
+                <Em>Kedi Health</Em>
+                <Em>Kedi Healthcare</Em>
+                <Em>Kedi Health care</Em>
+                <Em>Kedi Health consultant</Em>
+            </VisuallyHidden>
+            <VisuallyHidden>
+                <Em>buy original kedi products online nigeria</Em>
+
+                <Em>kedi vitanature supplement price in nigeria</Em>
+
+                <Em>kedi cordyceps capsules for energy</Em>
+
+                <Em>kedi constipation relief tea review</Em>
+
+                <Em>kedi herbal toothpaste where to buy</Em>
+
+                <Em>kedi immune booster supplements lagos</Em>
+
+                <Em>affordable kedi health products abuja</Em>
+
+                <Em>genuine kedi weight loss tea nigeria</Em>
+            </VisuallyHidden>
+            
             <Box bg="accent" lineHeight={"2"}>
                 <Container maxW="6xl" h={{ base: "full", md: "calc(100vh - 55px)" }}>
                     <Grid
@@ -120,15 +146,15 @@ const AboutUsPage = () => {
                             h="full"
                             justifyContent={{ md: "center" }}>
                             <Heading w="1/2" size="4xl" color="accent">
-                                About Kedi
+                                <em>About Kedi</em>
                             </Heading>
                         </GridItem>
                         <GridItem colSpan={2}>
                             <Text>
-                                The word KEDI is a Chinese language meaning &quot;Science is unlimited&quot;. Kedi healthcare is a giant Multi-level marketing company of our time, entered Nigeria in 2005, utilized the period to accomplish all due process in line with all rules and regulation in the country and commenced operation specifically on 10th June, 2006 very much in contrast with other Multi-level companies
+                                The word KEDI is a Chinese language meaning &quot;Science is unlimited&quot;. <em>Kedi healthcare</em> is a giant Multi-level marketing company of our time, entered Nigeria in 2005, utilized the period to accomplish all due process in line with all rules and regulation in the country and commenced operation specifically on 10th June, 2006 very much in contrast with other Multi-level companies
                             </Text>
                             <Text mt="4">
-                                As part of her overall strategy to build a formidable force in the field of life sciences, KEDI has invested tremendously in research and development by partnering with Research and Development Institutes and Manufacturing Companies across the world to continuously connote a culture that combines an endorsement of globally acceptable standards in healthcare industry practices with a genuine concern for the availability of potent but affordable medical products and equipment to meet the needs of her customers and form a powerful synergy based on a set of values in Africa and beyond. Our product lines have covered Herbal Medicine/TCM, Food Supplements, Personal Care and Medical Device.
+                                As part of her overall strategy to build a formidable force in the field of life sciences, <em>KEDI</em> has invested tremendously in research and development by partnering with Research and Development Institutes and Manufacturing Companies across the world to continuously connote a culture that combines an endorsement of globally acceptable standards in healthcare industry practices with a genuine concern for the availability of potent but affordable medical products and equipment to meet the needs of her customers and form a powerful synergy based on a set of values in Africa and beyond. Our product lines have covered Herbal Medicine/TCM, Food Supplements, Personal Care and Medical Device.
                             </Text>
                         </GridItem>
                     </Grid>
@@ -140,7 +166,7 @@ const AboutUsPage = () => {
                     <Grid gap={{ base: "4", md: "0" }} templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }}>
                         <GridItem colSpan={2}>
                             <Text>
-                                Making people&apos;s lives better by unleashing the power of healthcare, KEDI Healthcare aims to setup Traditional Chinese Medicine Pharmaceutical Factories, Traditional Chinese Medicine Hospitals and Chinese Herbal Medicine Research Institutes worldwide                            </Text>
+                                Making people&apos;s lives better by unleashing the power of healthcare, <em>KEDI Healthcare</em> aims to setup Traditional Chinese Medicine Pharmaceutical Factories, Traditional Chinese Medicine Hospitals and Chinese Herbal Medicine Research Institutes worldwide                            </Text>
                         </GridItem>
                         <GridItem
                             order={{ base: "-1", md: "1" }}
@@ -170,7 +196,7 @@ const AboutUsPage = () => {
                         </GridItem>
                         <GridItem colSpan={2}>
                             <Text>
-                                KEDI Healthcare commits itself to promoting Traditional Chinese Medicine (TCM) culture worldwide, introducing the quintessence of Chinese Medicine and contributing to the wellbeing of mankind.                            </Text>
+                                <em>KEDI Healthcare</em> commits itself to promoting Traditional Chinese Medicine (TCM) culture worldwide, introducing the quintessence of Chinese Medicine and contributing to the wellbeing of mankind.                            </Text>
                         </GridItem>
                     </Grid>
                 </Container>
@@ -197,6 +223,8 @@ const AboutUsPage = () => {
                     </Grid>
                 </Container>
             </Box>
+
+            <Testimonials />
 
             {/* jsonld */}
             <Script

@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Container, Field, Grid, Button, GridItem, Group, Heading, HStack, Input, Stack, Textarea, Separator, Text } from '@chakra-ui/react';
+import { Box, Container, Field, Grid, Button, GridItem, Group, Heading, HStack, Input, Stack, Textarea, Separator, Text, VisuallyHidden, Em } from '@chakra-ui/react';
 import Link from 'next/link';
 import Form from "next/form";
 import React from 'react';
@@ -49,6 +49,30 @@ const ContactUsPage = () => {
 
     return (
         <Box bgSize="cover" bgImg="linear-gradient(to bottom,rgba(0 0 0/0.9), rgba(0 0 0/0.8)), url(https://i.pinimg.com/736x/6a/5d/6f/6a5d6f7449e3dcf0e44ddf90066f2987.jpg)" color="white" h="">
+
+            <VisuallyHidden>
+                <Em>best kedi products for immune system support</Em>
+
+                <Em>kedi herbal remedies for digestion</Em>
+
+                <Em>kedi supplements for women&apo;s health</Em>
+
+                <Em>how to spot fake kedi products</Em>
+                <Em>kedi health products for stress relief</Em>
+
+                <Em>kedi supplements for energy and vitality</Em>
+                <Em>kedi capsules for blood circulation</Em>
+
+                <Em>kedi detox tea benefits and side effects</Em>
+                <Em>{process.env.NEXT_PUBLIC_SITE_NAME} kedi shop nigeria</Em>
+
+                <Em>reviews of {process.env.NEXT_PUBLIC_SITE_NAME} kedi store</Em>
+
+                <Em>buy kedi products from trusted seller</Em>
+
+                <Em>kedi health care official partner nigeria</Em>
+            </VisuallyHidden>
+
             <Container h={"full"} maxW={"6xl"}>
                 <Grid
                     h="full"

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Merriweather, Montserrat } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
+import { Em, VisuallyHidden } from "@chakra-ui/react";
 
 const Navbar = dynamic(() => import("@/components/navbar"));
 const Footer = dynamic(() => import("@/components/footer"));
@@ -60,6 +61,13 @@ export default function RootLayout({
         className={`relative ${merriweather.variable} ${montserrat.variable} antialiased`}
       >
         <Provider>
+          <VisuallyHidden>
+            <Em>Kedi</Em>
+            <Em>Kedi Health</Em>
+            <Em>Kedi Healthcare</Em>
+            <Em>Kedi Health care</Em>
+            <Em>Kedi Health consultant</Em>
+          </VisuallyHidden>
           <CartProvider>
             <Navbar />
             {children}

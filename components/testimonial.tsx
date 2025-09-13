@@ -1,12 +1,13 @@
 "use client"
 
-import { Box, Heading, Stack, HStack, RatingGroup, Image, Text, Highlight } from "@chakra-ui/react";
+import { Box, Heading, Stack, HStack, RatingGroup, Image, Text, Highlight, Center, SimpleGrid } from "@chakra-ui/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import Link from "next/link";
 
 const Testimonials = () => {
-    return <Box bg="accent" py={{ base: "20", md: "40" }}>
+    return <Box bg="accent" spaceY={20} py={{ base: "20", md: "40" }}>
         <Heading
             as="h2"
             size={{ base: "3xl", md: "5xl" }}
@@ -25,6 +26,45 @@ const Testimonials = () => {
                 What Our Customers Say
             </Highlight>
         </Heading>
+
+        <SimpleGrid columns={{ base: 1, md: 2 }} gap={10} px={{ base: "4", md: "20" }}>
+            <video
+                controls
+                className="rounded-2xl shadow-lg bg-white/0 w-full h-48 aspect-[1/1]"
+            >
+                <source src="/video-testimonial-1.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <video
+                controls
+                className="rounded-2xl shadow-lg bg-white/0 w-full h-48 aspect-[1/1]"
+            >
+                <source src="/video-testimonial-2.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+        </SimpleGrid>
+
+        <SimpleGrid columns={{ base: 1, md: 2 }} gap={10} px={{ base: "4", md: "20" }}>
+            <Image
+                src="/testimonial-1.jpg"
+                alt="Customer Testimonials"
+                borderRadius="xl"
+                boxShadow="lg"
+                objectFit="cover"
+                w="full"
+                h={{ base: "200px", md: "100%" }}
+            />
+            <Image
+                src="/testimonial-2.jpg"
+                alt="Customer Testimonials"
+                borderRadius="xl"
+                boxShadow="lg"
+                objectFit="cover"
+                w="full"
+                h={{ base: "200px", md: "100%" }}
+            />
+        </SimpleGrid>
+
         <Swiper
             slidesPerView={"auto"}
             className="!p-8"
@@ -124,6 +164,13 @@ const Testimonials = () => {
                 </SwiperSlide>
             ))}
         </Swiper>
+
+        <HStack justify={"center"}>
+            <Box bg="white" rounded="lg" p="4" _hover={{ bg: "whiteAlpha.900" }} asChild>
+                <Link target="_blank" href={"https://g.page/r/CWz5YWJpqlviEAI/review"}>Leave a Review</Link>
+            </Box>
+        </HStack>
+
     </Box>
 }
 

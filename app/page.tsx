@@ -1,4 +1,4 @@
-import { Button, Container, Heading, Image, Link as CLink, Text, Icon, Box, Grid, GridItem, HStack, Highlight, Stack, Accordion, Input, Center } from "@chakra-ui/react";
+import { Button, Container, Heading, Image, Link as CLink, Text, Icon, Box, Grid, GridItem, HStack, Highlight, Stack, Accordion, Input, Center, Em, VisuallyHidden } from "@chakra-ui/react";
 import Link from "next/link";
 import { LuArrowRight } from "react-icons/lu";
 import { BiBadgeCheck, BiSupport } from "react-icons/bi";
@@ -145,6 +145,33 @@ export default async function Home() {
         bg="white"
         h={{ base: "calc(100vh - 55px)", md: "vh" }}
         p="2">
+
+        <VisuallyHidden>
+          <Em>kedi detox tea benefits and side effects</Em>
+          <Em>{process.env.NEXT_PUBLIC_SITE_NAME} kedi shop nigeria</Em>
+
+          <Em>reviews of {process.env.NEXT_PUBLIC_SITE_NAME} kedi store</Em>
+
+          <Em>buy kedi products from trusted seller</Em>
+
+          <Em>kedi health care official partner nigeria</Em>
+          
+          <Em>buy original kedi products online nigeria</Em>
+
+          <Em>kedi vitanature supplement price in nigeria</Em>
+
+          <Em>kedi cordyceps capsules for energy</Em>
+
+          <Em>kedi constipation relief tea review</Em>
+
+          <Em>kedi herbal toothpaste where to buy</Em>
+
+          <Em>kedi immune booster supplements lagos</Em>
+
+          <Em>affordable kedi health products abuja</Em>
+
+          <Em>genuine kedi weight loss tea nigeria</Em>
+        </VisuallyHidden>
         <Grid
           gap=""
           h="full"
@@ -194,20 +221,22 @@ export default async function Home() {
                   fontWeight={"black"}
                   fontFamily={"merriweather"}
                   mb="6">
-                  <Highlight
-                    query={"Number One"}
-                    styles={{
-                      color: "blue.contrast",
-                      display: "block",
-                      w: "fit",
-                      px: "4",
-                      transform: "skewX(-20deg)",
-                      fontWeight: "thin",
-                      bg: "accent"
-                    }}
-                  >
-                    Your Number One Store For Affordable Kedi Healthcare Products
-                  </Highlight>
+                  <Em>
+                    <Highlight
+                      query={"Number One"}
+                      styles={{
+                        color: "blue.contrast",
+                        display: "block",
+                        w: "fit",
+                        px: "4",
+                        transform: "skewX(-20deg)",
+                        fontWeight: "thin",
+                        bg: "accent"
+                      }}
+                    >
+                      Your Number One Store For Affordable Kedi Healthcare Products
+                    </Highlight>
+                  </Em>
                 </Heading>
               </Fade>
 
