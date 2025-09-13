@@ -75,7 +75,7 @@ export default function Product({ info, imgH }: { info: ProductType, imgH?: stri
             gap="3"
             shadow="0 0 15px #eee"
             border="sm"
-            borderColor="transparent"
+            borderColor="gray.200"
             _active={{ shadow: "none", transform: "scale(0.98)" }}
             _hover={{ borderColor: "gray.200" }}
             rounded="xl">
@@ -108,7 +108,7 @@ export default function Product({ info, imgH }: { info: ProductType, imgH?: stri
             <Link href={`/${info.category.replaceAll(" ", "_")}/${info.title.replaceAll(" ", "_")}?product_id=${info?.product_id}`} passHref>
                 <Stack>
                     <Heading lineClamp={"1"}>{info!.title}</Heading>
-                    <Tooltip content={info!.description} openDelay={100} contentProps={{ p: "4", color: "gray.emphasized", rounded: "xl" }}>
+                    <Tooltip content={info!.description} openDelay={100} contentProps={{ p: "4", color: "gray.800", rounded: "xl", bg: "white" }}>
                         <Text fontSize={"sm"} lineClamp={"2"}>{info!.description}</Text>
                     </Tooltip>
                     <Heading color="accent" size="sm">

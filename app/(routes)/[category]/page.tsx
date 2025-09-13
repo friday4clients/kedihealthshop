@@ -1,19 +1,25 @@
+import SearchBar from "@/components/searchbar";
 import { getProductsByCategory } from "@/lib/actions";
 import categories, { CategoryType } from "@/lib/categories";
 import { getCategoryJSONLD } from "@/lib/jsonld";
 import { ProductType } from "@/lib/utils";
-import { Container, Breadcrumb, Stack, Heading, Text, Grid, GridItem } from "@chakra-ui/react";
+import { Container, Breadcrumb, Stack, Heading, Text, Grid, GridItem, HStack } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Script from "next/script";
 import { Fade } from "react-awesome-reveal";
+import SearchNotFound from "./Search404";
 
 const Product = dynamic(() => import("@/components/product"));
 
 interface CategoryPageProps {
     params: Promise<{
         category: string;
-    }>
+        search?: string;
+    }>;
+    searchParams: Promise<{
+        search?: string;
+    }>;
 }
 
 export async function generateStaticParams() {
@@ -72,8 +78,7 @@ export async function generateMetadata({ params }: CategoryPageProps) {
 }
 
 
-
-const CategoryPage = async ({ params }: CategoryPageProps) => {
+const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
     const _category = decodeURIComponent((await params)?.category)?.replaceAll("_", " ");
     const category = categories.find(c => c.category === _category) as CategoryType;
     let products = (await getProductsByCategory(category?.category))?.Items as ProductType[];
@@ -85,20 +90,31 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
 
     const jsonLd = await getCategoryJSONLD(category, products);
 
+    // Search bar state and handler
+    const searchValue = (await searchParams)?.search?.toLowerCase() || "";
+    const filteredProducts = products?.filter(product =>
+        product.title.toLowerCase().includes(searchValue) ||
+        product?.description?.toLowerCase()?.includes(searchValue) ||
+        product?.price?.toString().toLowerCase().startsWith(searchValue)
+    );
+
     return (
         <>
-            <Container maxW="6xl" py="12" pt={{ base: "6" }}>
-                <Breadcrumb.Root>
-                    <Breadcrumb.List flexWrap={"wrap"}>
-                        <Breadcrumb.Item>
-                            <Breadcrumb.Link _active={{ ring: "none" }} color="gray.500" _hover={{ color: "accent" }} as={Link} href="/">Home</Breadcrumb.Link>
-                        </Breadcrumb.Item>
-                        <Breadcrumb.Separator />
-                        <Breadcrumb.Item>
-                            <Breadcrumb.CurrentLink color="accent">{category?.category}</Breadcrumb.CurrentLink>
-                        </Breadcrumb.Item>
-                    </Breadcrumb.List>
-                </Breadcrumb.Root>
+            <Container maxW="6xl" py="12" pos="relative" pt={{ base: "6" }}>
+                <HStack justify="space-between">
+                    <Breadcrumb.Root>
+                        <Breadcrumb.List flexWrap={"wrap"}>
+                            <Breadcrumb.Item>
+                                <Breadcrumb.Link _active={{ ring: "none" }} color="gray.500" _hover={{ color: "accent" }} as={Link} href="/">Home</Breadcrumb.Link>
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Separator />
+                            <Breadcrumb.Item>
+                                <Breadcrumb.CurrentLink color="accent">{category?.category}</Breadcrumb.CurrentLink>
+                            </Breadcrumb.Item>
+                        </Breadcrumb.List>
+                    </Breadcrumb.Root>
+
+                </HStack>
 
                 <Stack gap="4" mt="12">
                     <Heading fontWeight="bold" size="4xl" fontFamily={"merriweather"}>{category?.category}</Heading>
@@ -107,14 +123,24 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
                     </Text>
                 </Stack>
 
-                <Heading my="8" size="xl">All products</Heading>
+                <HStack pos="sticky" top="14" bg="gray.100" zIndex="docked" justify={"space-between"}>
+                    <Heading my="8" size="xl">All products</Heading>
+
+                    {/* search bar here */}
+                    <SearchBar />
+                </HStack>
+
+                {/* search 404 */}
+                {searchValue && !filteredProducts?.length && (
+                    <SearchNotFound searchValue={searchValue} />
+                )}
 
                 <Grid
                     templateColumns={{ md: "1fr 1fr 1fr" }}
                     gap="4"
                 >
                     <Fade triggerOnce cascade>
-                        {products?.map((product, index) => {
+                        {filteredProducts?.map((product, index) => {
                             return (
                                 <GridItem key={index}>
                                     <Product info={product} />
@@ -134,5 +160,7 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
         </>
     );
 };
+
+
 
 export default CategoryPage;

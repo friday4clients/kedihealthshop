@@ -20,8 +20,10 @@ const Navbar = () => {
             position="sticky"
             top="0"
             zIndex={"sticky"}
+            borderBottom="xs"
+            borderBottomColor={"gray.200"}
             display={{ md: path === "/" ? "none" : "block" }}
-            maxW={{ base: "6xl", md: "full" }} as="nav" bg="white" borderBottom="sm" borderColor="gray.100">
+            maxW={{ base: "6xl", md: "full" }} as="nav" bg="white">
             <Container maxW={"6xl"}>
                 <HStack position="relative" h="16" justifyContent={{ base: "space-between" }}>
                     <Link href="/">
