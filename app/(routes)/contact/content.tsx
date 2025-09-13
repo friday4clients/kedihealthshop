@@ -152,6 +152,20 @@ const ContactUsPage = () => {
                                     <Text color="gray.500" >{process.env.NEXT_PUBLIC_LOCATION}</Text>
                                 </Stack>
                             </HStack>
+
+
+                            {/* map */}
+                            <Box mt="6" border="sm" w="full" rounded="md" overflow="hidden">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1039.7114943424187!2d7.025586789831893!3d4.833890541048704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1069cd18ffa6f253%3A0xe25baa696261f96c!2sKedi%20Health%20Shop!5e0!3m2!1sen!2sch!4v1757760159000!5m2!1sen!2sch"
+                                    width="100%"
+                                    height="450"
+                                    allowFullScreen={true}
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade">
+
+                                </iframe>
+                            </Box>
                         </Stack>
                     </GridItem>
                 </Grid>
@@ -163,7 +177,7 @@ const ContactUsPage = () => {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             ></Script>
-        </Box>
+        </Box >
     );
 };
 
