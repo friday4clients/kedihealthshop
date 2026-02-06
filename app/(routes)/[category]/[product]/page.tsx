@@ -106,11 +106,15 @@ export default async function Page({ params, searchParams }: CategoryPageProps) 
                 <Breadcrumb.Root>
                     <Breadcrumb.List flexWrap={"wrap"}>
                         <Breadcrumb.Item>
-                            <Breadcrumb.Link _active={{ ring: "none" }} color="inherit" _hover={{ color: "accent" }} as={Link} href="/">Home</Breadcrumb.Link>
+                            <Breadcrumb.Link asChild _active={{ ring: "none" }} color="inherit" _hover={{ color: "accent" }} >
+                                <Link href="/">Home</Link>
+                            </Breadcrumb.Link>
                         </Breadcrumb.Item>
                         <Breadcrumb.Separator />
                         <Breadcrumb.Item>
-                            <Breadcrumb.Link _active={{ ring: "none" }} color="inherit" _hover={{ color: "accent" }} as={Link} href={`/${category.replaceAll(" ", "_")}`}>{category}</Breadcrumb.Link>
+                            <Breadcrumb.Link asChild _active={{ ring: "none" }} color="inherit" _hover={{ color: "accent" }} >
+                                <Link href={`/${category.replaceAll(" ", "_")}`}>{category}</Link>
+                            </Breadcrumb.Link>
                         </Breadcrumb.Item>
                         <Breadcrumb.Separator />
                         <Breadcrumb.Item>

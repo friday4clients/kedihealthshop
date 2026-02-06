@@ -105,7 +105,9 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
                     <Breadcrumb.Root>
                         <Breadcrumb.List flexWrap={"wrap"}>
                             <Breadcrumb.Item>
-                                <Breadcrumb.Link _active={{ ring: "none" }} color="gray.500" _hover={{ color: "accent" }} as={Link} href="/">Home</Breadcrumb.Link>
+                                <Breadcrumb.Link asChild _active={{ ring: "none" }} color="gray.500" _hover={{ color: "accent" }}>
+                                    <Link href="/">Home</Link>
+                                </Breadcrumb.Link>
                             </Breadcrumb.Item>
                             <Breadcrumb.Separator />
                             <Breadcrumb.Item>
